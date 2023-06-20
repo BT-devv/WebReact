@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const Footer = () =>{
-  return(
+const Footer = () => {
+  return (
     <div className="footer">
       <div className="top">
         <div className="item">
@@ -20,36 +20,36 @@ const Footer = () =>{
           <span>Compare</span>
           <span>Cookies</span>
         </div>
-      <div className="item">
-        <h1>About</h1>
-        <span>
-          Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
-          amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt
-          ut labore etdolore.
-        </span>
+        <div className="item">
+          <h1>About</h1>
+          <span>
+            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
+            amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt
+            ut labore etdolore.
+          </span>
+        </div>
+        <div className="item">
+          <h1>Contact</h1>
+          <span>
+            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
+            amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt
+            ut labore etdolore.
+          </span>
+        </div>
       </div>
-      <div className="item">
-        <h1>Contact</h1>
-        <span>
-          Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
-          amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt
-          ut labore etdolore.
-        </span>
+      <div className="bottom">
+        <div className="left">
+          <span className="logo">TuanVanStore</span>
+          <span className="copyright">
+            © Copyright 2023. All Rights Reserved
+          </span>
+        </div>
+        <div className="right">
+          <img src="/img/payment.png" alt="" />
+        </div>
       </div>
-    </div>
-    <div className="bottom">
-      <div className="left">
-        <span className="logo">TuanVanStore</span>
-        <span className="copyright">
-          © Copyright 2023. All Rights Reserved
-        </span>
-      </div>
-      <div className="right">
-        <img src="/img/payment.png" alt="" />
-      </div>
-    </div>
     </div>
   );
 };

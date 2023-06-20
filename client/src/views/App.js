@@ -1,17 +1,17 @@
-import './Style.scss';
+import '../styles/Style.scss';
 import {createBrowserRouter, Outlet, RouterProvider,} from "react-router-dom";
 
-import Home from './pages/Home';
-import Colection from './pages/Products/Colection';
-import Male from './pages/Products/Male';
-import Female from './pages/Products/Female';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Store from './pages/Store';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Home from '../components/Home';
+import Colection from '../components/Colection';
+import Male from '../components/Male';
+import Female from '../components/Female';
+import About from '../components/About';
+import Contact from '../components/Contact';
+import Store from '../components/Store';
+import Login from '../components/Login';
+import Register from '../components/Register';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Layout =() =>{
   return(
@@ -22,15 +22,15 @@ const Layout =() =>{
     </>
   )
 }
-const LayoutProduct =() =>{
-  return(
-    <>
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </>
-  )
-}
+// const LayoutProduct =() =>{
+//   return(
+//     <>
+//       <Navbar />
+//       <Outlet />
+//       <Footer />
+//     </>
+//   )
+// }
 
 const router = createBrowserRouter([
   {
