@@ -1,0 +1,51 @@
+$lightGreen: #90EE90;
+$darkGrey: #A9A9A9;
+$lightBlue: #add8e6;
+$black:#fff0;
+.auth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: $lightGreen;
+    h1{
+        font-size: 30px;
+        color: teal;
+        margin-bottom: 20px;
+
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        padding:50px ;
+        border-radius:8px;
+        box-shadow: -6px 7px 10px rgba(0,0,0,.2);
+        text-align:center;
+        background-color: #fff;
+        gap: 20px;
+        input{
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid gray;
+        }
+        button{
+            padding: 10px;
+            border: none;
+            background-color: teal;
+            color:  #ffffff;
+            cursor: pointer;
+        }
+        p{
+            font-size: 12px;
+            text-align: center;
+            color: red;
+        }
+        span{
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+    
+              
+}
