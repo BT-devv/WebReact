@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import React from "react";
+import "./Slide.scss";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 

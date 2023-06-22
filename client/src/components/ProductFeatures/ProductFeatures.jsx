@@ -1,6 +1,7 @@
 import React from "react";
-import Card from "./Card.jsx";
-const ProductDetail = ({ type }) => {
+import "./ProductFeatures.scss";
+import Card from "../Card/Card.jsx";
+const ProductFeatures = ({ type }) => {
   const data = [
     {
       id: 1,
@@ -61,7 +62,7 @@ const ProductDetail = ({ type }) => {
   ];
 
   return (
-    <div className="productDetail">
+    <div className="productFeature">
       <div className="top">
         <h1>{type} product</h1>
         <p>
@@ -80,4 +81,4 @@ const ProductDetail = ({ type }) => {
   );
 };
 
-export default ProductDetail;
+export default ProductFeatures;

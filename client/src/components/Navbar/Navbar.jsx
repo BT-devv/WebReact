@@ -1,4 +1,5 @@
 import React from "react";
+import "./Navbar.scss";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -16,19 +17,19 @@ const Navbar = () => {
             <KeyboardArrowDownIcon />
           </div>
           <div className="item">
-            <Link className="link" to="/male">
+            <Link className="link" to="/product/1">
               {" "}
               Male
             </Link>
           </div>
           <div className="item">
-            <Link className="link" to="/female">
+            <Link className="link" to="/product/1">
               {" "}
               Female
             </Link>
           </div>
           <div className="item">
-            <Link className="link" to="/colection">
+            <Link className="link" to="/products">
               {" "}
               Colection
             </Link>
@@ -58,12 +59,6 @@ const Navbar = () => {
             <Link className="link" to="/contact">
               {" "}
               Contact
-            </Link>
-          </div>
-          <div className="item">
-            <Link className="link" to="/store">
-              {" "}
-              Stort
             </Link>
           </div>
           <div className="icons">
