@@ -10,11 +10,12 @@ const Register = () =>{
         password: "",
     })
 
-    // XỬ LÝ SỰ THAY ĐỔI
+    // // XỬ LÝ SỰ THAY ĐỔI
     const handleChange = e =>{
         setInputs(prev =>({...prev, [e.target.name]: e.target.value}))
 
     }
+    console.log(inputs)
 
     //DỮ LIỆU CUỐI
     const handleSbmit = async e =>{
@@ -38,7 +39,7 @@ const Register = () =>{
                 <input required type="password" placeholder='Re-Password' name='re-password' onChange={handleChange}/>
                 <button onClick={handleSbmit}>
                     Register
-                </button>
+                </button >
                 <p>This is erro!!!</p>
                 <span>
                     If you have Account <Link to='/Login'>Login</Link>
