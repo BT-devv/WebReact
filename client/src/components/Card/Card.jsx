@@ -1,10 +1,15 @@
 import React from "react";
+import "./Card.scss";
 import { Link } from "react-router-dom";
+
+import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+
 import "./Card.scss";
 const Card = ({ item }) => {
   return (
     <div className="card">
-      <Link className="link" to={`/male/${item.id}`}>
+      <Link className="link" to={`/product/${item.id}`}>
         <div className="image">
           <img src={item.img} className="mainImg" alt="" />
           <img src={item.img2} className="secondImg" alt="" />
@@ -15,6 +20,10 @@ const Card = ({ item }) => {
           <h3>${item.newPrice}</h3>
         </div>
       </Link>
+      <div className="iocn">
+        <LocalGroceryStoreOutlinedIcon />
+        <FavoriteBorderOutlinedIcon />
+      </div>
     </div>
   );
 };

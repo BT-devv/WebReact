@@ -23,7 +23,7 @@ const Categories = () => {
             alt=""
           />
           <button>
-            <Link to="/product/1" className="link">
+            <Link to="/products/1" className="link">
               Women
             </Link>
           </button>
@@ -37,7 +37,7 @@ const Categories = () => {
             alt=""
           />
           <button>
-            <Link to="/product/1" className="link">
+            <Link to="/products/1" className="link">
               New Season
             </Link>
           </button>
@@ -52,7 +52,7 @@ const Categories = () => {
                 alt=""
               />
               <button>
-                <Link to="/product/1" className="link">
+                <Link to="/products/1" className="link">
                   Men
                 </Link>
               </button>
@@ -66,7 +66,7 @@ const Categories = () => {
                 alt=""
               />
               <button>
-                <Link to="/product/1" className="link">
+                <Link to="/products/1" className="link">
                   Accessories
                 </Link>
               </button>
@@ -79,7 +79,7 @@ const Categories = () => {
             alt=""
           />
           <button>
-            <Link to="/product/1" className="link">
+            <Link to="/products/1" className="link">
               Shoes
             </Link>
           </button>
