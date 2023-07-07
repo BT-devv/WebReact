@@ -5,9 +5,9 @@ import axios from "axios";
 const Register = () =>{
     //DỮ LIỆU ĐẦU VÀO
     const [inputs, setInputs] = useState({
-        username: "",
-        email: "",
-        password: "",
+        Username: "",
+        Email: "",
+        Password: "",
     })
 
     // // XỬ LÝ SỰ THAY ĐỔI
@@ -15,14 +15,13 @@ const Register = () =>{
         setInputs(prev =>({...prev, [e.target.name]: e.target.value}))
 
     }
-    console.log(inputs)
 
     //DỮ LIỆU CUỐI
     const handleSbmit = async e =>{
         //KẾT THÚC, NGĂN CHẶN MẶC ĐỊNH
         e.prevenDefault()
         try {
-            const res  = await axios.post("/authController/register", inputs)
+            const res  = await axios.post("http://localhost:3000/Register", inputs)
             console.log(res);
         } catch (error) {
             console.log(error)
@@ -33,10 +32,10 @@ const Register = () =>{
         <div className='auth'>
             <h1>Register</h1>
             <form>
-                <input required type="text" placeholder='Username' name='username' onChange={handleChange}/>
-                <input required type="email" placeholder='Email' name='email' onChange={handleChange}/>
-                <input required type="password" placeholder='Password' name='password' onChange={handleChange}/>
-                <input required type="password" placeholder='Re-Password' name='re-password' onChange={handleChange}/>
+                <input required type="text" placeholder='Username' name='Username' onChange={handleChange}/>
+                <input required type="email" placeholder='Email' name='Email' onChange={handleChange}/>
+                <input required type="password" placeholder='Password' name='Password' onChange={handleChange}/>
+                {/* <input required type="password" placeholder='Re-Password' name='re-password' /> */}
                 <button onClick={handleSbmit}>
                     Register
                 </button >
