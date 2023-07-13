@@ -6,6 +6,8 @@ const customMiddleware = require('./config/customMiddleware')
 const cors =require('cors')
 
 
+const initWebRoutes =require( "./routes/web ");
+
 app.use(express.json());
 app.use(cors())
 const db = require('./models')
@@ -17,9 +19,8 @@ customMiddleware();
 connectDB();
 
 //routers
-const userRouter = require('./routes/User')
+initWebRoutes(app)
 
-app.use("/user",userRouter)
 
 
 
