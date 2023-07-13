@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      ProductDetail.hasOne(models.Product)
+      ProductDetail.hasMany(models.Color)
+      ProductDetail.hasMany(models.Size)
+      ProductDetail.hasMany(models.Image)
     }
   }
   ProductDetail.init({

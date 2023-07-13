@@ -3,9 +3,11 @@ const app = express()
 const port = 3001
 const connectDB = require('./config/connectDatabase')
 const customMiddleware = require('./config/customMiddleware')
+const cors =require('cors')
+
 
 app.use(express.json());
-
+app.use(cors())
 const db = require('./models')
 
 //custom Middleware
