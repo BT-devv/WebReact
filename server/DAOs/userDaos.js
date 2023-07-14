@@ -14,7 +14,7 @@ exports.createNewUser = async (data) => {
                 password: await bcrypt.hash(data.password,10),
                 firstname: data.firstname,
                 lastName: data.lastname,
-                img:"img.png",
+                img:"imgzan.png",
                 adress: data.adress,
                 phone: data.phone,
                 birth:data.birth,
