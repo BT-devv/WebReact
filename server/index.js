@@ -7,6 +7,11 @@ const cors =require('cors')
 const userRouter = require('./routes/user.route')
 
 
+const dotenv = require('dotenv')
+dotenv.config({
+    path: './.env'
+})
+
 app.use(express.json());
 app.use(cors())
 const db = require('./models')

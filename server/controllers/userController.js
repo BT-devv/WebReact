@@ -37,7 +37,7 @@ exports.createUser = async (req, res) => {
       .json({
         code: 200,
         msg: 'OK',
-        // data: {post}
+        data: {post}
     });     
   } catch (error) {
     console.error(e);
@@ -53,13 +53,13 @@ exports.createUser = async (req, res) => {
 
 exports.getAllUser = async(req,res)=>{
     try {
-      const data = await userDao.getAllUser();
+      const users = await userDao.getAllUser();
       res
       .status(200)
       .json({
         code: 200,
         msg: 'OK',
-        data: {data}
+        data: {users}
     });     
     } catch (error) {
       console.error(e);
@@ -92,3 +92,44 @@ exports.getUser = async(req,res)=>{
   }
 }
 
+exports.updateUser = async(req,res)=>{
+  try {
+    const id = req.params.id 
+    const data = req.body;
+    await userDao.updateUserData(id,data)
+    const user = userDao.getUserInfoById(id)
+        res.status(200)
+            .json({
+                code: 200,
+                msg: 'OK',
+                data: {user}
+            });
+  } catch (e) {
+    return res
+          .status(500)        // 500 - Internal Error
+          .json({
+              code: 500,
+              msg: e.toString()
+          });
+  }
+}
+
+exports.deleteUser = async(req,res)=>{
+  try {
+    const id = req.params.id 
+    const user = await userDao.deleteUserById(id)
+        res.status(200)
+            .json({
+                code: 200,
+                msg: 'OK',
+                data:{user}
+            });
+  } catch (error) {
+    return res
+          .status(500)        // 500 - Internal Error
+          .json({
+              code: 500,
+              msg: e.toString()
+          });
+  }
+}
