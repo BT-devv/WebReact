@@ -1,7 +1,7 @@
-const UserDAO = require('../DAOs/UsersDAO')
-const StaticData = require("../config/utils/StaticData")
+const UserDAO = require('../DAOs/userDaos')
+const StaticData = require("../utils/StaticData")
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 
 const signToken = (id, username) => {
     return jwt.sign(
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
                 })
         }
         //2. check if user existed
-        const user = await UserDAO.getUserByUserName(form.username)
+        const user = await UserDAO.getUserbyUserName(form.username)
         if (!user){
             return res
                 .status(401)       // 401 - Unauthorized
@@ -75,16 +75,8 @@ exports.signup = async (req, res) => {
                     msg: `Invalid password`
                 })
         }
-        await UserDAO.createUser({
-            username: form.username,
-            name: form.name,
-            email: form.email,
-            phone: form.phone,
-            password: form.password,
-            roles: StaticData.AUTH.Role.user,
-        })
-        let user = await UserDAO.getUserByUserName(form.username)
-        delete user.password
+        await UserDAO.createNewUser(form)
+        let user = await UserDAO.getUserbyUserName(form.username)
         res.status(201).json({  // 201 - Created
             status: 'success',
             data: {

@@ -5,7 +5,6 @@ const db = require('../models/index');
 exports.createNewUser = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            
             await db.User.create({
                 username:data.username,
                 email: data.email,
@@ -65,41 +64,37 @@ exports.getUserbyUserName = (username)=>{
     return new Promise(async(resolve,reject)=>{
         try {
             let user = await db.User.findOne({
-                where:{username:username},
-                raw:true
+                where:{
+                    username: username,
+                },
             })
-            if (user) resolve(user)
-            else resolve({})
+            if (user) {
+                resolve(user)
+            } else {
+                resolve({})
+            }
         } catch (e) {
             reject(e);
         }
     })
 }
 
-exports.updateUserData = (data) => {
+exports.updateUserData = (userid,data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
-                where: { id: data.id },
-
-            })
-            if (user) {
-                user.firstName = data.firstName;
-                user.lastName = data.lastName;
-                user.adress = data.adress;
-                user.phone = data.phone;
-
-                await user.save();
-                let allUsers = await db.User.findAll();
-                resolve(allUsers);
-
-            } else {
-                resolve();
-
-            }
-
+            let user = await db.User.update({ 
+                firstName: data.firstname, 
+                lastName: data.lastname, 
+                phone: data.phone, 
+                adress: data.adress, 
+                }, {
+                    where: {
+                    id: userid
+                    }
+            });
+            resolve('update user succeed')        
         } catch (e) {
-            console.log(e);
+            reject(e)
         }
     })
 }
@@ -107,15 +102,12 @@ exports.updateUserData = (data) => {
 exports.deleteUserById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
-                where: { id: userId }
-            })
-            if (user) {
-                await user.destroy();
-
-            }
-
-            resolve();
+            let user = await db.User.destroy({
+                    where: {
+                    id: userId
+                    }
+            });
+            resolve('delete user succeed')
 
         } catch (e) {
             reject(e);
