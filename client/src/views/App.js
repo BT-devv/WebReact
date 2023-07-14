@@ -15,6 +15,7 @@ import LoginAdmin from '../pages/Admin/Login/LoginAdmin';
 import ListAdmin from '../pages/Admin/List/ListAdmin';
 import Single from '../pages/Admin/Single/Single';
 import New from '../pages/Admin/New/New';
+import { userInputs } from '../fromSource';
 
 
 const Layout =() =>{
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/productAdmin/news",
-        element: <New/>,
+        element: <New inputs ={userInputs} title = "Add new user"/>,
       },
     ]
   },

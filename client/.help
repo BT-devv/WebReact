@@ -12,5 +12,5 @@ npm install @mui/icons-material
 npm install --save react-circular-progressbar
 npm install --save chart.js react-chartjs-2
 npm install recharts
-
+npm i @mui/x-data-grid
 
