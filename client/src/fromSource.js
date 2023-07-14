@@ -31,8 +31,48 @@ export const userInputs = [
     },
     {
         id: 6,
+        label: "Gender",
+        type: "text",
+        placeholder: "Women"
+    },
+    {
+        id: 7,
         label: "Password",
         type: "password",
         placeholder: "phamvan2003vl@gmail.com"
     },
+];
+
+export const productInputs = [
+    {
+        id: 1,
+        label: "Title",
+        type: "text",
+        placeholder: "Áo thun cổ tròn ngắn tay"
+    },
+    {
+        id: 2,
+        label: "Description",
+        type: "text",
+        placeholder: "Description"
+    },
+    {
+        id: 3,
+        label: "Category",
+        type: "text",
+        placeholder: "Áo"
+    },
+    {
+        id: 4,
+        label: "Price",
+        type: "text",
+        placeholder: "100"
+    },
+    {
+        id: 5,
+        label: "Product Detail",
+        type: "text",
+        placeholder: "Áo thun"
+    },
+    
 ]
