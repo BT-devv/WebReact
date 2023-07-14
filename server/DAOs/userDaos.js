@@ -2,8 +2,6 @@ const StaticData = require('../utils/StaticData')
 const bcrypt =require ('bcrypt');
 const db = require('../models/index');
 
-const salt = bcrypt.genSaltSync(10);
-
 exports.createNewUser = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -12,15 +10,13 @@ exports.createNewUser = async (data) => {
                 username:data.username,
                 email: data.email,
                 password: await bcrypt.hash(data.password,10),
-                firstname: data.firstname,
+                firstName: data.firstname,
                 lastName: data.lastname,
                 img:"imgzan.png",
                 adress: data.adress,
                 phone: data.phone,
                 birth:data.birth,
-                role: StaticData.AUTH.Role,
                 gender: data.gender === '1' ? true : false,
-                
             })
             resolve('create new user succeed');
 
@@ -29,21 +25,6 @@ exports.createNewUser = async (data) => {
         }
     })
 
-}
-
-exports.hashUserPassword = (password) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            //lưu ý, truyền vào đúng password cần hash
-            // let hashPassWord = await bcrypt.hashSync("B4c0/\/", salt); => copy paste mà ko edit nè
-            let hashPassWord = await bcrypt.hashSync(password, salt);
-
-            resolve(hashPassWord);
-        } catch (e) {
-            reject(e);
-        }
-
-    })
 }
 
 exports.getAllUser = () => {
@@ -78,6 +59,7 @@ exports.getUserInfoById = (userId) => {
         }
     })
 }
+
 exports.getUserbyUserName = (username)=>{
     return new Promise(async(resolve,reject)=>{
         try {
@@ -103,7 +85,8 @@ exports.updateUserData = (data) => {
             if (user) {
                 user.firstName = data.firstName;
                 user.lastName = data.lastName;
-                user.address = data.address;
+                user.adress = data.adress;
+                user.phone = data.phone;
 
                 await user.save();
                 let allUsers = await db.User.findAll();
