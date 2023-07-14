@@ -16,6 +16,7 @@ exports.createNewUser = async (data) => {
                 adress: data.adress,
                 phone: data.phone,
                 birth:data.birth,
+                role: StaticData.AUTH.Role.user,
                 gender: data.gender === '1' ? true : false,
             })
             resolve('create new user succeed');
