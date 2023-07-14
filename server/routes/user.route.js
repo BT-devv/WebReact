@@ -13,6 +13,8 @@ route
 route
 .route("/:id")
 .get(userController.getUser)
+.patch()
+.delete()
 
 
 
