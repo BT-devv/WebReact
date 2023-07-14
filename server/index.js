@@ -4,9 +4,8 @@ const port = 3001
 const connectDB = require('./config/connectDatabase')
 const customMiddleware = require('./config/customMiddleware')
 const cors =require('cors')
+const userRouter = require('./routes/user.route')
 
-
-const initWebRoutes =require( "./routes/web ");
 
 app.use(express.json());
 app.use(cors())
@@ -19,7 +18,7 @@ customMiddleware();
 connectDB();
 
 //routers
-initWebRoutes(app)
+app.use('/api-user',userRouter)
 
 
 
