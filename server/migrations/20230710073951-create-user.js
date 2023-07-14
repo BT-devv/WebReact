@@ -14,7 +14,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validator: function (val){
+          return val.lenghth > 5 && val.lenghth < 200;
+        },
       },
       firstName: {
         type: Sequelize.STRING
@@ -26,7 +29,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validator:  function (val) {
+          return String(val)
+              .toLowerCase()
+              .match(
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              );
+      },
       },
       gender: {
         type: Sequelize.BOOLEAN
@@ -38,6 +48,9 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       adress: {
+        type: Sequelize.STRING
+      },
+      role: {
         type: Sequelize.STRING
       },
       createdAt: {

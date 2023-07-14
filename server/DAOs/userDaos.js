@@ -1,3 +1,4 @@
+const StaticData = require('../utils/StaticData')
 const bcrypt =require ('bcrypt');
 const db = require('../models/index');
 
@@ -15,7 +16,7 @@ exports.createNewUser = async (data) => {
                 adress: data.adress,
                 phone: data.phone,
                 birth:data.birth,
-                gender: data.gender === 1 ? true:false,
+                gender: data.gender === '1' ? true : false,
             })
             resolve('create new user succeed');
 
