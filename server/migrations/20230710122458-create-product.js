@@ -36,7 +36,7 @@ module.exports = {
       productDetailId: {
         type: Sequelize.INTEGER
       },
-      productCategoryID: {
+      CategoryId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

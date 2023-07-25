@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     colorCover: DataTypes.STRING,
     quantity: DataTypes.INTEGER,
     status: DataTypes.BOOLEAN,
-    productCategoryID: DataTypes.INTEGER,
+    CategoryId: DataTypes.INTEGER,
     productDetailId: DataTypes.INTEGER,
   }, {
     sequelize,
