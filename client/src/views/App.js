@@ -122,7 +122,7 @@ function App() {
   const {darkMode} = useContext(DarkModeContext)
 
   return (
-    <div className={ darkMode ? "app App dark": "app App"}>
+    <div className={ darkMode ? "app dark": "app"}>
       <div className='Container'>
         <RouterProvider router={router} />
       </div>
