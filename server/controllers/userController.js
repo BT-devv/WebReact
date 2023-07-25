@@ -1,6 +1,4 @@
 const express = require('express')
-const router = express.Router()
-const db = require('../models/index')
 const userDao = require('../DAOs/userDaos')
 
 //middleware Check Id
@@ -105,6 +103,7 @@ exports.updateUser = async(req,res)=>{
                 data: {user}
             });
   } catch (e) {
+    console.error(e);
     return res
           .status(500)        // 500 - Internal Error
           .json({
@@ -125,6 +124,7 @@ exports.deleteUser = async(req,res)=>{
                 data:{user}
             });
   } catch (error) {
+    console.error(e);
     return res
           .status(500)        // 500 - Internal Error
           .json({

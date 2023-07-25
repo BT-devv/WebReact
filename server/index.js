@@ -5,7 +5,7 @@ const connectDB = require('./config/connectDatabase')
 const customMiddleware = require('./config/customMiddleware')
 const cors =require('cors')
 const userRouter = require('./routes/user.route')
-
+const productRouter = require('./routes/product.route')
 
 const dotenv = require('dotenv')
 dotenv.config({
@@ -24,6 +24,7 @@ connectDB();
 
 //routers
 app.use('/api-user',userRouter)
+app.use('/api-product',productRouter)
 
 
 
