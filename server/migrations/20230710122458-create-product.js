@@ -33,6 +33,9 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN
       },
+      productDetailId: {
+        type: Sequelize.INTEGER
+      },
       productCategoryID: {
         type: Sequelize.INTEGER
       },

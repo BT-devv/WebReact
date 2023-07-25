@@ -1,25 +1,39 @@
 const db = require('../models/index');
 
-
-
-exports.createCategory = async (data) => {
+exports.getAllProduct = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            await db.Category.create({
-                name:data.name,
-            },{
-                where:{
-                    name:null
-                }
-            })
-            resolve('create new category succeed');
-
+            let product = await db.Product.findAll({
+                raw:true,
+                include: db.Category.id,
+            });
+            resolve(product)
         } catch (e) {
             reject(e);
         }
     })
-
 }
+
+exports.getProduct = (productID) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let product = await db.Product.findOne({
+                where: { id: productID },
+                raw: true,
+
+            });
+
+            if (product) {
+                resolve(product)
+            } else {
+                resolve({})
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 
 exports.createProduct = async(data)=>{
     return new Promise(async (resolve, reject) => {
