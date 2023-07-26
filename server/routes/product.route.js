@@ -13,6 +13,8 @@ route
 route
 .route("/:id")
 .get(productController.getProduct)
+.patch(productController.updateProduct)
+.delete(productController.deleteProduct)
 
 
 

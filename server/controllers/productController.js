@@ -91,3 +91,47 @@ exports.createNewProduct = async(req,res)=>{
     });
   }
 }
+
+exports.updateProduct = async(req,res)=>{
+  try {
+    const id = req.params.id 
+    const data = req.body;
+    await productDao.updateProductData(id,data)
+    const product = productDao.getProduct(id)
+        res.status(200)
+            .json({
+                code: 200,
+                msg: 'OK',
+                data: {product}
+            });
+  } catch (e) {
+    console.error(e);
+    return res
+          .status(500)        // 500 - Internal Error
+          .json({
+              code: 500,
+              msg: e.toString()
+          });
+  }
+}
+
+exports.deleteProduct = async(req,res)=>{
+  try {
+    const id = req.params.id 
+    const product = await productDao.deleteProduct(id)
+        res.status(200)
+            .json({
+                code: 200,
+                msg: 'OK',
+                data:{product}
+            });
+  } catch (error) {
+    console.error(e);
+    return res
+          .status(500)        // 500 - Internal Error
+          .json({
+              code: 500,
+              msg: e.toString()
+          });
+  }
+}

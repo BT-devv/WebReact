@@ -110,7 +110,7 @@ exports.protect = async (req, res, next) => {
         const payload = jwt.verify(token,  process.env.JWT_SECRET)
         console.log("payload:",payload)
         // 3) Check if user still exists
-        const currentUser = await UserDAO.getUser(payload.id)
+        const currentUser = await UserDAO.getUserInfoById(payload.id)
         if (!currentUser) {
             return res.status(401)        // 401 - Unauthorized
                 .json({code: 401, msg: `Invalid authentication`})

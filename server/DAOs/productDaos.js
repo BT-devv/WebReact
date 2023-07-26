@@ -4,8 +4,8 @@ exports.getAllProduct = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let product = await db.Product.findAll({
-                raw:true,
-                include: db.Category.id,
+
+                raw:true,    
             });
             resolve(product)
         } catch (e) {
@@ -47,11 +47,7 @@ exports.createProduct = async(data)=>{
                 colorCover:data.colorCover,
                 quantity:data.quantity,
                 status:data.status,
-                productCategoryID:data.productCategoryID,
-            },{
-                where:{
-                    productCategoryID: db.Category.id,
-                }
+                CategoryId:data.CategoryId,
             })
             resolve('create new product succeed');
 
@@ -60,6 +56,47 @@ exports.createProduct = async(data)=>{
         }
     })
 
+}
+
+exports.updateProductData = (productID,data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let product = await db.Product.update({ 
+                name: data.name, 
+                description:data.description,
+                price:data.price,
+                imageCover:data.imageCover,
+                sizeCover:data.sizeCover,
+                colorCover:data.colorCover,
+                quantity:data.quantity,
+                status:data.status,
+                CategoryId:data.CategoryId,
+                }, {
+                    where: {
+                    id: productID
+                    }
+            });
+            resolve('update product succeed')        
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+exports.deleteProduct = (productID) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let product = await db.Product.destroy({
+                    where: {
+                    id: productID
+                    }
+            });
+            resolve('delete product succeed')
+
+        } catch (e) {
+            reject(e);
+        }
+    })
 }
 exports.createProductDetail = async(data)=>{
     return new Promise(async (resolve, reject) => {
