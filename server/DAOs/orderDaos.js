@@ -13,7 +13,7 @@ exports.getAllOrder = () => {
     })
 }
 
-exports.getDetail = (orderId) => {
+exports.getOrder = (orderId) => {
     return new Promise(async (resolve, reject) => {
         try {
             let order = await db.Order.findOne({
@@ -54,7 +54,7 @@ exports.createOrder = async (data) => {
 
 }
 
-exports.updateDetailData = (orderId,data) => {
+exports.updateOrderData = (orderId,data) => {
     return new Promise(async (resolve, reject) => {
         try {
             let order = await db.Order.update({ 
