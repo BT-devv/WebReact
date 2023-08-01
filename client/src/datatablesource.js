@@ -1,4 +1,27 @@
 
+export const productColums = [
+    { field: 'id', headerName: 'ID', width: 100 },{
+        field: 'product', headerName: 'Prodcut', width: 250, renderCell:(params) =>{
+            return (
+                <div className="cellWithImg">
+                    <img className="cellImg" src={params.row.img} alt="avatar"/>
+                    {params.row.name}
+                </div>
+            )
+        }
+    },
+    {field: "price", headerName: "Price", width: 150},
+    {field: "quantity", headerName: "QUantity", width: 100},
+    {field: "status", headerName: "Status", width: 160, renderCell: (params) =>{
+        return(
+            <div className={`cellWithStatus ${params.row.status}`}>
+                {params.row.status}
+            </div>
+        )
+    }
+},
+];
+
 export const userColumns = [
     { field: 'id', headerName: 'ID', width: 100 },{
         field: 'user', headerName: 'User', width: 250, renderCell:(params) =>{
@@ -22,7 +45,40 @@ export const userColumns = [
 },
 ];
 
-
+export const productRows = [
+    {
+        id: 1,
+        name: "Áo thun tay ngắn cổ tròn",
+        img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
+        price: 290,
+        quantity: 100,
+        status:"còn hàng"
+    },
+    {
+        id: 2,
+        name: "Áo thun tay ngắn cổ tròn",
+        img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
+        price: 290,
+        quantity: 100,
+        status:"còn hàng"
+    },
+    {
+        id: 3,
+        name: "Áo thun tay ngắn cổ tròn",
+        img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
+        price: 290,
+        quantity: 100,
+        status:"còn hàng"
+    },
+    {
+        id: 4,
+        name: "Áo thun tay ngắn cổ tròn",
+        img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
+        price: 290,
+        quantity: 100,
+        status:"còn hàng"
+    },
+]
 export const userRows = [
     {
         id: 1,

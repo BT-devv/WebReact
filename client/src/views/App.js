@@ -19,6 +19,7 @@ import New from '../pages/Admin/New/New';
 import { productInputs, userInputs } from '../fromSource';
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/darkModeContext';
+import ListProduct from '../pages/Admin/List/ListProduct';
 
 
 
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/productAdmin",
-        element: <ListAdmin/>,
+        element: <ListProduct/>,
       },
       {
         path: "/productAdmin/:id",
@@ -123,7 +124,7 @@ function App() {
 
   return (
     <div className={ darkMode ? "app App dark": "app App"}>
-      <div className='Container'>
+      <div className='Conta iner'>
         <RouterProvider router={router} />
       </div>
     </div>

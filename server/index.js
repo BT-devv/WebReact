@@ -8,6 +8,7 @@ const userRouter = require('./routes/user.route')
 const productRouter = require('./routes/product.route')
 const categoryRouter = require("./routes/category.route")
 const detailRouter = require("./routes/detail.route")
+const orderRouter = require('./routes/order.route')
 
 const dotenv = require('dotenv')
 dotenv.config({
@@ -29,6 +30,7 @@ app.use('/api-user',userRouter)
 app.use('/api-product',productRouter)
 app.use('/api-category', categoryRouter)
 app.use('/api-detail', detailRouter)
+app.use('/api-order', orderRouter)
 
 
 

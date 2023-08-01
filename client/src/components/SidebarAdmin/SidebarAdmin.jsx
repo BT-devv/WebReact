@@ -18,6 +18,11 @@ import { DarkModeContext } from "../../context/darkModeContext";
 
 
 const SidebarAdmin = () => {
+    // const history = useNavigate();
+    // function logOut(){
+    //     localStorage.clear();
+    //     history.push('/login')
+    // }
     const {dispatch} = useContext(DarkModeContext)
   return (
     <div className="sidebarAdmin">
@@ -84,7 +89,7 @@ const SidebarAdmin = () => {
                     <span>Profile</span>
                 </li>
                 <li>
-                    <LogoutOutlinedIcon className="icon"/>
+                    <LogoutOutlinedIcon  className="icon"/>
                     <span>Logout</span>
                 </li>
             </ul>
