@@ -9,13 +9,13 @@ exports.createNewUser = async (data) => {
                 username:data.username,
                 email: data.email,
                 password: await bcrypt.hash(data.password,10),
-                firstName: data.firstname,
-                lastName: data.lastname,
+                firstName: data.firstName,
+                lastName: data.lastName,
                 img:"imgzan.png",
                 adress: data.adress,
                 phone: data.phone,
                 birth:data.birth,
-                role: StaticData.AUTH.Role.customer,
+                role: StaticData.AUTH.Role.admin,
                 gender: data.gender === '1' ? true : false,
             })
             resolve('create new user succeed');

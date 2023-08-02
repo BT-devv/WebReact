@@ -21,7 +21,6 @@ route
 .post(
     // authController.protect,
     // authController.restrictTo(StaticData.AUTH.Role.admin),
-    userController.getAllUser,
     userController.createUser
     )
 

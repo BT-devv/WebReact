@@ -40,10 +40,12 @@ exports.createDetail = async (data) => {
             await db.ProductDetail.create({
                 name:data.name,
                 description: data.description,
-                productId: data.productId
+                ProductId: data.ProductId,
+                CategoryId: data.CategoryId
             },{
                 where:{
-                    productId: db.Product.id
+                    ProductId: db.Product.id,
+                    CategoryId: db.Category.id
                 }
             })
             resolve('create new product detail succeed');
@@ -61,7 +63,8 @@ exports.updateDetailData = (producDetailID,data) => {
             let detail = await db.ProductDetail.update({ 
                 name: data.name, 
                 description: data.description,
-                productId: data.productId
+                ProductId: data.ProductId,
+                CategoryId: data.CategoryId
                 }, {
                     where: {
                     id: producDetailID

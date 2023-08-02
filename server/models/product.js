@@ -12,19 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Product.hasMany(models.ProductDetail, {
-        foreignKey: 'productID'
+        foreignKey: 'ProductId'
       })
       Product.hasMany(models.OrderDetail, {
-        foreignKey: 'productID'
+        foreignKey: 'ProductId'
       })
       Product.hasMany(models.Color,{
-        foreignKey: 'productID'
+        foreignKey: 'ProductId'
       })
       Product.hasMany(models.Size,{
-        foreignKey: 'productID'
+        foreignKey: 'ProductId'
       })
       Product.hasMany(models.Image,{
-        foreignKey: 'productID' 
+        foreignKey: 'ProductId' 
       })
 
 

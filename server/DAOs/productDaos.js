@@ -14,11 +14,11 @@ exports.getAllProduct = () => {
     })
 }
 
-exports.getProduct = (productID) => {
+exports.getProduct = (ProductID) => {
     return new Promise(async (resolve, reject) => {
         try {
             let product = await db.Product.findOne({
-                where: { id: productID },
+                where: { id: ProductID },
                 raw: true,
 
             });
@@ -48,6 +48,12 @@ exports.createProduct = async(data)=>{
                 quantity:data.quantity,
                 status:data.status,
                 CategoryId:data.CategoryId,
+            },{
+                where:{
+                    CategoryId:{
+                        equals: 20,
+                    },
+                }
             })
             resolve('create new product succeed');
 
@@ -58,7 +64,7 @@ exports.createProduct = async(data)=>{
 
 }
 
-exports.updateProductData = (productID,data) => {
+exports.updateProductData = (ProductID,data) => {
     return new Promise(async (resolve, reject) => {
         try {
             let product = await db.Product.update({ 
@@ -73,7 +79,7 @@ exports.updateProductData = (productID,data) => {
                 CategoryId:data.CategoryId,
                 }, {
                     where: {
-                    id: productID
+                    id: ProductID
                     }
             });
             resolve('update product succeed')        
@@ -83,12 +89,12 @@ exports.updateProductData = (productID,data) => {
     })
 }
 
-exports.deleteProduct = (productID) => {
+exports.deleteProduct = (ProductID) => {
     return new Promise(async (resolve, reject) => {
         try {
             let product = await db.Product.destroy({
                     where: {
-                    id: productID
+                    id: ProductID
                     }
             });
             resolve('delete product succeed')
@@ -104,10 +110,10 @@ exports.createProductDetail = async(data)=>{
             await db.ProductDetail.create({
                 name:data.name,
                 description:data.description,
-                productID:data.productID,
+                ProductID:data.ProductID,
             },{
                 where:{
-                    productID: db.Product.id,
+                    ProductID: db.Product.id,
                 }
             })
             resolve('create new product detail succeed');
@@ -123,11 +129,11 @@ exports.createSize = async(data)=>{
         try {
             await db.Size.create({
                 size:data.size,
-                productID:data.productID,
+                ProductID:data.productID,
                 producDetailID:data.producDetailID
             },{
                 where:{
-                    productID:db.Product.id,
+                    ProductID:db.Product.id,
                     producDetailID:db.ProductDetail.id
                 }
             })
@@ -145,11 +151,11 @@ exports.createSize = async(data)=>{
         try {
             await db.Image.create({
                 img:data.img,
-                productID:data.productID,
+                ProductID:data.ProductID,
                 producDetailID:data.producDetailID
             },{
                 where:{
-                    productID:db.Product.id,
+                    ProductID:db.Product.id,
                     producDetailID:db.ProductDetail.id
                 }
             })
@@ -166,11 +172,11 @@ exports.createSize = async(data)=>{
         try {
             await db.Color.create({
                 color:data.color,
-                productID:data.productID,
+                ProductID:data.ProductID,
                 producDetailID:data.producDetailID
             },{
                 where:{
-                    productID:db.Product.id,
+                    ProductID:db.Product.id,
                     producDetailID:db.ProductDetail.id
                 }
             })

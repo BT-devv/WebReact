@@ -28,14 +28,14 @@ exports.checkId = async (req, res, next, val) => {
 
 exports.createUser = async (req, res) => {
   try {
-      const post = req.body;
-      await userDao.createNewUser(post);
+      const user = req.body;
+      await userDao.createNewUser(user);
       res
       .status(200)
       .json({
         code: 200,
         msg: 'OK',
-        data: {post}
+        data: {user}
     });     
   } catch (error) {
     console.error(e);
