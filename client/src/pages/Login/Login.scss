@@ -1,51 +1,134 @@
-$lightGreen: #90EE90;
-$darkGrey: #A9A9A9;
-$lightBlue: #add8e6;
-$black:#fff0;
-.auth{
+$primaryColor: #2196F3;
+$secondaryColor: #f44336;
+$backgroundLight: #f9f9f9;
+$borderColor: #ccc;
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $backgroundLight;
+
+  h1 {
+    font-size: 48px;
+    color: $primaryColor;
+    margin-bottom: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: $primaryColor;
+    margin-bottom: 20px;
+  }
+
+  form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: $lightGreen;
-    h1{
-        font-size: 30px;
-        color: teal;
-        margin-bottom: 20px;
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    gap: 20px;
+    margin: 20px;
 
+    input {
+      padding: 16px;
+      border: 1px solid $borderColor;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s ease-in-out;
+      font-size: 16px;
+
+      &:focus {
+        border-color: $primaryColor;
+      }
     }
-    form{
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .button-container {
         display: flex;
         flex-direction: column;
-        padding:50px ;
-        border-radius:8px;
-        box-shadow: -6px 7px 10px rgba(0,0,0,.2);
-        text-align:center;
-        background-color: #fff;
         gap: 20px;
-        input{
-            padding: 10px;
-            border: none;
-            border-bottom: 1px solid gray;
+      }
+      
+      .social-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      @media screen and (min-width: 768px) {
+        .button-container {
+          flex-direction: row;
+          justify-content: space-between;
         }
-        button{
-            padding: 10px;
-            border: none;
-            background-color: teal;
-            color:  #ffffff;
-            cursor: pointer;
+      
+        .social-buttons {
+          flex-direction: column;
         }
-        p{
-            font-size: 12px;
-            text-align: center;
-            color: red;
-        }
-        span{
-            font-size: 12px;
-            text-align: center;
-        }
+      }
+      
+    button {
+      padding: 16px;
+      border: none;
+      border-radius: 6px;
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      outline: none;
+      width: 150px;
+      height: 50px;
+
+      svg {
+        font-size: 24px;
+      }
     }
-    
-              
+
+    .email-button {
+      background-color: $primaryColor;
+    }
+
+    .google-button {
+      background-color: #DB4437; /* Change to your desired Google button color */
+    }
+
+    .facebook-button {
+      background-color: #4267B2; /* Change to your desired Facebook button color */
+    }
+
+    p {
+      font-size: 14px;
+      text-align: center;
+      color: $secondaryColor;
+    }
+
+    span {
+      font-size: 14px;
+      text-align: center;
+
+      a {
+        color: $primaryColor;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }

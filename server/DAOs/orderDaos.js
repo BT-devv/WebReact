@@ -1,89 +1,61 @@
 const db = require('../models/index');
 
-exports.getAllOrder = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let order = await db.Order.findAll({
-                raw: true,
-            });
-            resolve(order)
-        } catch (e) {
-            reject(e);
-        }
-    })
+exports.getAllOrder = async () => {
+    try {
+        const orders = await db.Order.findAll({
+            raw: true,
+        });
+        return orders;
+    } catch (error) {
+        throw error;
+    }
 }
 
-exports.getOrder = (orderId) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let order = await db.Order.findOne({
-                where: { id: orderId },
-                raw: true,
+exports.getOrder = async (orderId) => {
+    try {
+        const order = await db.Order.findOne({
+            where: { id: orderId },
+            raw: true,
+        });
 
-            });
-
-            if (order) {
-                resolve(order)
-            } else {
-                resolve({})
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
+        return order || {};
+    } catch (error) {
+        throw error;
+    }
 }
-
 
 exports.createOrder = async (data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            await db.Order.create({
-                status:data.status,
-                userID: data.userID,
-            },{
-                where:{
-                    userID: db.User.id
-                }
-            })
-            resolve('create new Order succeed');
+    try {
+        await db.Order.create({
+            status: data.status,
+            userID: data.userID,
+        });
 
-        } catch (e) {
-            reject(e);
-        }
-    })
-
+        return 'create new Order succeed';
+    } catch (error) {
+        throw error;
+    }
 }
 
-exports.updateOrderData = (orderId,data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let order = await db.Order.update({ 
-                status:data.status,
-                userID: data.userID,
-                }, {
-                    where: {
-                    id: orderId
-                    }
-            });
-            resolve('update order succeed')        
-        } catch (e) {
-            reject(e)
-        }
-    })
+exports.updateOrderData = async (orderId, data) => {
+    try {
+        await db.Order.update(
+            { status: data.status, userID: data.userID },
+            { where: { id: orderId } }
+        );
+
+        return 'update order succeed';
+    } catch (error) {
+        throw error;
+    }
 }
 
-exports.deleteOrder = (orderId) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let order = await db.Order.destroy({
-                    where: {
-                    id: orderId
-                    }
-            });
-            resolve('delete order succeed')
+exports.deleteOrder = async (orderId) => {
+    try {
+        await db.Order.destroy({ where: { id: orderId } });
 
-        } catch (e) {
-            reject(e);
-        }
-    })
+        return 'delete order succeed';
+    } catch (error) {
+        throw error;
+    }
 }

@@ -1,87 +1,67 @@
 const db = require('../models/index');
 
-exports.getAllCategory = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let categorys = await db.Category.findAll({
-                raw: true,
-            });
-            resolve(categorys)
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
+exports.getAllCategory = async () => {
+    try {
+        const categories = await db.Category.findAll({
+            raw: true,
+        });
+        return categories;
+    } catch (error) {
+        throw error;
+    }
+};
 
-exports.getCategory = (categoryID) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let category = await db.Category.findOne({
-                where: { id: categoryID },
-                raw: true,
+exports.getCategory = async (categoryId) => {
+    try {
+        const category = await db.Category.findOne({
+            where: { id: categoryId },
+            raw: true,
+        });
 
-            });
-
-            if (category) {
-                resolve(category)
-            } else {
-                resolve({})
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
+        return category || {};
+    } catch (error) {
+        throw error;
+    }
+};
 
 exports.createCategory = async (data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            await db.Category.create({
-                name:data.name,
-            },{
-                where:{
-                    name:null
-                }
-            })
-            resolve('create new category succeed');
+    try {
+        await db.Category.create({
+            name: data.name,
+        });
+        return 'Tạo mới danh mục thành công';
+    } catch (error) {
+        throw error;
+    }
+};
 
-        } catch (e) {
-            reject(e);
-        }
-    })
+exports.updateCategoryData = async (categoryId, data) => {
+    try {
+        await db.Category.update(
+            {
+                name: data.name,
+            },
+            {
+                where: {
+                    id: categoryId,
+                },
+            }
+        );
+        return 'Cập nhật danh mục thành công';
+    } catch (error) {
+        throw error;
+    }
+};
 
-}
-
-exports.updateCategoryData = (categoryID,data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let category = await db.Category.update({ 
-                name: data.name, 
-                }, {
-                    where: {
-                    id: categoryID
-                    }
-            });
-            resolve('update category succeed')        
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
-
-exports.deleteCategory = (categoryID) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let category = await db.Category.destroy({
-                    where: {
-                    id: categoryID
-                    }
-            });
-            resolve('delete category succeed')
-
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
+exports.deleteCategory = async (categoryId) => {
+    try {
+        await db.Category.destroy({
+            where: {
+                id: categoryId,
+            },
+        });
+        return 'Xóa danh mục thành công';
+    } catch (error) {
+        throw error;
+    }
+};

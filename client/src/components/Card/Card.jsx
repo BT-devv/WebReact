@@ -20,7 +20,7 @@ const Card = ({ item }) => {
           <h3>${item.newPrice}</h3>
         </div>
       </Link>
-      <div className="iocn">
+      <div className="icon">
         <LocalGroceryStoreOutlinedIcon />
         <FavoriteBorderOutlinedIcon />
       </div>

@@ -1,119 +1,94 @@
-const StaticData = require('../utils/StaticData')
-const bcrypt =require ('bcrypt');
+const StaticData = require('../utils/StaticData');
+const bcrypt = require('bcrypt');
 const db = require('../models/index');
 
 exports.createNewUser = async (data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            await db.User.create({
-                username:data.username,
-                email: data.email,
-                password: await bcrypt.hash(data.password,10),
+    try {
+        await db.User.create({
+            username: data.username,
+            email: data.email,
+            password: await bcrypt.hash(data.password, 10),
+            firstName: data.firstName,
+            lastName: data.lastName,
+            img: "imgzan.png",
+            address: data.address,
+            phone: data.phone,
+            birth: data.birth,
+            role: StaticData.AUTH.Role.admin,
+            gender: data.gender === '1',
+        });
+        return 'Tạo người dùng thành công';
+    } catch (e) {
+        throw e;
+    }
+};
+
+exports.getAllUser = async () => {
+    try {
+        let users = await db.User.findAll({
+            raw: true,
+        });
+        return users;
+    } catch (e) {
+        throw e;
+    }
+};
+
+exports.getUserInfoById = async (userId) => {
+    try {
+        let user = await db.User.findOne({
+            where: { id: userId },
+        });
+
+        return user || {};
+    } catch (e) {
+        throw e;
+    }
+};
+
+exports.getUserbyUserName = async (username) => {
+    try {
+        let user = await db.User.findOne({
+            where: {
+                username: username,
+            },
+        });
+        return user || {};
+    } catch (e) {
+        throw e;
+    }
+};
+
+exports.updateUserData = async (userId, data) => {
+    try {
+        await db.User.update(
+            {
                 firstName: data.firstName,
                 lastName: data.lastName,
-                img:"imgzan.png",
-                adress: data.adress,
                 phone: data.phone,
-                birth:data.birth,
-                role: StaticData.AUTH.Role.admin,
-                gender: data.gender === '1' ? true : false,
-            })
-            resolve('create new user succeed');
-
-        } catch (e) {
-            reject(e);
-        }
-    })
-
-}
-
-exports.getAllUser = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let users = await db.User.findAll({
-                raw: true,
-            });
-            resolve(users)
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-exports.getUserInfoById = (userId) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let user = await db.User.findOne({
-                where: { id: userId },
-                raw: true,
-
-            });
-
-            if (user) {
-                resolve(user)
-            } else {
-                resolve({})
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-exports.getUserbyUserName = (username)=>{
-    return new Promise(async(resolve,reject)=>{
-        try {
-            let user = await db.User.findOne({
-                where:{
-                    username: username,
+                address: data.address,
+            },
+            {
+                where: {
+                    id: userId,
                 },
-            })
-            if (user) {
-                resolve(user)
-            } else {
-                resolve({})
             }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
+        );
+        return 'Cập nhật thông tin người dùng thành công';
+    } catch (e) {
+        throw e;
+    }
+};
 
-exports.updateUserData = (userid,data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let user = await db.User.update({ 
-                firstName: data.firstname, 
-                lastName: data.lastname, 
-                phone: data.phone, 
-                adress: data.adress, 
-                }, {
-                    where: {
-                    id: userid
-                    }
-            });
-            resolve('update user succeed')        
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
-
-exports.deleteUserById = (userId) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let user = await db.User.destroy({
-                    where: {
-                    id: userId
-                    }
-            });
-            resolve('delete user succeed')
-
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-
-
+exports.deleteUserById = async (userId) => {
+    try {
+        await db.User.destroy({
+            where: {
+                id: userId,
+            },
+        });
+        return 'Xóa người dùng thành công';
+    } catch (e) {
+        throw e;
+    }
+};

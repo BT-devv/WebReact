@@ -1,17 +1,19 @@
 
 export const productColums = [
-    { field: 'id', headerName: 'ID', width: 100 },{
-        field: 'product', headerName: 'Prodcut', width: 250, renderCell:(params) =>{
+    { field: 'id', headerName: 'ID', width: 10 },{
+        field: 'product', headerName: 'Product', width: 250, renderCell:(params) =>{
             return (
                 <div className="cellWithImg">
-                    <img className="cellImg" src={params.row.img} alt="avatar"/>
+                    <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
                     {params.row.name}
                 </div>
             )
         }
     },
-    {field: "price", headerName: "Price", width: 150},
-    {field: "quantity", headerName: "QUantity", width: 100},
+    {field: "price", headerName: "Price", width: 100},
+    {field: "quantity", headerName: "Quantity", width: 100},
+    {field: "sizeCover", headerName: "size", width: 100},
+    {field: "colorCover", headerName: "color", width: 100},
     {field: "status", headerName: "Status", width: 160, renderCell: (params) =>{
         return(
             <div className={`cellWithStatus ${params.row.status}`}>
