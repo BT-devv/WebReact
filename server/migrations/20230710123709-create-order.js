@@ -9,11 +9,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      order_date: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      total_price: {
+        type: Sequelize.FLOAT,
+        allowNull: false
+      },
       status: {
         type: Sequelize.STRING
       },
-      userID: {
-        type: Sequelize.INTEGER
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

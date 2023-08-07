@@ -114,6 +114,3 @@ exports.deleteProduct = async (req, res) => {
         });
     }
 }
-
-
-  

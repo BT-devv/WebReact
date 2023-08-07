@@ -10,31 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
-      imageCover: {
-        type: Sequelize.STRING
+      description: {
+        type: Sequelize.TEXT
       },
-      sizeCover: {
-        type: Sequelize.STRING
-      },
-      colorCover: {
-        type: Sequelize.STRING
-      },
-      quantity: {
-        type: Sequelize.INTEGER
-      },
-      status: {
-        type: Sequelize.BOOLEAN
-      },
-      CategoryId: {
-        type: Sequelize.INTEGER
+      category_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Categories',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

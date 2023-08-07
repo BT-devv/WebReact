@@ -19,10 +19,7 @@ module.exports = {
           return val.lenghth > 5 && val.lenghth < 200;
         },
       },
-      firstName: {
-        type: Sequelize.STRING
-      },
-      lastName: {
+      fullname: {
         type: Sequelize.STRING
       },
       img: {
@@ -36,7 +33,7 @@ module.exports = {
               .match(
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
               );
-      },
+        },
       },
       gender: {
         type: Sequelize.BOOLEAN
