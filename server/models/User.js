@@ -12,18 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Order, {
-        foreignKey: 'userID'
-      })
+        foreignKey: 'user_id'
+      });
       User.hasMany(models.Feedback, {
-        foreignKey: 'userID'
-      })
+        foreignKey: 'user_id'
+      });
     }
   }
   User.init({
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
+    fullname: DataTypes.STRING,
     img: DataTypes.STRING,
     email: DataTypes.STRING,
     gender: DataTypes.BOOLEAN,

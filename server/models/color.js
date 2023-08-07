@@ -11,14 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Color.belongsTo(models.Product,{foreignKey: 'producDetailID'});
-      Color.belongsTo(models.ProductDetail,{foreignKey: 'productDetailID'})
+      Color.hasMany(models.ProductDetail, {
+        foreignKey: 'color_id'
+      });
     }
   }
   Color.init({
-    color: DataTypes.STRING,
-    productID: DataTypes.INTEGER,
-    producDetailID: DataTypes.INTEGER
+    name: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Color',
