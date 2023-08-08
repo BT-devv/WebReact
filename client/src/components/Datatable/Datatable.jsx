@@ -30,7 +30,7 @@ const Datatable = () => {
         <div className="datatableTitle">
           Add New User
           <Link to = "/users/news" className="link">
-            Add New
+            Add New 
             </Link>
         </div>
           <DataGrid

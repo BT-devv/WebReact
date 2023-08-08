@@ -70,7 +70,7 @@ const Datatable = () => {
           className="link"
           title="Add new product"
         >
-          Add new
+          Add new Product
         </Link>
       </div>
       <DataGrid
