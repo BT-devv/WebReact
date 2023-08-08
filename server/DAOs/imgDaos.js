@@ -20,32 +20,7 @@ exports.getImageById = async (id) => {
   }
 };
 
-// Hàm cập nhật thông tin hình ảnh
-exports.updateImage = async (id, data) => {
-  try {
-    const [affectedRowsCount, affectedRows] = await db.Image.update(
-      {
-        img: data.img,
-        productId: data.productID,
-        productDetailId: data.productDetailID,
-      },
-      {
-        where: { id: id }, // Điều kiện WHERE để xác định bản ghi cần cập nhật
-        returning: true,   // Trả về thông tin các bản ghi đã bị ảnh hưởng sau khi cập nhật
-      }
-    );
 
-    // Kiểm tra xem có bản ghi nào bị ảnh hưởng không
-    if (affectedRowsCount === 0) {
-      throw new Error('Không tìm thấy hình ảnh');
-    }
-
-    // Trả về thông tin hình ảnh sau khi cập nhật
-    return affectedRows[0];
-  } catch (error) {
-    throw error;
-  }
-};
 
 // Hàm xóa hình ảnh
 exports.deleteImage = async (id) => {
@@ -68,21 +43,19 @@ exports.deleteImage = async (id) => {
 };
 
 // Hàm thêm hình ảnh nếu chưa tồn tại
-exports.addImageIfNotExisted = async (data) => {
+exports.addImageIfNotExisted = async (pr_id,img) => {
   try {
     const existingImage = await db.Image.findOne({
       where: {
-        img: data.img,
-        productId: data.productID,
-        productDetailId: data.productDetailID,
+        name: img,
+        productDetail_id: pr_id,
       },
     });
 
     if (!existingImage) {
       const newImage = await db.Image.create({
-        img: data.img,
-        productId: data.productID,
-        productDetailId: data.productDetailID,
+        name: img,
+        productDetail_id: pr_id,
       });
 
       return newImage;

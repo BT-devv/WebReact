@@ -20,33 +20,6 @@ exports.getColorById = async (id) => {
   }
 };
 
-// Hàm cập nhật thông tin màu sắc
-exports.updateColor = async (id, data) => {
-    try {
-      const [affectedRowsCount, affectedRows] = await db.Color.update(
-        {
-          color: data.color,
-          productId: data.productID,
-          productDetailId: data.productDetailID,
-        },
-        {
-          where: { id: id }, // Điều kiện WHERE để xác định bản ghi cần cập nhật
-          returning: true,   // Trả về thông tin các bản ghi đã bị ảnh hưởng sau khi cập nhật
-        }
-      );
-  
-      // Kiểm tra xem có bản ghi nào bị ảnh hưởng không
-      if (affectedRowsCount === 0) {
-        throw new Error('Không tìm thấy màu sắc');
-      }
-  
-      // Trả về thông tin màu sắc sau khi cập nhật
-      return affectedRows[0];
-    } catch (error) {
-      throw error;
-    }
-};
-  
 
 // Hàm xóa màu sắc
 exports.deleteColor = async (id) => {
@@ -69,30 +42,31 @@ exports.deleteColor = async (id) => {
 };
 
 // Hàm thêm màu sắc nếu chưa tồn tại
-exports.addColorIfNotExisted = async (data) => {
-    try {
-      const existingColor = await db.Color.findOne({
-        where: {
-          color: data.color,
-          productId: data.productID,
-          productDetailId: data.productDetailID,
-        },
+exports.addColorIfNotExisted = async (pr_id, color, code) => {
+  try {
+    const existingColor = await db.Color.findOne({
+      where: {
+        name: color,
+        code_color: code,
+        productDetail_id: pr_id,
+      },
+    });
+
+    if (!existingColor) {
+      const newColor = await db.Color.create({
+        name: color,         
+        code_color: code,    
+        productDetail_id: pr_id,
       });
-  
-      if (!existingColor) {
-        const newColor = await db.Color.create({
-          color: data.color,
-          productId: data.productID,
-          productDetailId: data.productDetailID,
-        });
-  
-        return newColor;
-      }
-  
-      return existingColor;
-    } catch (error) {
-      throw error;
+
+      return newColor;
     }
+
+    return existingColor;
+  } catch (error) {
+    throw error;
+  }
 };
+
   
   

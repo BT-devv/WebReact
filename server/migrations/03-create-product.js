@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      gender: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       price: {
         type: Sequelize.FLOAT,
         allowNull: false
