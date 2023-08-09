@@ -3,17 +3,59 @@ const db = require('../models/index');
 exports.getAllDetail = async () => {
     try {
         const details = await db.ProductDetail.findAll({
-            raw: true,
-            include: [{
-                model: db.Product,
-                attributes:['price'], // Include specific attributes from the associated Product model
-            }], // Include the Product model in the query
+            attributes: [
+                'id',
+                'name',
+                'quantity',
+                'createdAt',
+                'updatedAt',
+                'product_id',
+            ],
+            include: [
+                {
+                    model: db.Product,
+                    attributes: ['price','name'],
+                },
+                {
+                    model: db.Size,
+                    attributes: ['name'],
+                },
+                {
+                    model: db.Image,
+                    attributes: ['name'],
+                },
+                {
+                    model: db.Color,
+                    attributes: ['name', 'code_color'],
+                },
+            ],
         });
-        return details;
+
+        const organizedDetails = details.map(detail => {
+            const sizes = detail.Sizes.map(size => size.name);
+            const images = detail.Images.map(image => image.name);
+            const colors = detail.Colors.map(color => ({ color: color.name, color_code: color.code_color }));
+
+            return {
+                id: detail.id,
+                productDetail_name: detail.name,
+                product_price: detail.Product.name,
+                product_price: detail.Product.price,
+                sizes,
+                images,
+                colors,
+                quantity: detail.quantity,
+                createdAt: detail.createdAt,
+                updatedAt: detail.updatedAt,
+            };
+        });
+
+        return organizedDetails;
     } catch (error) {
         throw error;
     }
-}
+};
+
 
 exports.getDetail = async (productDetailId) => {
     try {
@@ -29,7 +71,7 @@ exports.getDetail = async (productDetailId) => {
             include: [
                 {
                     model: db.Product,
-                    attributes: ['price'],
+                    attributes: ['price','name'],
                 },
                 {
                     model: db.Size,
@@ -41,7 +83,7 @@ exports.getDetail = async (productDetailId) => {
                 },
                 {
                     model: db.Color,
-                    attributes: ['name'],
+                    attributes: ['name','code_color'],
                 },
             ],
         });
@@ -52,11 +94,12 @@ exports.getDetail = async (productDetailId) => {
 
         const sizes = detail.Sizes.map(size => size.name);
         const images = detail.Images.map(image => image.name);
-        const colors = detail.Colors.map(color => color.name);
+        const colors = detail.Colors.map(color => ({color:color.name,color_code:color.code_color}));
 
         const organizedDetail = {
             id: detail.id,
             productDetail_name: detail.name,
+            product_name: detail.Product.name,
             product_price: detail.Product.price,
             sizes,
             images,
@@ -78,12 +121,58 @@ exports.getDetailByName = async (productName) => {
     try {
       const detail = await db.ProductDetail.findOne({
         where: { name: productName },
-        raw: true,
-      });
-  
-      return detail || {};
+        attributes: [
+                'id',
+                'name',
+                'quantity',
+                'createdAt',
+                'updatedAt',
+                'product_id',
+            ],
+            include: [
+                {
+                    model: db.Product,
+                    attributes: ['price','name'],
+                },
+                {
+                    model: db.Size,
+                    attributes: ['name'],
+                },
+                {
+                    model: db.Image,
+                    attributes: ['name'],
+                },
+                {
+                    model: db.Color,
+                    attributes: ['name','code_color'],
+                },
+            ],
+        });
+
+        if (!detail) {
+            return null; // Trả về null nếu không tìm thấy chi tiết sản phẩm
+        }
+
+        const sizes = detail.Sizes.map(size => size.name);
+        const images = detail.Images.map(image => image.name);
+        const colors = detail.Colors.map(color => ({color:color.name,color_code:color.code_color}));
+
+        const organizedDetail = {
+            id: detail.id,
+            productDetail_name: detail.name,
+            product_name: detail.Product.name,
+            product_price: detail.Product.price,
+            sizes,
+            images,
+            colors,
+            quantity: detail.quantity,
+            createdAt: detail.createdAt,
+            updatedAt: detail.updatedAt,
+        };
+
+        return organizedDetail;
     } catch (error) {
-      throw error;
+        throw error;
     }
 };
 
