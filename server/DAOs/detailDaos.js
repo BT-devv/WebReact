@@ -17,20 +17,63 @@ exports.getAllDetail = async () => {
 
 exports.getDetail = async (productDetailId) => {
     try {
-        const detail = await db.ProductDetail.findOne({
-            where: { id: productDetailId },
-            include: [{
-                model: db.Product,
-                attributes:['price'], // Include specific attributes from the associated Product model
-            }], // Include the Product model in the query
-            raw: true,
+        const detail = await db.ProductDetail.findByPk(productDetailId,{
+            attributes: [
+                'id',
+                'name',
+                'quantity',
+                'createdAt',
+                'updatedAt',
+                'product_id',
+            ],
+            include: [
+                {
+                    model: db.Product,
+                    attributes: ['price'],
+                },
+                {
+                    model: db.Size,
+                    attributes: ['name'],
+                },
+                {
+                    model: db.Image,
+                    attributes: ['name'],
+                },
+                {
+                    model: db.Color,
+                    attributes: ['name'],
+                },
+            ],
         });
 
-        return detail || {};
+        if (!detail) {
+            return null; // Trả về null nếu không tìm thấy chi tiết sản phẩm
+        }
+
+        const sizes = detail.Sizes.map(size => size.name);
+        const images = detail.Images.map(image => image.name);
+        const colors = detail.Colors.map(color => color.name);
+
+        const organizedDetail = {
+            id: detail.id,
+            productDetail_name: detail.name,
+            product_price: detail.Product.price,
+            sizes,
+            images,
+            colors,
+            quantity: detail.quantity,
+            createdAt: detail.createdAt,
+            updatedAt: detail.updatedAt,
+        };
+
+        return organizedDetail;
     } catch (error) {
         throw error;
     }
-}
+};
+
+
+
 exports.getDetailByName = async (productName) => {
     try {
       const detail = await db.ProductDetail.findOne({
