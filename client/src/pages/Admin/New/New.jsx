@@ -5,7 +5,7 @@ import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
-const New = ({ inputs, title }) => {
+const New = () => {
   const [file, setFile] = useState(null);
   const [newProduct, setNewProduct] = useState({
     // Khởi tạo các giá trị mặc định cho sản phẩm mới
@@ -92,9 +92,8 @@ const New = ({ inputs, title }) => {
                   style={{ display: "none" }}
                 />
               </div>
-              
 
-              {inputs.map((input) => (  
+              {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
