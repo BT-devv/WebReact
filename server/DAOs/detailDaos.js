@@ -56,7 +56,6 @@ exports.getAllDetail = async () => {
     }
 };
 
-
 exports.getDetail = async (productDetailId) => {
     try {
         const detail = await db.ProductDetail.findByPk(productDetailId,{
@@ -114,8 +113,6 @@ exports.getDetail = async (productDetailId) => {
         throw error;
     }
 };
-
-
 
 exports.getDetailByName = async (productName) => {
     try {
