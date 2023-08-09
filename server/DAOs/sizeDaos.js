@@ -1,4 +1,4 @@
-const db = require('../models/in');
+const db = require('../models/index');
 
 // Hàm lấy tất cả thông tin kích thước
 exports.getAllSizes = async () => {
@@ -69,21 +69,19 @@ exports.deleteSize = async (id) => {
 };
 
 // Hàm thêm kích thước nếu chưa tồn tại
-exports.addSizeIfNotExisted = async (data) => {
+exports.addSizeIfNotExisted = async (prodetail_id,sizes) => {
   try {
     const existingSize = await db.Size.findOne({
       where: {
-        size: data.size,
-        productId: data.productID,
-        productDetailId: data.productDetailID,
+        name: sizes,
+        productDetail_id: prodetail_id,
       },
     });
 
     if (!existingSize) {
       const newSize = await db.Size.create({
-        size: data.size,
-        productId: data.productID,
-        productDetailId: data.productDetailID,
+        name: sizes,   
+        productDetail_id: prodetail_id,
       });
 
       return newSize;

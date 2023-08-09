@@ -1,4 +1,7 @@
 const DetailDAO = require("../DAOs/detailDaos");
+const ImgDAO = require("../DAOs/imgDaos");
+const SizeDAO = require("../DAOs/sizeDaos");
+const ColorDAO = require("../DAOs/colorDaos");
 
 exports.checkId = async (req, res, next, val) => {
     try {
@@ -58,22 +61,52 @@ exports.getDetail = async (req, res) => {
 }
 
 exports.createNewDetail = async (req, res) => {
+    const detail = req.body;
     try {
-        const detail = req.body;
-        await DetailDAO.createDetail(detail);
-        res.status(200).json({
-            code: 200,
-            msg: 'OK',
-            data: { detail }
-        });
+      // Create the product detail
+      await DetailDAO.createDetail(detail);
+      
+      // Retrieve the created product detail
+      const prodetail = await DetailDAO.getDetailByName(detail.name);
+  
+      // Add sizes if provided
+      if (detail.sizes && detail.sizes.length > 0) {
+        for (const size of detail.sizes) {
+          await SizeDAO.addSizeIfNotExisted(prodetail.id, size);
+        }
+      }
+  
+      // Add images if provided
+      if (detail.images && detail.images.length > 0) {
+        for (const image of detail.images) {
+          await ImgDAO.addImageIfNotExisted(prodetail.id, image);
+        }
+      }
+  
+      // Add colors if provided
+      if (detail.colors && detail.colors.length > 0) {
+        for (const color of detail.colors) {
+          await ColorDAO.addColorIfNotExisted(prodetail.id, color.color, color.code_color);
+        }
+      }
+  
+      // Update the retrieved product detail with additional information
+      const updatedProdetail = await DetailDAO.getDetail(prodetail.id);
+  
+      res.status(200).json({
+        code: 200,
+        msg: 'OK',
+        data: { prodetail: updatedProdetail }
+      });
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            code: 500,
-            msg: error.toString(),
-        });
+      console.error(error);
+      return res.status(500).json({
+        code: 500,
+        msg: error.toString(),
+      });
     }
-}
+  };
+  
 
 exports.updateDetail = async (req, res) => {
     try {

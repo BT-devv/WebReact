@@ -4,6 +4,10 @@ exports.getAllDetail = async () => {
     try {
         const details = await db.ProductDetail.findAll({
             raw: true,
+            include: [{
+                model: db.Product,
+                attributes:['price'], // Include specific attributes from the associated Product model
+            }], // Include the Product model in the query
         });
         return details;
     } catch (error) {
@@ -15,6 +19,10 @@ exports.getDetail = async (productDetailId) => {
     try {
         const detail = await db.ProductDetail.findOne({
             where: { id: productDetailId },
+            include: [{
+                model: db.Product,
+                attributes:['price'], // Include specific attributes from the associated Product model
+            }], // Include the Product model in the query
             raw: true,
         });
 
@@ -23,14 +31,25 @@ exports.getDetail = async (productDetailId) => {
         throw error;
     }
 }
+exports.getDetailByName = async (productName) => {
+    try {
+      const detail = await db.ProductDetail.findOne({
+        where: { name: productName },
+        raw: true,
+      });
+  
+      return detail || {};
+    } catch (error) {
+      throw error;
+    }
+};
 
 exports.createDetail = async (data) => {
     try {
         await db.ProductDetail.create({
             name: data.name,
-            description: data.description,
-            ProductId: data.ProductId,
-            CategoryId: data.CategoryId
+            quantity: data.quantity,
+            product_id: data.product_id, 
         });
         return 'Tạo mới chi tiết sản phẩm thành công';
     } catch (error) {

@@ -6,14 +6,13 @@ exports.createNewUser = async (data) => {
     try {
         await db.User.create({
             username: data.username,
-            email: data.email,
             password: await bcrypt.hash(data.password, 10),
-            firstName: data.firstName,
-            lastName: data.lastName,
-            img: "imgzan.png",
-            address: data.address,
-            phone: data.phone,
+            fullname: data.fullname,
+            email: data.email,
             birth: data.birth,
+            phone: data.phone,
+            address: data.address,
+            img: "imgzan.png",
             role: StaticData.AUTH.Role.admin,
             gender: data.gender === '1',
         });
@@ -63,8 +62,8 @@ exports.updateUserData = async (userId, data) => {
     try {
         await db.User.update(
             {
-                firstName: data.firstName,
-                lastName: data.lastName,
+                fullname: data.fullname,
+                gender: data.gender,
                 phone: data.phone,
                 address: data.address,
             },

@@ -9,7 +9,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      productDetail_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'ProductDetails',
+          key: 'id'
+        },
+      },
       name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      code_color: {
         type: Sequelize.STRING,
         allowNull: false
       },

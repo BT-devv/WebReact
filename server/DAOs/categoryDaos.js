@@ -11,18 +11,18 @@ exports.getAllCategory = async () => {
     }
 };
 
+// Assume db is the Sequelize instance and Category is the Sequelize model for the "Categories" table.
+
 exports.getCategory = async (categoryId) => {
     try {
-        const category = await db.Category.findOne({
-            where: { id: categoryId },
-            raw: true,
-        });
-
-        return category || {};
+      const category = await db.Category.findByPk(categoryId, { raw: true });
+  
+      return category || {}; // Return the category object if found, otherwise return an empty object
     } catch (error) {
-        throw error;
+      throw error;
     }
-};
+  };
+  
 
 exports.createCategory = async (data) => {
     try {

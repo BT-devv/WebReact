@@ -4,14 +4,10 @@ exports.createProduct = async (data) => {
     try {
         await db.Product.create({
             name: data.name,
-            description: data.description,
+            gender: data.gender,
             price: data.price,
-            imageCover: data.imageCover,
-            sizeCover: data.sizeCover,
-            colorCover: data.colorCover,
-            quantity: data.quantity,
-            status: data.status,
-            CategoryId: data.CategoryId,
+            description: data.description,
+            category_id: data.category_id,
         });
         return 'Tạo sản phẩm mới thành công';
     } catch (e) {

@@ -14,18 +14,19 @@ module.exports = (sequelize, DataTypes) => {
       ProductDetail.belongsTo(models.Product, {
         foreignKey: 'product_id'
       });
-      ProductDetail.belongsTo(models.Size, {
-        foreignKey: 'size_id'
+      ProductDetail.hasMany(models.Size, {
+        foreignKey: 'productDetail_id'
       });
-      ProductDetail.belongsTo(models.Color, {
-        foreignKey: 'color_id'
+      ProductDetail.hasMany(models.Color, {
+        foreignKey: 'productDetail_id'
       });
-      ProductDetail.belongsTo(models.Image, {
-        foreignKey: 'image_id'
+      ProductDetail.hasMany(models.Image, {
+        foreignKey: 'productDetail_id'
       });
     }
   }
   ProductDetail.init({
+    name: DataTypes.STRING,
     quantity: DataTypes.INTEGER,
   }, {
     sequelize,
