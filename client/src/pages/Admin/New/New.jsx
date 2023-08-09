@@ -92,8 +92,9 @@ const New = ({ inputs, title }) => {
                   style={{ display: "none" }}
                 />
               </div>
+              
 
-              {inputs.map((input) => (
+              {inputs.map((input) => (  
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input

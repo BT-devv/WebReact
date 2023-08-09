@@ -36,11 +36,10 @@ export const userColumns = [
         }
     },
     {field: "email", headerName: "Email", width: 250},
-    {field: "age", headerName: "Age", width: 100},
-    {field: "role", headerName: "Role", width: 160, renderCell: (params) =>{
+    {field: "genger", headerName: "Gender", width: 160, renderCell: (params) =>{
         return(
-            <div className={`cellWithStatus ${params.row.role}`}>
-                {params.row.role}
+            <div className={`cellWithStatus ${params.row.gender}`}>
+                {params.row.gender}
             </div>
         )
     }
@@ -86,48 +85,42 @@ export const userRows = [
         id: 1,
         username: "phamvan",
         img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
-        role: "Women",
+        gender: "Women",
         email: "phamvan2003@gmail.com",
-        age: 20,
     },
     {
         id: 2,
         username: "tuanbui",
         img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
-        role: "Men",
+        gender: "Men",
         email: "tuanbui2003@gmail.com",
-        age: 20,
     },
     {
         id: 3,
         username: "phamvan",
         img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
-        role: "Women",
+        gender: "Women",
         email: "phamvan2003@gmail.com",
-        age: 20,
     },
     {
         id: 4,
         username: "tuanbui",
         img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
-        role: "Men",
+        gender: "Men",
         email: "tuanbui2003@gmail.com",
-        age: 20,
     },
     {
         id: 5,
         username: "phamvan",
         img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
         email: "phamvan2003@gmail.com",
-        role: "Women",
-        age: 20,
+        gender: "Women",
     },
     {
         id: 6,
         username: "tuanbui",
         img: "https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1",
         email: "tuanbui2003@gmail.com",
-        role: "Men",
-        age: 20,
+        gender: "Men",
     },
 ]

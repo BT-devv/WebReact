@@ -7,39 +7,39 @@ export const userInputs = [
     },
     {
         id: 2,
-        label: "First Name",
+        label: "Full Name",
         type: "text",
         placeholder: "Van"
     },
     {
         id: 3,
-        label: "Lastname",
-        type: "text",
-        placeholder: "Pham"
-    },
-    {
-        id: 4,
         label: "Email",
         type: "email",
         placeholder: "phamvan2003vl@gmail.com"
     },
     {
-        id: 5,
+        id: 4,
         label: "Phone",
         type: "text",
         placeholder: "0794259155"
     },
     {
-        id: 6,
+        id: 5,
         label: "Gender",
         type: "text",
         placeholder: "Women"
     },
     {
+        id: 6,
+        label: "Birth",
+        type: "date",
+        placeholder: "22/05/2003"
+    },
+    {
         id: 7,
-        label: "Password",
-        type: "password",
-        placeholder: "phamvan2003vl@gmail.com"
+        label: "Role",
+        type: "text",
+        placeholder: "admin"
     },
 ];
 

@@ -11,8 +11,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
-import HomeAdmin from '../pages/Admin/Home/HomeAdmin';
-import LoginAdmin from '../pages/Admin/Login/LoginAdmin';
+import HomeAdmin from '../pages/Admin/Home/HomeAdmin';  
 import ListAdmin from '../pages/Admin/List/ListAdmin';
 import Single from '../pages/Admin/Single/Single';
 import New from '../pages/Admin/New/New';
@@ -76,12 +75,6 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   // admin
-  {
-    path: "/loginadmin",
-    element: <div>
-      <LoginAdmin />
-    </div>,
-  },
   {
     path: "/",
     element: <LayoutAdmin />,
