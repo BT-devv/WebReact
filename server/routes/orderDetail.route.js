@@ -1,5 +1,7 @@
 const express = require("express") ;
 const route = express.Router();
+const StaticData = require("../utils/StaticData")
+const authController = require("../controllers/authController") 
 const orderDetailController = require('../controllers/orderDetailController')
 
 route
@@ -8,13 +10,22 @@ route
 route
 .route("/")
 .get(orderDetailController.getAllOrderDetail)
-.post(orderDetailController.createNewOrderDetail)
+.post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    orderDetailController.createNewOrderDetail)
 
 route
 .route("/:id")
 .get(orderDetailController.getOrderDetail)
-.patch(orderDetailController.updateOrderDetail)
-.delete(orderDetailController.deleteOrderDetail)
+.patch(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    orderDetailController.updateOrderDetail)
+.delete(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    orderDetailController.deleteOrderDetail)
 
 
 

@@ -5,7 +5,11 @@ import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
+<<<<<<< HEAD
 const New = ({ inputs, title }) => {
+=======
+const New = ({title, inputs}) => {
+>>>>>>> d51fb602f3378c26a94dcea8fa96a8147cbb8390
   const [file, setFile] = useState(null);
   const [newProduct, setNewProduct] = useState({
     // Khởi tạo các giá trị mặc định cho sản phẩm mới

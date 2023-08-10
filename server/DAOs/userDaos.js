@@ -11,10 +11,10 @@ exports.createNewUser = async (data) => {
             email: data.email,
             birth: data.birth,
             phone: data.phone,
-            address: data.address,
+            adress: data.adress,
             img: "imgzan.png",
-            role: StaticData.AUTH.Role.admin,
-            gender: data.gender === '1',
+            roles: StaticData.AUTH.Role.user,
+            gender: data.gender,
         });
         return 'Tạo người dùng thành công';
     } catch (e) {
