@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "ad383351-e97f-4558-adcd-afa8d0eb577f",
-		"name": "WEb_Clothes",
+		"_postman_id": "5130eb4d-dd78-40be-bb53-9f5b0d9702c6",
+		"name": "WEb_Clothes Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25986593"
+		"_exporter_id": "25987034",
+		"_collection_link": "https://red-space-501224.postman.co/workspace/Team-Workspace~817c53fa-2286-4120-8c70-ecc1398d2916/collection/25987034-5130eb4d-dd78-40be-bb53-9f5b0d9702c6?action=share&creator=25987034&source=collection_link"
 	},
 	"item": [
 		{
@@ -16,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"Henry\",\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"12345678\",\r\n    \"repeatPassword\": \"12345678\"\r\n\r\n}",
+							"raw": "{\r\n    \"username\":\"tuanbuine\",\r\n    \"email\": \"aaaa@example.com\",\r\n    \"password\": \"123456\",\r\n    \"repeatPassword\": \"123456\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "//user\r\n// {\r\n//     \"username\": \"hello\",\r\n//     \"password\": \"123456\"\r\n// }\r\n\r\n//admin\r\n{\r\n    \"username\": \"Henry\",\r\n    \"password\":\"12345678\"\r\n}",
+							"raw": "//user\r\n// {\r\n//     \"username\": \"phamvan\",\r\n//     \"password\": \"123456\"\r\n// }\r\n\r\n//admin\r\n{\r\n    \"username\": \"buitrungtuan\",\r\n    \"password\":\"123455\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,10 +77,16 @@
 					"name": "Create new User",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"buituan\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"bb@gmail.com\",\r\n    \"fullname\":\"bui trung tuan\",\r\n    \"gender\":true,\r\n    \"birth\":\"12-08-2003\",\r\n    \"phone\":\"03030303030\",\r\n    \"adress\":\"123 Nguyen Xi\"\r\n}\r\n",
+							"raw": "{\r\n    \"username\":\"hi\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"hi@gmail.com\",\r\n    \"fullname\":\"pham thi ngoc van\",\r\n    \"gender\":false,\r\n    \"birth\":\"05-22-2003\",\r\n    \"phone\":\"0794259155\",\r\n    \"adress\":\"Binh Thanh\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,10 +204,16 @@
 					"name": "Create new Category",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Áo\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Quần\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -264,7 +277,13 @@
 					"name": "Update Category",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"Áo thun\"\r\n}",
@@ -293,7 +312,13 @@
 					"name": "Delete Category",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-category/2",
 							"protocol": "http",
@@ -318,7 +343,13 @@
 					"name": "Create new Product",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"name\": \"Áo thun\",\r\n  \"gender\":\"Nam\",\r\n  \"price\": 29.99,\r\n  \"description\": \"This is a demo product.\",\r\n  \"category_id\": 1\r\n}",
@@ -385,7 +416,13 @@
 					"name": "Update Product",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"name\": \"Sample Product\",\r\n  \"price\": 29.99,\r\n  \"description\": \"This is a demo product.\",\r\n  \"category_id\": 2,\r\n}",
@@ -414,7 +451,13 @@
 					"name": "New Request",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-product/1",
 							"protocol": "http",
@@ -439,7 +482,13 @@
 					"name": "Create new Deatil",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"name\": \"Áo thun tay ngắn vãi abc\",\r\n  \"sizes\": [\"S\", \"L\", \"XL\"],\r\n  \"images\": [\"img1.png\", \"img2.png\", \"img3.png\"],\r\n  \"colors\": [\r\n    {\r\n      \"color\": \"red\",\r\n      \"code_color\": \"#f0000\"\r\n    },\r\n    {\r\n      \"color\": \"blue\",\r\n      \"code_color\": \"#0000ff\"\r\n    },\r\n    {\r\n      \"color\": \"green\",\r\n      \"code_color\": \"#00ff00\"\r\n    }\r\n  ],\r\n  \"quantity\": 100,\r\n  \"product_id\": 1\r\n}\r\n",
@@ -506,7 +555,13 @@
 					"name": "Update Detail",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-detail/1",
 							"protocol": "http",
@@ -526,9 +581,15 @@
 					"name": "Delete Detail",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJidWl0cnVuZ3R1YW4iLCJpYXQiOjE2OTE2NDc0MDEsImV4cCI6MTY5MTY2OTAwMX0.2Bx5f261BfTp6RZKayslvvqW4ag6ocrWU3YSmbwGX2k",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3001/api-detail/1",
+							"raw": "http://localhost:3001/api-detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -536,7 +597,7 @@
 							"port": "3001",
 							"path": [
 								"api-detail",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -551,7 +612,13 @@
 					"name": "Create new Order",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"status\": \"đã đặt hàng\",\r\n    \"userID\": 1\r\n}",
@@ -618,7 +685,13 @@
 					"name": "Update order",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-order/1",
 							"protocol": "http",
@@ -638,7 +711,13 @@
 					"name": "Delete Order",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-order/1",
 							"protocol": "http",
@@ -663,7 +742,13 @@
 					"name": "Create new order detail",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-orderDetail",
 							"protocol": "http",
@@ -713,7 +798,13 @@
 					"name": "Update Order detail",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJwaGFtdmFuIiwiaWF0IjoxNjkxNjQ2MDI3LCJleHAiOjE2OTE2Njc2Mjd9.yVD3tcUtolY4Lb2A6TmfUmsTcLBfD-LurcMgbfEZ420",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3001/api-order/1",
 							"protocol": "http",
