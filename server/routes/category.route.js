@@ -1,5 +1,7 @@
 const express = require("express") ;
 const route = express.Router();
+const StaticData = require("../utils/StaticData")
+const authController = require("../controllers/authController") 
 const categoryController = require("../controllers/categoryController");
 
 
@@ -9,12 +11,21 @@ route
 route
 .route("/")
 .get(categoryController.getAllCategory)
-.post(categoryController.createNewCategory)
+.post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    categoryController.createNewCategory)
 
 route
 .route("/:id")
 .get(categoryController.getCategory)
-.patch(categoryController.updateCategory)
-.delete(categoryController.deleteCategory)
+.patch(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    categoryController.updateCategory)
+.delete(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    categoryController.deleteCategory)
 
 module.exports = route

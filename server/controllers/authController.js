@@ -69,9 +69,9 @@ exports.signup = async (req, res) => {
       }
   
       // Hash the user's password before saving it
-      const saltRounds = 10;
-      const hashedPassword = await bcrypt.hash(form.password, saltRounds);
-      form.password = hashedPassword;
+    //   const saltRounds = 10;
+    //   const hashedPassword = await bcrypt.hash(form.password, saltRounds);
+    //   form.password = hashedPassword;
   
       await UserDAO.createNewUser(form);
       let user = await UserDAO.getUserbyUserName(form.username);

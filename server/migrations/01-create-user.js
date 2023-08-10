@@ -48,8 +48,14 @@ module.exports = {
       adress: {
         type: Sequelize.STRING
       },
-      role: {
-        type: Sequelize.STRING,
+      roles: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Roles',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
