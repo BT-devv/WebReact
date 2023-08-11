@@ -5,7 +5,9 @@ import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
+
 const New = ({title, inputs}) => {
+  const [selectedCategory, setSelectedCategory] = useState(1);
   const [file, setFile] = useState(null);
   const [newProduct, setNewProduct] = useState({
     // Khởi tạo các giá trị mặc định cho sản phẩm mới
@@ -91,6 +93,16 @@ const New = ({title, inputs}) => {
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
+                <label>Category:</label>
+                <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                >
+                <option value="1">Category 1</option>
+                <option value="2">Category 2</option>
+              <option value="3">Category 3</option>
+        {/* Thêm các tùy chọn khác tại đây */}
+      </select>
               </div>
 
               {inputs.map((input) => (

@@ -15,7 +15,7 @@ import HomeAdmin from '../pages/Admin/Home/HomeAdmin';
 import ListAdmin from '../pages/Admin/List/ListAdmin';
 import Single from '../pages/Admin/Single/Single';
 import New from '../pages/Admin/New/New';
-import { productInputs, userInputs } from '../fromSource';
+import { productCategoryInputs, productDetailInputts, productInputs, userInputs } from '../fromSource';
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
@@ -106,6 +106,14 @@ const router = createBrowserRouter([
       {
         path: "/productAdmin/news",
         element: <New inputs ={productInputs} title = "Add new product"/>,
+      },
+      {
+        path: "/productDetailAdmin/news",
+        element: <New inputs ={productDetailInputts} title = "Add new product detail"/>,
+      },
+      {
+        path: "/productCategoryAdmin/news",
+        element: <New inputs ={productCategoryInputs} title = "Add new product category"/>,
       },
     ]
   },
