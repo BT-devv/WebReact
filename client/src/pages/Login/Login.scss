@@ -1,3 +1,5 @@
+// styles.scss
+
 $primaryColor: #2196F3;
 $secondaryColor: #f44336;
 $backgroundLight: #f9f9f9;
@@ -53,29 +55,7 @@ $borderColor: #ccc;
       gap: 20px;
       flex-wrap: wrap;
     }
-    .button-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .social-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      @media screen and (min-width: 768px) {
-        .button-container {
-          flex-direction: row;
-          justify-content: space-between;
-        }
-      
-        .social-buttons {
-          flex-direction: column;
-        }
-      }
-      
+
     button {
       padding: 16px;
       border: none;
@@ -98,16 +78,9 @@ $borderColor: #ccc;
       }
     }
 
-    .email-button {
+    .email-button,
+    .regis-button {
       background-color: $primaryColor;
-    }
-
-    .google-button {
-      background-color: #DB4437; /* Change to your desired Google button color */
-    }
-
-    .facebook-button {
-      background-color: #4267B2; /* Change to your desired Facebook button color */
     }
 
     p {
@@ -130,5 +103,19 @@ $borderColor: #ccc;
         }
       }
     }
+  }
+
+  .error-message {
+    color: $secondaryColor;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 5px;
+  }
+
+  .success-message {
+    color: green;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 5px;
   }
 }
