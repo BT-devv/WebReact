@@ -4,6 +4,11 @@ const StaticData = require("../utils/StaticData")
 const authController = require("../controllers/authController") 
 const detailController = require('../controllers/detailController')
 
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
+const uploadImage = upload.single("image");
+
 route
 .param('id',detailController.checkId)
 
@@ -12,7 +17,7 @@ route
 .get(detailController.getAllDetail)
 .post(
     authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    authController.restrictTo(StaticData.AUTH.Role.admin),uploadImage,
     detailController.createNewDetail)
 
 route
