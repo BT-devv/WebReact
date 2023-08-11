@@ -14,8 +14,10 @@ import Footer from '../components/Footer/Footer';
 import HomeAdmin from '../pages/Admin/Home/HomeAdmin';  
 import ListAdmin from '../pages/Admin/List/ListAdmin';
 import Single from '../pages/Admin/Single/Single';
-import New from '../pages/Admin/New/New';
-import { productCategoryInputs, productDetailInputts, productInputs, userInputs } from '../fromSource';
+import NewProductDetail from '../pages/Admin/New/NewProductDetail';
+import NewProductCategory from '../pages/Admin/New/NewProductCategory';
+import NewProduct from '../pages/Admin/New/NewProduct';
+import {  userInputs } from '../fromSource';
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
@@ -93,7 +95,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/users/news",
-        element: <New  inputs ={userInputs} title = "Add new user"/>,
+        element: <NewProductDetail  inputs ={userInputs} title = "Add new user"/>,
       },
       {
         path: "/productAdmin",
@@ -105,15 +107,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/productAdmin/news",
-        element: <New inputs ={productInputs} title = "Add new product"/>,
+        element: <NewProduct />,
       },
       {
         path: "/productDetailAdmin/news",
-        element: <New inputs ={productDetailInputts} title = "Add new product detail"/>,
+        element: <NewProductDetail />,
       },
       {
         path: "/productCategoryAdmin/news",
-        element: <New inputs ={productCategoryInputs} title = "Add new product category"/>,
+        element: <NewProductCategory/>,
       },
     ]
   },
