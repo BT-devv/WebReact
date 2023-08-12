@@ -27,7 +27,6 @@ const Login = () => {
         localStorage.setItem("token", token);
 
         // Thực hiện chuyển hướng sau khi đăng nhập thành công
-        // window.location.href = "/"; // Chuyển hướng đến trang chủ (homepage)
         navigate("/"); // Chuyển hướng đến trang chủ (homepage)
       } else {
         setError("Invalid username or password");
