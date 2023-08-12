@@ -12,20 +12,20 @@ route
 .route("/")
 .get(categoryController.getAllCategory)
 .post(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     categoryController.createNewCategory)
 
 route
 .route("/:id")
 .get(categoryController.getCategory)
 .patch(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     categoryController.updateCategory)
 .delete(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     categoryController.deleteCategory)
 
 module.exports = route

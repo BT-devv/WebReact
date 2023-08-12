@@ -16,20 +16,21 @@ route
 .route("/")
 .get(detailController.getAllDetail)
 .post(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),uploadImage,
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
+    uploadImage,
     detailController.createNewDetail)
 
 route
 .route("/:id")
 .get(detailController.getDetail)
 .patch(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     detailController.updateDetail)
 .delete(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     detailController.deleteDetail)
 
 

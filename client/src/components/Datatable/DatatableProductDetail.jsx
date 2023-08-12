@@ -15,7 +15,7 @@ const Datatable = () => {
     axios
       .get("http://localhost:3001/api-detail")
       .then((response) => {
-        setData(response.data.data.products);
+        setData(response.data.data.details);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -47,7 +47,7 @@ const Datatable = () => {
             </Link>
 
             <div
-              className="deleteLink"
+              className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
               {" "}

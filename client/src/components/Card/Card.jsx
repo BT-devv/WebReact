@@ -9,15 +9,13 @@ import "./Card.scss";
 const Card = ({ item }) => {
   return (
     <div className="card">
-      <Link className="link" to={`/product/${item.id}`}>
+      <Link className="link" to={`/detail/${item.id}`}>
         <div className="image">
-          <img src={item.img} className="mainImg" alt="" />
-          <img src={item.img2} className="secondImg" alt="" />
+        <img src={item.data.images[0]} className="mainImg" alt="" />
         </div>
-        <h2>{item.decription}</h2>
+        <h2>{item.data.productDetail_name}</h2>
         <div className="prices">
-          <h3 className="oldPrice">${item.oldPrice}</h3>
-          <h3>${item.newPrice}</h3>
+          <h3 className="oldPrice">${item.data.product_price}</h3>
         </div>
       </Link>
       <div className="icon">
