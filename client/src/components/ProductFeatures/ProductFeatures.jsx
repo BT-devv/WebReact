@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import "./ProductFeatures.scss";
 import Card from "../Card/Card.jsx";
 const ProductFeatures = ({ type }) => {

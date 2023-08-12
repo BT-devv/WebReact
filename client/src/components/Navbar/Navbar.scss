@@ -1,52 +1,80 @@
-.navbar{
+.navbar {
     width: 100vw;
     background-color: black;
-    color:#ffffff;
-    
-    .wrapper{
+    color: #ffffff;
+  
+    .wrapper {
+      display: flex;
+      padding: 10px 30px;
+      justify-content: space-between;
+  
+      .item {
+        align-items: center;
+      }
+      img {
+        width: 20px;
+      }
+      .left {
         display: flex;
-        padding: 10px 30px;
-        justify-content: space-between;    
-        .item{
-            align-items: center;
+        align-items: center;
+        gap: 25px;
+      }
+      // .center{}
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        .icons {
+          cursor: pointer;
+          display: flex;
+          gap: 25px;
+          color: #979797;
+  
+          .dropdown-menu {
+            position: absolute;
+            top: 6.5%;
+            right: 6.5%;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide dropdown by default */
+            flex-direction: column;
+            z-index: 10;
+  
+            &.active {
+              display: flex; /* Show when active */
+            }
+          }
+  
+          .dropdown-link {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: black;
+  
+            &:hover {
+              background-color: #f0f0f0;
+            }
+          }
         }
-        img{
+  
+        .cartIcon {
+          position: relative;
+          span {
+            font-size: 12px;
             width: 20px;
-        } 
-        .left{
+            height: 20px;
+            border-radius: 50%;
+            background-color: #2879fe;
+            color: #ffffff;
+            position: absolute;
+            right: -10px;
+            top: -10px;
             display: flex;
             align-items: center;
-            gap: 25px;
-              
+            justify-content: center;
+          }
         }
-        // .center{}
-        .right{
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            .icons{
-                cursor: pointer;
-                display: flex;
-                gap: 25px;
-                color: #979797;
-            }
-            .cartIcon{
-                position: relative;
-                span{
-                    font-size: 12px;
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 50%;
-                    background-color: #2879fe;
-                    color: #ffffff;
-                    position: absolute;
-                    right: -10px;
-                    top: -10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
-        }
+      }
     }
-}
+  }
+  

@@ -7,6 +7,7 @@ import Products from '../pages/Products/Products';
 import Product from '../pages/Product/Product';
 import About from '../pages/About/About';
 import Contact from '../pages/Contact/Contact';
+import Account from '../pages/Account/Account'
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Navbar from '../components/Navbar/Navbar';
@@ -37,7 +38,6 @@ const LayoutAdmin =()=>{
   return(
     <>
       <Outlet />
-  
     </>
   )
 }
@@ -66,6 +66,10 @@ const router = createBrowserRouter([
         path:"/Contact",
         element: <Contact />
       },
+      {
+        path:"/Account",
+        element: <Account />
+      }
     ]
   },
   {

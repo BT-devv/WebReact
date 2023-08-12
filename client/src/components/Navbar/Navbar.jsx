@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import GTranslateOutlinedIcon from "@mui/icons-material/GTranslateOutlined";
+
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -65,7 +70,15 @@ const Navbar = () => {
           </div>
           <div className="icons">
             <SearchIcon />
-            <PersonOutlineIcon />
+            <PersonOutlineIcon onClick={() => setOpenDropdown(!openDropdown)} />
+            <div className={`dropdown-menu ${openDropdown ? "active" : ""}`}>
+              <Link className="dropdown-link" to="/register">
+                Đăng ký
+              </Link>
+              <Link className="dropdown-link" to="/login">
+                Đăng nhập
+              </Link>
+            </div>
             <FavoriteBorderIcon />
             <div className="cartIcon" onClick={() => setOpen(!open)}>
               <ShoppingCartOutlinedIcon />

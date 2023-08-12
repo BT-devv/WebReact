@@ -5,13 +5,11 @@ const bcrypt =require ('bcrypt')
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Users', [{
-      username:'JonhDoe',
+      username:'admin',
       password: await bcrypt.hash('123456', 10),
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'example@example.com',
-      role: StaticData.AUTH.Role.admin,
-      birth: '2003-12-08',
+      fullname: 'John',
+      email: 'admin@example.com',
+      roles: StaticData.AUTH.Role.admin,
       phone:'0123456789',
       createdAt: new Date(),
       updatedAt: new Date()

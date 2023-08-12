@@ -45,6 +45,7 @@ exports.login = async (req, res) => {
             code: 200,
             msg: 'OK',
             data: {
+                user,
                 token,
             },
         });
