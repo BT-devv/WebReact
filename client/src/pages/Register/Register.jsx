@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { regisUser } from "../../redux/apiRequest";
+import { useDispatch } from "react-redux";
 const Register = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -34,6 +35,11 @@ const Register = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+  const validatePassword = (password) => {
+    if (password.length > 6) {
+      return password;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,6 +58,8 @@ const Register = () => {
 
     if (!inputs.password) {
       newErrorMessages.password = "Password is required.";
+    } else if (!validatePassword(inputs.password)) {
+      newErrorMessages.password = "Password is not enough word.";
     }
 
     if (!inputs.repeatPassword) {
@@ -75,11 +83,7 @@ const Register = () => {
     setErrorMessages({});
 
     try {
-      setIsSubmitting(true);
-      const res = await axios.post(
-        "http://localhost:3001/api-user/signup",
-        inputs
-      );
+      const res = await regisUser(inputs, dispatch, navigate);
       console.log(res);
       setIsSubmitting(false);
       setSuccessMessage("Registration successful!");
@@ -89,7 +93,6 @@ const Register = () => {
         password: "",
         repeatPassword: "",
       });
-      navigate("/login");
     } catch (error) {
       console.log(error);
       setIsSubmitting(false);

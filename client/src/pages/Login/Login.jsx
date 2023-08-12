@@ -1,33 +1,31 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../../redux/apiRequest";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
   const navigate = useNavigate(); // Sử dụng useNavigate thay cho useHistory
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();
-
+    const user = {
+      username: username,
+      password: password,
+    };
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api-user/login",
-        {
-          username,
-          password,
-        }
-      );
-      if (response.status === 200) {
+      const response = await loginUser(user, dispatch, navigate);
+      if (response.data.token) {
+        // Kiểm tra xem phản hồi có token không
         const token = response.data.token;
-
-        // Lưu token vào local storage
+        console.log("success");
         localStorage.setItem("token", token);
-
-        // Thực hiện chuyển hướng sau khi đăng nhập thành công
-        navigate("/"); // Chuyển hướng đến trang chủ (homepage)
+        navigate("/"); // Chỉ chuyển hướng nếu thành công
       } else {
         setError("Invalid username or password");
       }
