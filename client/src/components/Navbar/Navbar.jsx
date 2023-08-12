@@ -71,16 +71,14 @@ const Navbar = () => {
           <div className="icons">
             <SearchIcon />
             <PersonOutlineIcon onClick={() => setOpenDropdown(!openDropdown)} />
-            {openDropdown && (
-              <div className="dropdown-menu">
-                <Link className="dropdown-link link" to="/register">
-                  Đăng ký
-                </Link>
-                <Link className="dropdown-link link" to="/login">
-                  Đăng nhập
-                </Link>
-              </div>
-            )}
+            <div className={`dropdown-menu ${openDropdown ? "active" : ""}`}>
+              <Link className="dropdown-link" to="/register">
+                Đăng ký
+              </Link>
+              <Link className="dropdown-link" to="/login">
+                Đăng nhập
+              </Link>
+            </div>
             <FavoriteBorderIcon />
             <div className="cartIcon" onClick={() => setOpen(!open)}>
               <ShoppingCartOutlinedIcon />

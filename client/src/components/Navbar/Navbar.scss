@@ -32,14 +32,18 @@
   
           .dropdown-menu {
             position: absolute;
-            top: 100%;
-            right: 0;
+            top: 6.5%;
+            right: 6.5%;
             background-color: white;
             border: 1px solid #ccc;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: none; /* Hide dropdown by default */
             flex-direction: column;
             z-index: 10;
+  
+            &.active {
+              display: flex; /* Show when active */
+            }
           }
   
           .dropdown-link {
@@ -72,10 +76,5 @@
         }
       }
     }
-  }
-  
-  /* Show dropdown when its container is hovered */
-  .navbar .right .icons:hover .dropdown-menu {
-    display: flex;
   }
   
