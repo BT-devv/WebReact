@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
 const Register = () => {
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -18,6 +19,7 @@ const Register = () => {
   });
 
   const [successMessage, setSuccessMessage] = useState("");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
@@ -87,6 +89,7 @@ const Register = () => {
         password: "",
         repeatPassword: "",
       });
+      navigate("/login");
     } catch (error) {
       console.log(error);
       setIsSubmitting(false);

@@ -20,13 +20,18 @@ const Login = () => {
           password,
         }
       );
-      const token = response.data.token;
+      if (response.status === 200) {
+        const token = response.data.token;
 
-      // Lưu token vào local storage
-      localStorage.setItem("token", token);
+        // Lưu token vào local storage
+        localStorage.setItem("token", token);
 
-      // Thực hiện chuyển hướng sau khi đăng nhập thành công
-      navigate.push("/home"); // Chuyển hướng đến trang chủ (homepage)
+        // Thực hiện chuyển hướng sau khi đăng nhập thành công
+        // window.location.href = "/"; // Chuyển hướng đến trang chủ (homepage)
+        navigate("/"); // Chuyển hướng đến trang chủ (homepage)
+      } else {
+        setError("Invalid username or password");
+      }
     } catch (error) {
       setError("Invalid username or password");
     }
@@ -53,18 +58,7 @@ const Login = () => {
             placeholder="Password"
           />
         </div>
-        {/* <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        /> */}
+
         <div className="button-container">
           <button type="submit" className="email-button">
             Login

@@ -27,6 +27,7 @@ customMiddleware();
 connectDB();
 
 //routers
+ 
 app.use('/api-user',userRouter)
 app.use('/api-product',productRouter)
 app.use('/api-category', categoryRouter)
