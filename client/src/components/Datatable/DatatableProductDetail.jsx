@@ -1,7 +1,7 @@
 import "./Datatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
-import { productColums } from "../../datatablesource";
+import { productDetailColums } from "../../datatablesource";
 import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ const Datatable = () => {
   useEffect(() => {
     // Make a GET request to your Express.js backend endpoint to fetch all products
     axios
-      .get("http://localhost:3001/api-product")
+      .get("http://localhost:3001/api-detail")
       .then((response) => {
         setData(response.data.data.products);
       })
@@ -24,13 +24,13 @@ const Datatable = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3001/api-product/${id}`)
+      .delete(`http://localhost:3001/api-detail/${id}`)
       .then((response) => {
         // Remove the deleted product from the state
         setData(data.filter((item) => item.id !== id));
       })
       .catch((error) => {
-        console.error("Error deleting product:", error);
+        console.error("Error deleting product detail:", error);
       });
   };
 
@@ -42,7 +42,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/productAdmin/:id" style={{ textDecoration: "none" }}>
+            <Link to="/productDetailAdmin/:id" style={{ textDecoration: "none" }}>
               <div className="viewLink">View</div>
             </Link>
 
@@ -64,18 +64,18 @@ const Datatable = () => {
       <div className="datatableTitle">
         <Link
           to={{
-            pathname: "/productAdmin/news",
+            pathname: "/productDetailAdmin/news",
           }}
           className="link"
           title="Add new product"
         >
-          Add new Product
+          Add new Product Detail
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={productColums.concat(actionColumn)}
+        columns={productDetailColums.concat(actionColumn)}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },

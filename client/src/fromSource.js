@@ -52,27 +52,93 @@ export const productInputs = [
     },
     {
         id: 2,
-        label: "Description",
+        label: "Gender",
         type: "text",
-        placeholder: "Description"
+        placeholder: "Nam"
     },
     {
         id: 3,
-        label: "Category",
-        type: "text",
-        placeholder: "Áo"
-    },
-    {
-        id: 4,
         label: "Price",
         type: "text",
         placeholder: "100"
     },
     {
-        id: 5,
-        label: "Product Detail",
+        id: 4,
+        label: "Description",
         type: "text",
-        placeholder: "Áo thun"
+        placeholder: "Description"
     },
+    {
+        id: 5,
+    label: "Category",
+    type: "select", // Đổi type thành "select"
+    options: [
+      { id: 1, label: "Category 1" },
+      { id: 2, label: "Category 2" },
+      { id: 3, label: "Category 3" },
+      // Thêm các category khác
+    ],
+    name: "category" // Đặt tên cho category
+    }
     
+];
+
+export const productCategoryInputs=[
+    {
+        id: 1,
+        label: "Title",
+        type: "text",
+        placeholder: "Áo"
+    }
+];
+export const productDetailInputts=[
+    {
+        id: 1,
+        label: "Title",
+        type: "text",
+        placeholder: "Áo Thun"
+    },
+    {
+        id: 2,
+        label: "Quantity",
+        type: "text",
+        placeholder: "1"
+    },
+    {
+        id: 3,
+        label: "Size",
+        type: "text",
+        placeholder: "S"
+    },
+    {
+        id: 4,
+        label: "Color",
+        type: "text",
+        placeholder: "Black"
+    },
+    {
+        id: 5,
+        label: "Color Code",
+        type: "text",
+        placeholder: "#ffff"
+    },
+    {
+        id: 6,
+        label: "Status",
+        type: "text",
+        placeholder: "Chất liệu vãi co giản, thoải mái,..."
+    },
+    {
+        id: 7,
+        label: "Product Category",
+        type: "text",
+        placeholder: "Áo"
+    },
+    {
+        id: 8,
+        label: "Product",
+        type: "text",
+        placeholder: "Áo Thun"
+    }
 ]
+

@@ -1,7 +1,7 @@
 import "./Datatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
-import { productColums } from "../../datatablesource";
+import { productCategoryColums } from "../../datatablesource";
 import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
@@ -13,9 +13,9 @@ const Datatable = () => {
   useEffect(() => {
     // Make a GET request to your Express.js backend endpoint to fetch all products
     axios
-      .get("http://localhost:3001/api-product")
+      .get("http://localhost:3001/api-category")
       .then((response) => {
-        setData(response.data.data.products);
+        setData(response.data.data.categories);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -24,13 +24,13 @@ const Datatable = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3001/api-product/${id}`)
+      .delete(`http://localhost:3001/api-category/${id}`)
       .then((response) => {
         // Remove the deleted product from the state
         setData(data.filter((item) => item.id !== id));
       })
       .catch((error) => {
-        console.error("Error deleting product:", error);
+        console.error("Error deleting product category:", error);
       });
   };
 
@@ -42,7 +42,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/productAdmin/:id" style={{ textDecoration: "none" }}>
+            <Link to="/productCategoryAdmin/:id" style={{ textDecoration: "none" }}>
               <div className="viewLink">View</div>
             </Link>
 
@@ -64,18 +64,18 @@ const Datatable = () => {
       <div className="datatableTitle">
         <Link
           to={{
-            pathname: "/productAdmin/news",
+            pathname: "/productCategoryAdmin/news",
           }}
           className="link"
-          title="Add new product"
+          title="Add new product categoty"
         >
-          Add new Product
+          Add new Product Category
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={productColums.concat(actionColumn)}
+        columns={productCategoryColums.concat(actionColumn)}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },

@@ -5,9 +5,10 @@ import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
-const NewProduct = ({ title }) => {
+
+const New = ({title}) => {
   const [file, setFile] = useState(null);
-  const [newProduct, setNewProduct] = useState({
+  const [newProductDetail, setNewProductDetail] = useState({
     name: "",
     sizes: [],
     images: [],
@@ -18,16 +19,16 @@ const NewProduct = ({ title }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewProduct({
-      ...newProduct,
+    setNewProductDetail({
+      ...newProductDetail,
       [name]: value,
     });
   };
   const handleSizesChange = (e) => {
     const sizesInput = e.target.value;
     const sizesArray = sizesInput.split(",").map((size) => size.trim());
-    setNewProduct({
-      ...newProduct,
+    setNewProductDetail({
+      ...newProductDetail,
       sizes: sizesArray,
     });
   };
@@ -40,8 +41,8 @@ const NewProduct = ({ title }) => {
         .map((item) => item.replace(/[()]/g, "").trim());
       return { color: colorName, code_color: codeColor };
     });
-    setNewProduct({
-      ...newProduct,
+    setNewProductDetail({
+      ...newProductDetail,
       colors: colorsArray,
     });
   };
@@ -54,18 +55,18 @@ const NewProduct = ({ title }) => {
 
     const formData = new FormData();
     formData.append("image", file);
-    formData.append("detail", JSON.stringify(newProduct));
+    formData.append("detail", JSON.stringify(newProductDetail));
 
     try {
       const response = await axios.post(
         "http://localhost:3001/api-detail",
         formData
       );
-      console.log("Sản phẩm đã được tạo thành công:", response.data);
+      console.log("Chi tiết sản phẩm đã được tạo thành công:", response.data);
       // Thực hiện các thao tác cần thiết sau khi tạo sản phẩm thành công,
       // ví dụ: chuyển hướng người dùng đến trang hiển thị danh sách sản phẩm.
     } catch (error) {
-      console.error("Lỗi khi tạo sản phẩm:", error);
+      console.error("Lỗi khi tạo chi tiết sản phẩm:", error);
     }
   };
 
@@ -100,15 +101,16 @@ const NewProduct = ({ title }) => {
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
+                
               </div>
 
               <div className="formInput">
                 <label>Name</label>
                 <input
                   type="text"
-                  placeholder="Tên sản phẩm"
+                  placeholder="Tên chi tiết sản phẩm"
                   name="name"
-                  value={newProduct.name}
+                  value={newProductDetail.name}
                   onChange={handleChange}
                 />
               </div>
@@ -119,7 +121,7 @@ const NewProduct = ({ title }) => {
                   type="text"
                   placeholder="Sizes"
                   name="sizes"
-                  value={newProduct.sizes.join(", ")}
+                  value={newProductDetail.sizes.join(", ")}
                   onChange={handleSizesChange}
                 />
               </div>
@@ -131,7 +133,7 @@ const NewProduct = ({ title }) => {
                   type="text"
                   placeholder="Colors"
                   name="colors"
-                  value={newProduct.colors
+                  value={newProductDetail.colors
                     .map((color) => `${color.color} (${color.code_color})`)
                     .join(", ")}
                   onChange={handleColorsChange}
@@ -145,7 +147,7 @@ const NewProduct = ({ title }) => {
                   type="number"
                   placeholder="Quantity"
                   name="quantity"
-                  value={newProduct.quantity}
+                  value={newProductDetail.quantity}
                   onChange={handleChange}
                 />
               </div>
@@ -157,7 +159,7 @@ const NewProduct = ({ title }) => {
                   type="number"
                   placeholder="Product ID"
                   name="product_id"
-                  value={newProduct.product_id}
+                  value={newProductDetail.product_id}
                   onChange={handleChange}
                 />
               </div>
@@ -171,4 +173,4 @@ const NewProduct = ({ title }) => {
   );
 };
 
-export default NewProduct;
+export default New;
