@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { loginSuccess, loginFailed } from "../../redux/authSlice"; // Import action creators
 import store from "../../redux/store";
+
 const Account = () => {
   const user = useSelector((state) => state.auth.login.currenUser);
   const token = localStorage.getItem("token");
@@ -29,22 +30,29 @@ const Account = () => {
         store.dispatch(loginFailed());
       });
   }
+
+  const handleUpdateUserInfo = () => {
+    // TODO: Xử lý logic cập nhật thông tin người dùng
+    // Ví dụ: mở một modal hoặc trang cập nhật thông tin
+  };
+
   return (
     <div className="account">
       {user ? (
         <>
           <p>
-            <span>fullname</span>: {user.fullname}
+            <span>Fullname:</span> {user.fullname}
           </p>
           <p>
-            <span>email</span>: {user.email}
+            <span>Email:</span> {user.email}
           </p>
           <p>
-            <span>phone</span>: {user.phone}
+            <span>Phone:</span> {user.phone}
           </p>
           <p>
-            <span>address</span>: {user.adress}
+            <span>Address:</span> {user.adress}
           </p>
+          <button onClick={handleUpdateUserInfo}>Update Info</button>
         </>
       ) : (
         <Link to="/login">Login</Link>
@@ -52,4 +60,5 @@ const Account = () => {
     </div>
   );
 };
+
 export default Account;

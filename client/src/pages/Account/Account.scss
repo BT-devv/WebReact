@@ -1,36 +1,32 @@
+// Account.scss
+
 .account {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f8f9fa; /* Màu nền */
-    
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  height: 100vh;
+
+  p {
+    margin: 10px 0;
+
     span {
       font-weight: bold;
-      margin-right: 5px;
-    }
-  
-    p {
-      margin: 10px 0;
-      font-size: 18px;
-    }
-  
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #0056b3;
-      }
+      margin-right: 10px;
     }
   }
-  
+
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
