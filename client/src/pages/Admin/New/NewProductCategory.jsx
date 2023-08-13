@@ -6,11 +6,9 @@ import axios from "axios";
 
 
 const New = ({title}) => {
-  // const [file, setFile] = useState(null);
   const [newProductCategory, setNewProductCategory] = useState({
     name: ""
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProductCategory({

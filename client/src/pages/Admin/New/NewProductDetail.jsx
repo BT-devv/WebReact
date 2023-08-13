@@ -134,7 +134,7 @@ const New = ({title}) => {
                   placeholder="Colors"
                   name="colors"
                   value={newProductDetail.colors
-                    .map((color) => `${color.color} (${color.code_color})`)
+                    .map((color) => `${color.color} `)
                     .join(", ")}
                   onChange={handleColorsChange}
                 />
@@ -153,7 +153,7 @@ const New = ({title}) => {
               </div>
 
               {/* Thêm trường product_id input */}
-              <div className="formInput">
+              {/* <div className="formInput">
                 <label>Product ID</label>
                 <input
                   type="number"
@@ -162,7 +162,7 @@ const New = ({title}) => {
                   value={newProductDetail.product_id}
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
 
               <button type="submit">Send</button>
             </form>

@@ -1,6 +1,7 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import "./ProductFeatures.scss";
 import Card from "../Card/Card.jsx";
+import axios from "axios";
 const ProductFeatures = ({ type }) => {
   const [productDetailData, setProductDetailData] = useState([]);
 
