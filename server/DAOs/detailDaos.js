@@ -6,6 +6,8 @@ exports.getAllDetail = async () => {
             attributes: [
                 'id',
                 'name',
+                'price',
+                'description',
                 'quantity',
                 'createdAt',
                 'updatedAt',
@@ -39,8 +41,9 @@ exports.getAllDetail = async () => {
             return {
                 id: detail.id,
                 productDetail_name: detail.name,
-                product_price: detail.Product.name,
-                product_price: detail.Product.price,
+                price: detail.price,
+                product_name: detail.Product.name,
+                description: detail.description,
                 sizes,
                 images,
                 colors,
@@ -62,6 +65,8 @@ exports.getDetail = async (productDetailId) => {
             attributes: [
                 'id',
                 'name',
+                'price',
+                'description',
                 'quantity',
                 'createdAt',
                 'updatedAt',
@@ -98,8 +103,9 @@ exports.getDetail = async (productDetailId) => {
         const organizedDetail = {
             id: detail.id,
             productDetail_name: detail.name,
+            price: detail.price,
             product_name: detail.Product.name,
-            product_price: detail.Product.price,
+            description: detail.description,
             sizes,
             images,
             colors,

@@ -5,7 +5,6 @@ exports.createProduct = async (data) => {
         await db.Product.create({
             name: data.name,
             gender: data.gender,
-            description: data.description,
             category_id: data.category_id,
         });
         return 'Tạo sản phẩm mới thành công';
@@ -43,8 +42,7 @@ exports.updateProductData = async (productId, data) => {
         await db.Product.update(
             {
                 name: data.name,
-                description: data.description,
-                price: data.price,
+                gender: data.gender,
                 imageCover: data.imageCover,
                 sizeCover: data.sizeCover,
                 colorCover: data.colorCover,
