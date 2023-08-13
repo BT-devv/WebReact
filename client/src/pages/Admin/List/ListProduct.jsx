@@ -14,8 +14,8 @@ const ListProduct = () => {
         <div className="listContainer">
           <NavbarAdmin/>
           <Tab>
-            <DatatableProductDetail lable= "Product Detail"/>
             <DatatableProductCategory lable= "Product Category"/>
+            <DatatableProductDetail lable= "Product Detail"/>
             <DatatableProduct lable= "Product"/>
           </Tab>
         </div>

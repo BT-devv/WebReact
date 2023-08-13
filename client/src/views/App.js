@@ -18,7 +18,7 @@ import Single from '../pages/Admin/Single/Single';
 import NewProductDetail from '../pages/Admin/New/NewProductDetail';
 import NewProductCategory from '../pages/Admin/New/NewProductCategory';
 import NewProduct from '../pages/Admin/New/NewProduct';
-import {  userInputs } from '../fromSource';
+import NewUser from '../pages/Admin/New/NewUser';
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/users/news",
-        element: <NewProductDetail  inputs ={userInputs} title = "Add new user"/>,
+        element: <NewUser/>,
       },
       {
         path: "/productAdmin",

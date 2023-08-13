@@ -1,6 +1,6 @@
 export const productColums = [
     { field: 'id', headerName: 'ID', width: 10},
-    { field: 'name', headerName: 'Product Name', width: 200,  renderCell:(params) =>{
+    { field: 'name', headerName: 'Product Name', width: 250,  renderCell:(params) =>{
         return (
             <div className="cellWithImg">
                 <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
@@ -11,11 +11,11 @@ export const productColums = [
     },
     {field: "gender", headerName: "Gender", width: 100},
     {field: "price", headerName: "Price", width: 100},
-    {field: "description", headerName: "Description", width: 100},
+    {field: "description", headerName: "Description", width: 300},
 ]
 export const productCategoryColums = [
-    { field: 'id', headerName: 'ID', width: 10},
-    { field: 'name', headerName: 'Product Category Name', width: 200,  renderCell:(params) =>{
+    { field: 'id', headerName: 'ID', width: 20},
+    { field: 'name', headerName: 'Product Category Name', width: 300,  renderCell:(params) =>{
         return (
             <div className="cellWithImg">
                 <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
@@ -37,8 +37,27 @@ export const productDetailColums = [
         }
     },
     {field: "quantity", headerName: "Quantity", width: 100},
-    {field: "sizeCover", headerName: "size", width: 100},
-    {field: "colorCover", headerName: "color", width: 100},
+    {field: "sizes", headerName: "sizes", width: 100},
+    {
+        field: "colors",
+        headerName: "Colors",
+        width: 100,
+        renderCell: (params) => {
+          return (
+            <div className="cellWithColors">
+              {params.row.colors.map((color, index) => (
+                <div
+                  key={index}
+                  className="colorBox"
+                  style={{ backgroundColor: color.code_color }}
+                >
+                  {color.color}
+                </div>
+              ))}
+            </div>
+          );
+        },
+      },
     {field: "status", headerName: "Status", width: 160, renderCell: (params) =>{
         return(
             <div className={`cellWithStatus ${params.row.status}`}>
@@ -51,7 +70,7 @@ export const productDetailColums = [
 
 export const userColumns = [
     { field: 'id', headerName: 'ID', width: 100 },{
-        field: 'user', headerName: 'User', width: 250, renderCell:(params) =>{
+        field: 'user', headerName: 'Username', width: 250, renderCell:(params) =>{
             return (
                 <div className="cellWithImg">
                     <img className="cellImg" src={params.row.img} alt="avatar"/>
@@ -61,14 +80,10 @@ export const userColumns = [
         }
     },
     {field: "email", headerName: "Email", width: 250},
-    {field: "gender", headerName: "Gender", width: 160, renderCell: (params) =>{
-        return(
-            <div className={`cellWithStatus ${params.row.gender}`}>
-                {params.row.gender}
-            </div>
-        )
-    }
-},
+    {field: "roles", headerName: "Role", width: 100},
+    {field: "adress", headerName: "Address", width: 100},
+    {field: "birth", headerName: "Birth", width: 150},
+    
 ];
 
 // export const productRows = [

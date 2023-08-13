@@ -14,13 +14,13 @@ route
 route
 .route("/")
 .get(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     userController.getAllUser
     )
 .post(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     userController.createUser
     )
 

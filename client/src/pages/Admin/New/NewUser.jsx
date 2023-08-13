@@ -8,44 +8,24 @@ import axios from "axios";
 
 const New = ({title}) => {
   const [file, setFile] = useState(null);
-  const [newProductDetail, setNewProductDetail] = useState({
-    name: "",
-    sizes: [],
-    images: [],
-    colors: [],
-    quantity: 0,
-    product_id: 1,
+  const [newUser, setNewUser] = useState({
+    username: "",
+    email: "",
+    adress: "",
+    roles: "",
+    birth: ""
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewProductDetail({
-      ...newProductDetail,
+    setNewUser({
+      ...newUser,
       [name]: value,
     });
   };
-  const handleSizesChange = (e) => {
-    const sizesInput = e.target.value;
-    const sizesArray = sizesInput.split(",").map((size) => size.trim());
-    setNewProductDetail({
-      ...newProductDetail,
-      sizes: sizesArray,
-    });
-  };
+  
 
-  const handleColorsChange = (e) => {
-    const colorsInput = e.target.value;
-    const colorsArray = colorsInput.split(",").map((color) => {
-      const [colorName, codeColor] = color
-        .split("(")
-        .map((item) => item.replace(/[()]/g, "").trim());
-      return { color: colorName, code_color: codeColor };
-    });
-    setNewProductDetail({
-      ...newProductDetail,
-      colors: colorsArray,
-    });
-  };
+  
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -55,18 +35,18 @@ const New = ({title}) => {
     
     const formData = new FormData();
     formData.append("image", file);
-    formData.append("detail", JSON.stringify(newProductDetail));
+    formData.append("user", JSON.stringify(newUser));
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api-detail",
+        "http://localhost:3001/api-user",
         formData
       );
-      console.log("Chi tiết sản phẩm đã được tạo thành công:", response.data);
+      console.log("User đã được tạo thành công:", response.data);
       // Thực hiện các thao tác cần thiết sau khi tạo sản phẩm thành công,
       // ví dụ: chuyển hướng người dùng đến trang hiển thị danh sách sản phẩm.
     } catch (error) {
-      console.error("Lỗi khi tạo chi tiết sản phẩm:", error);
+      console.error("Lỗi khi tạo user:", error);
     }
   };
 
@@ -105,64 +85,57 @@ const New = ({title}) => {
               </div>
 
               <div className="formInput">
-                <label>Name</label>
+                <label>Username</label>
                 <input
                   type="text"
-                  placeholder="Tên chi tiết sản phẩm"
-                  name="name"
-                  value={newProductDetail.name}
-                  onChange={handleChange}
-                />
-              </div>
-              {/* Thêm trường sizes input */}
-              <div className="formInput">
-                <label>Sizes</label>
-                <input
-                  type="text"
-                  placeholder="Sizes"
-                  name="sizes"
-                  value={newProductDetail.sizes.join(", ")}
-                  onChange={handleSizesChange}
-                />
-              </div>
-
-              {/* Thêm trường colors input */}
-              <div className="formInput">
-                <label>Colors</label>
-                <input
-                  type="text"
-                  placeholder="Colors"
-                  name="colors"
-                  value={newProductDetail.colors
-                    .map((color) => `${color.color} `)
-                    .join(", ")}
-                  onChange={handleColorsChange}
-                />
-              </div>
-
-              {/* Thêm trường quantity input */}
-              <div className="formInput">
-                <label>Quantity</label>
-                <input
-                  type="number"
-                  placeholder="Quantity"
-                  name="quantity"
-                  value={newProductDetail.quantity}
+                  placeholder="username"
+                  name="username"
+                  value={newUser.username}
                   onChange={handleChange}
                 />
               </div>
 
-              {/* Thêm trường product_id input */}
-              {/* <div className="formInput">
-                <label>Product ID</label>
+              <div className="formInput">
+                <label>Email</label>
                 <input
-                  type="number"
-                  placeholder="Product ID"
-                  name="product_id"
-                  value={newProductDetail.product_id}
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  value={newUser.email}
                   onChange={handleChange}
                 />
-              </div> */}
+              </div>
+              <div className="formInput">
+                <label>Address</label>
+                <input
+                  type="text"
+                  placeholder="adress"
+                  name="adress"
+                  value={newUser.adress}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="formInput">
+                <label>Role</label>
+                <input
+                  type="text"
+                  placeholder="roles"
+                  name="roles"
+                  value={newUser.roles}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="formInput">
+                <label>Birth</label>
+                <input
+                  type="date"
+                  placeholder="birth"
+                  name="birth"
+                  value={newUser.birth}
+                  onChange={handleChange}
+                />
+              </div>
+
 
               <button type="submit">Send</button>
             </form>
