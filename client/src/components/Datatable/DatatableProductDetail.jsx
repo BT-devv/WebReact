@@ -15,7 +15,7 @@ const Datatable = () => {
     axios
       .get("http://localhost:3001/api-detail")
       .then((response) => {
-        setData(response.data.data.detail);
+        setData(response.data.data.details);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

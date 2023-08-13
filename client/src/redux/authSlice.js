@@ -28,6 +28,11 @@ const authSlice = createSlice({
         state.login.error = false
         state.login.userRole = roleMap[actions.payload.data.user.roles]; // Sử dụng roleMap để lấy tên vai trò
     },
+    logount: (state) =>{
+        state.login.isFleching = false
+        state.login.currenUser = null
+        state.login.error = false
+    },
     loginFailed: (state,actions) =>{
         state.login.isFleching = false
         state.login.error = true

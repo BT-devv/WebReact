@@ -3,15 +3,15 @@ import { loginFailed, loginStart, loginSuccess, regisFailed, regisStart, regisSu
 
 
 export const loginUser = async(user, dispatch,navigate) =>{
-    dispatch(loginStart());
-    try { 
-        const response = await axios.post("http://localhost:3001/api-user/login",user);
-        dispatch(loginSuccess(response.data));
-        localStorage.setItem("token",response.data.token)
-        navigate("/"); // Chuyển hướng đến trang chủ (homepage)
-      } catch (error) {
-        dispatch(loginFailed())
-      }
+  dispatch(loginStart());
+  try { 
+      const response = await axios.post("http://localhost:3001/api-user/login",user);
+      dispatch(loginSuccess(response.data));
+      localStorage.setItem("token",response.data.token)
+      navigate("/"); // Chuyển hướng đến trang chủ (homepage)
+    } catch (error) {
+      dispatch(loginFailed())
+    }
 }
 
 export const regisUser = async(user, dispatch,navigate) =>{
