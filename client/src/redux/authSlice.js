@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+const roleMap = {
+  1: 'user', 
+  2: 'admin', 
+};
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -7,13 +10,13 @@ const authSlice = createSlice({
         currenUser:null,
         isFleching:false,
         error:false,
+        userRole:null
     },
     register:{
       success:false,
       isFleching:false,
       error:false,
-    }
-
+    },
   },
   reducers: {
     loginStart: (state) =>{
@@ -23,6 +26,7 @@ const authSlice = createSlice({
         state.login.isFleching = true
         state.login.currenUser = actions.payload
         state.login.error = false
+        state.login.userRole = roleMap[actions.payload.data.user.roles]; // Sử dụng roleMap để lấy tên vai trò
     },
     loginFailed: (state,actions) =>{
         state.login.isFleching = false

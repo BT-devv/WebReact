@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.scss";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -7,14 +7,32 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import GTranslateOutlinedIcon from "@mui/icons-material/GTranslateOutlined";
-
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux"; // Import useSelector to access Redux state
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(false);
+      }
+    };
 
+    if (openDropdown) {
+      window.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [openDropdown]);
+  const userIsLoggedIn = useSelector(
+    (state) => state.auth.login.currenUser !== null
+  ); // Lấy thông tin trạng thái đăng nhập từ Redux state
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -45,7 +63,7 @@ const Navbar = () => {
         <div className="center">
           <div className="item">
             <Link className="link" to="/">
-              Clothes TV ______PJAC2
+              Shopping time
             </Link>
           </div>
         </div>
@@ -70,8 +88,19 @@ const Navbar = () => {
           </div>
           <div className="icons">
             <SearchIcon />
-            <PersonOutlineIcon onClick={() => setOpenDropdown(!openDropdown)} />
-            <div className={`dropdown-menu ${openDropdown ? "active" : ""}`}>
+            {userIsLoggedIn ? (
+              <Link className="link" to="/Account">
+                <PersonOutlineIcon />
+              </Link>
+            ) : (
+              <PersonOutlineIcon
+                onClick={() => setOpenDropdown(!openDropdown)}
+              />
+            )}
+            <div
+              ref={dropdownRef}
+              className={`dropdown-menu ${openDropdown ? "active" : ""}`}
+            >
               <Link className="dropdown-link" to="/register">
                 Đăng ký
               </Link>
@@ -84,10 +113,10 @@ const Navbar = () => {
               <ShoppingCartOutlinedIcon />
               <span>0</span>
             </div>
+            {open && <Cart />}
           </div>
         </div>
       </div>
-      {open && <Cart />}
     </div>
   );
 };

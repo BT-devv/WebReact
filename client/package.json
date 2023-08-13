@@ -21,6 +21,7 @@
     "react-js-dropdavn": "^1.0.4",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.13.0",
+    "react-router-guard": "^2.3.1",
     "react-scripts": "5.0.1",
     "react-tabs": "^6.0.2",
     "recharts": "^2.7.2",

@@ -3,8 +3,6 @@ const ImgDAO = require("../DAOs/imgDaos");
 const SizeDAO = require("../DAOs/sizeDaos");
 const ColorDAO = require("../DAOs/colorDaos");
 
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" }); // Cấu hình multer để lưu tệp ảnh vào thư mục "uploads"
 
 
 
@@ -50,18 +48,7 @@ exports.createNewDetail = async (req, res) => {
       // Add images if provided
       if (detail.images && detail.images.length > 0) {
         for (const image of detail.images) {
-          // Gọi middleware upload.single để xử lý tải lên ảnh
-          upload.single("image")(req, res, async function (err) {
-            if (err) {
-              console.error("Error uploading image:", err);
-              return res.status(500).json({
-                code: 500,
-                msg: "Error uploading image",
-              });
-            }
-            // Sau khi tải lên ảnh, thêm ảnh vào cơ sở dữ liệu
-            await ImgDAO.addImageIfNotExisted(prodetail.id, req.file.filename);
-          });
+            await ImgDAO.addImageIfNotExisted(prodetail.id, image);
         }
       }   
   

@@ -8,11 +8,13 @@ import { Provider} from 'react-redux';
 import store from '../src/redux/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- <Provider store={store}>
-  <DarkModeContextProvider>
-      <App />
+  <React.StrictMode>
+    <DarkModeContextProvider>
+      <Provider store={store}>
+            <App />
+      </Provider>
     </DarkModeContextProvider>
- </Provider>  
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

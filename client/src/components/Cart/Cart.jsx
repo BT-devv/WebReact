@@ -1,6 +1,7 @@
 import React from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import "./Cart.scss";
+//import { useSelector } from "react-redux";
 const Cart = () => {
   const data = [
     {
@@ -24,6 +25,9 @@ const Cart = () => {
       newPrice: 667.0,
     },
   ];
+
+  //const products = useSelector((state) => state.cart.products);
+
   return (
     <div className="Cart">
       <h1>Prodcuts in your Cart</h1>

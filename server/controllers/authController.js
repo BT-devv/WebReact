@@ -2,11 +2,12 @@ const UserDAO = require('../DAOs/userDaos')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const signToken = (id, username) => {
+const signToken = (id, username, role) => {
     return jwt.sign(
         {
             id: id,
-            username: username
+            username: username,
+            role:role
         },
         process.env.JWT_SECRET,
         { expiresIn:  process.env.JWT_EXPIRED_IN }
@@ -40,7 +41,7 @@ exports.login = async (req, res) => {
             });
         }
         // 4. get JWT & response to user
-        const token = signToken(user.id, user.username);
+        const token = signToken(user.id, user.username, user.roles);
         res.status(200).json({
             code: 200,
             msg: 'OK',

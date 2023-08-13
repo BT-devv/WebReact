@@ -1,10 +1,10 @@
 import "./Datatable.scss";
 
+import { React, useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { productDetailColums } from "../../datatablesource";
 import { Link } from "react-router-dom";
 
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Datatable = () => {
@@ -15,7 +15,7 @@ const Datatable = () => {
     axios
       .get("http://localhost:3001/api-detail")
       .then((response) => {
-        setData(response.data.data.products);
+        setData(response.data.data.detail);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -42,7 +42,10 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/productDetailAdmin/:id" style={{ textDecoration: "none" }}>
+            <Link
+              to="/productDetailAdmin/:id"
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewLink">View</div>
             </Link>
 

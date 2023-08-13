@@ -4,11 +4,16 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
 import { Button, Grid, TextField, MenuItem } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartReducer";
 const Product = () => {
   const [selectImg, setSelectImg] = useState(0);
   const [selecQuantity, setQuantity] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+
+  const dispatch = useDispatch();
+
   const img = [
     "	https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/455492/item/vngoods_69_455492.jpg?",
     "	https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/455492/sub/vngoods_455492_sub7.jpg?",
@@ -63,7 +68,9 @@ const Product = () => {
               {colors.map((color) => (
                 <Button
                   key={color.name}
-                  className={`color-button ${selectedColor === color.name ? "active" : ""}`}
+                  className={`color-button ${
+                    selectedColor === color.name ? "active" : ""
+                  }`}
                   style={{ backgroundColor: color.code }}
                   onClick={() => setSelectedColor(color.name)}
                 ></Button>
@@ -83,7 +90,7 @@ const Product = () => {
           {selecQuantity}
           <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
         </div>
-        <button className="add">
+        <button className="add" onClick={() => dispatch(addToCart({}))}>
           <AddShoppingCartIcon /> ADD TO CARD
         </button>
         <div className="links">
@@ -108,7 +115,6 @@ const Product = () => {
           <hr />
           <span>FAQ</span>
         </div>
-
       </div>
     </div>
   );
