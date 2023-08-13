@@ -2,25 +2,48 @@ import React from "react";
 import "./Account.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
+import { loginSuccess, loginFailed } from "../../redux/authSlice"; // Import action creators
+import store from "../../redux/store";
 const Account = () => {
   const user = useSelector((state) => state.auth.login.currenUser);
+  const token = localStorage.getItem("token");
 
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    // id người dùng được lưu trong JWT token dưới dạng payload.userId
+    const userId = JSON.parse(atob(token.split(".")[1])).id;
+
+    // Gửi token lên máy chủ để xác thực và lấy thông tin người dùng
+    axios
+      .get(`http://localhost:3001/api-user/${userId}`)
+      .then((response) => {
+        // Cập nhật thông tin người dùng và vai trò vào Redux store
+        store.dispatch(loginSuccess(response.data));
+      })
+      .catch((error) => {
+        console.error("Failed to authenticate user:", error);
+        // Xóa token và thông tin người dùng nếu xác thực thất bại
+        localStorage.removeItem("token");
+        store.dispatch(loginFailed());
+      });
+  }
   return (
     <div className="account">
       {user ? (
         <>
           <p>
-            <span>fullname</span>: {user.data.user.fullname}
+            <span>fullname</span>: {user.fullname}
           </p>
           <p>
-            <span>email</span>: {user.data.user.email}
+            <span>email</span>: {user.email}
           </p>
           <p>
-            <span>phone</span>: {user.data.user.phone}
+            <span>phone</span>: {user.phone}
           </p>
           <p>
-            <span>address</span>: {user.data.user.address}
+            <span>address</span>: {user.adress}
           </p>
         </>
       ) : (

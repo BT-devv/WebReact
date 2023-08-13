@@ -7,7 +7,7 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [{
       username:'admin',
       password: await bcrypt.hash('123456', 10),
-      fullname: 'John',
+      fullname: 'Admin',
       email: 'admin@example.com',
       roles: StaticData.AUTH.Role.admin,
       phone:'0123456789',

@@ -24,7 +24,7 @@ const authSlice = createSlice({
     },
     loginSuccess: (state,actions) =>{
         state.login.isFleching = true
-        state.login.currenUser = actions.payload
+        state.login.currenUser = actions.payload.data.user
         state.login.error = false
         state.login.userRole = roleMap[actions.payload.data.user.roles]; // Sử dụng roleMap để lấy tên vai trò
     },

@@ -2,13 +2,29 @@ import axios from "axios";
 import { loginFailed, loginStart, loginSuccess, regisFailed, regisStart, regisSuccess } from "./authSlice";
 
 
+export const getAuthorizedInstance = () => {
+  const token = localStorage.getItem('token');
+  return axios.create({
+    baseURL: 'http://localhost:3001', // Thay đổi thành URL của máy chủ
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+};
+
 export const loginUser = async(user, dispatch,navigate) =>{
   dispatch(loginStart());
   try { 
       const response = await axios.post("http://localhost:3001/api-user/login",user);
       dispatch(loginSuccess(response.data));
-      localStorage.setItem("token",response.data.token)
-      navigate("/"); // Chuyển hướng đến trang chủ (homepage)
+      localStorage.setItem("token",response.data.data.token)
+      if (response.data.data.user.roles === 2) {
+        navigate('/homeAdmin'); // Chuyển hướng đến trang admin
+        console.log(response.data.data.user.roles);
+      } else {
+        navigate('/'); // Chuyển hướng đến trang home
+        console.log(response.data.data.user.roles);
+      }
     } catch (error) {
       dispatch(loginFailed())
     }

@@ -23,8 +23,12 @@ import { useContext } from 'react';
 import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
 
+import { useSelector } from 'react-redux';
 
 const Layout =() =>{
+
+  
+
   return(
     <>
       <Navbar />
@@ -40,6 +44,20 @@ const LayoutAdmin =()=>{
     </>
   )
 }
+
+
+function App() {
+  const {darkMode} = useContext(DarkModeContext)
+  const userRole = useSelector(state => state.auth.login.userRole);
+
+  const checkAdminAccess = (element) => {
+    if (userRole === 'admin') {
+      return element; // Cho phép truy cập vào route nếu là admin
+    } else {
+      return "you dont have cái quyền để vô đây!! "; // Không cho phép truy cập vào route nếu không phải admin
+    }
+  };
+  
 const router = createBrowserRouter([
   {
     path: "/",
@@ -82,52 +100,48 @@ const router = createBrowserRouter([
   // admin
   {
     path: "/",
-    element: <LayoutAdmin />,
+    element: checkAdminAccess(<LayoutAdmin />),
     children:[
       {
         path: "/homeadmin",
-        element: <HomeAdmin/>,
+        element: checkAdminAccess(<HomeAdmin/>),
       },
       {
         path: "/users",
-        element: <ListAdmin/>,
+        element: checkAdminAccess(<ListAdmin/>),
       },
       {
         path: "/users/:id",
-        element: <Single/>,
+        element: checkAdminAccess(<Single/>),
       },
       {
         path: "/users/news",
-        element: <NewUser/>,
+        element: checkAdminAccess(<NewUser/>),
       },
       {
         path: "/productAdmin",
-        element: <ListProduct/>,
+        element: checkAdminAccess(<ListProduct/>),
       },
       {
         path: "/productAdmin/:id",
-        element: <Single/>,
+        element: checkAdminAccess(<Single/>),
       },
       {
         path: "/productAdmin/news",
-        element: <NewProduct />,
+        element: checkAdminAccess(<NewProduct />),
       },
       {
         path: "/productDetailAdmin/news",
-        element: <NewProductDetail />,
+        element: checkAdminAccess(<NewProductDetail />),
       },
       {
         path: "/productCategoryAdmin/news",
-        element: <NewProductCategory/>,
+        element: checkAdminAccess(<NewProductCategory/>),
       },
     ]
   },
   
 ]);
-
-function App() {
-  const {darkMode} = useContext(DarkModeContext)
-
   return (
     <div className={ darkMode ? "app App dark": "app App"}>
       <div className='Conta iner'>
