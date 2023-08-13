@@ -177,6 +177,7 @@ exports.createDetail = async (data) => {
     try {
         await db.ProductDetail.create({
             name: data.name,
+            price: data.price,
             quantity: data.quantity,
             product_id: data.product_id, 
         });
@@ -191,9 +192,8 @@ exports.updateDetailData = async (productDetailId, data) => {
         await db.ProductDetail.update(
             {
                 name: data.name,
-                description: data.description,
-                ProductId: data.ProductId,
-                CategoryId: data.CategoryId
+                price: data.price,
+                quantity: data.quantity,
             },
             {
                 where: {

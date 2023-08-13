@@ -17,12 +17,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      price: {
-        type: Sequelize.FLOAT,
+      type: {
+        type: Sequelize.STRING,
         allowNull: false
-      },
-      description: {
-        type: Sequelize.TEXT
       },
       category_id: {
         type: Sequelize.INTEGER,

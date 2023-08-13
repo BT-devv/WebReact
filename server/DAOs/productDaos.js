@@ -5,7 +5,6 @@ exports.createProduct = async (data) => {
         await db.Product.create({
             name: data.name,
             gender: data.gender,
-            price: data.price,
             description: data.description,
             category_id: data.category_id,
         });
