@@ -46,7 +46,7 @@ const Datatable = () => {
               to="/productDetailAdmin/:id"
               style={{ textDecoration: "none" }}
             >
-              <div className="viewLink">View</div>
+              <div className="viewLink">Edit</div>
             </Link>
 
             <div
