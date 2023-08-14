@@ -1,41 +1,27 @@
 export const productColums = [
     { field: 'id', headerName: 'ID', width: 10},
-    { field: 'name', headerName: 'Product Name', width: 250,  renderCell:(params) =>{
-        return (
-            <div className="cellWithImg">
-                <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
-                {params.row.name}
-            </div>
-            )
-        }
+    { field: 'name', headerName: 'Product Name', width: 250
     },
     {field: "gender", headerName: "Gender", width: 100},
-    {field: "price", headerName: "Price", width: 100},
-    {field: "description", headerName: "Description", width: 300},
+    {field: "type", headerName: "Type", width: 100},
 ]
 export const productCategoryColums = [
     { field: 'id', headerName: 'ID', width: 20},
-    { field: 'name', headerName: 'Product Category Name', width: 300,  renderCell:(params) =>{
-        return (
-            <div className="cellWithImg">
-                <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
-                {params.row.name}
-            </div>
-            )
-        }
-    }
+    { field: 'name', headerName: 'Product Category Name', width: 300}
 ]
 export const productDetailColums = [
     { field: 'id', headerName: 'ID', width: 10 },{
-        field: 'product', headerName: 'Product Detail Name', width: 250, renderCell:(params) =>{
+        field: 'productDetail_name', headerName: 'Product Detail Name', width: 250, renderCell:(params) =>{
             return (
                 <div className="cellWithImg">
                     <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
-                    {params.row.name}
+                    {params.row.productDetail_name}
                 </div>
             )
         }
     },
+    {field: "price", headerName: "Price", width: 100},
+    {field: "description", headerName: "Description", width: 200},
     {field: "quantity", headerName: "Quantity", width: 100},
     {field: "sizes", headerName: "sizes", width: 100},
     {

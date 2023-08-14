@@ -24,6 +24,7 @@ import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
 
 import { useSelector } from 'react-redux';
+import EditCategory from '../pages/Admin/Edit/EditCategory';
 
 const Layout =() =>{
 
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
       {
         path: "/productCategoryAdmin/news",
         element: checkAdminAccess(<NewProductCategory/>),
+      },
+      {
+        path: "/productCategoryAdmin/edit/:id",
+        element: checkAdminAccess(<EditCategory/>),
       },
     ]
   },

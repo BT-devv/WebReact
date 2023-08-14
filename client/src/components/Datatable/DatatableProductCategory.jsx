@@ -42,8 +42,8 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/productCategoryAdmin/:id" style={{ textDecoration: "none" }}>
-              <div className="viewLink">View</div>
+            <Link to="/productCategoryAdmin/edit/${params.id}" style={{ textDecoration: "none" }}>
+              <div className="editLink">Edit</div>
             </Link>
 
             <div
