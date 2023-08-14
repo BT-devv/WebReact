@@ -5,6 +5,7 @@ exports.createProduct = async (data) => {
         await db.Product.create({
             name: data.name,
             gender: data.gender,
+            type: data.type,
             category_id: data.category_id,
         });
         return 'Tạo sản phẩm mới thành công';
@@ -36,6 +37,17 @@ exports.getProduct = async (productId) => {
         throw e;
     }
 };
+exports.getProductByGender = async (gender) => {
+    try {
+        let product = await db.Product.findOne({
+            where: {gender: gender},
+        });
+
+        return product || {};
+    } catch (e) {
+        throw e;
+    }
+};
 
 exports.updateProductData = async (productId, data) => {
     try {
@@ -43,10 +55,10 @@ exports.updateProductData = async (productId, data) => {
             {
                 name: data.name,
                 gender: data.gender,
+                type: data.type,
                 imageCover: data.imageCover,
                 sizeCover: data.sizeCover,
                 colorCover: data.colorCover,
-                quantity: data.quantity,
                 status: data.status,
                 CategoryId: data.CategoryId,
             },
