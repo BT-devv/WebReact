@@ -1,43 +1,50 @@
+// Account.scss
 .account {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
 
   .profile-header {
-    text-align: center;
+    font-size: 24px;
     margin-bottom: 20px;
-
-    h1 {
-      font-size: 24px;
-      font-weight: bold;
-    }
+    color: #ee4d2d; // Màu sắc chính của Shoppee
   }
 
   .profile-details {
-    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 400px;
+    text-align: left;
 
     p {
       margin: 10px 0;
-
       span {
         font-weight: bold;
       }
     }
 
     button {
-      background-color: #007bff;
-      color: #fff;
+      background-color: #ee4d2d;
+      color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 8px 16px;
+      border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: #0056b3;
+        background-color: #ff3300; // Màu sắc hover của Shoppee
+      }
+    }
+
+    .link {
+      color: #ee4d2d;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
       }
     }
   }

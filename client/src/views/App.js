@@ -28,6 +28,7 @@ import ListProduct from '../pages/Admin/List/ListProduct';
 
 import { useSelector } from 'react-redux';
 import EditCategory from '../pages/Admin/Edit/EditCategory';
+import EditDetail from '../pages/Admin/Edit/EditDetail';
 
 const Layout =() =>{
 
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
       {
         path: "/productCategoryAdmin/edit/:id",
         element: checkAdminAccess(<EditCategory/>),
+      },
+      {
+        path: "/productDetailAdmin/edit/:id",
+        element: checkAdminAccess(<EditDetail />),
       },
     ]
   },
