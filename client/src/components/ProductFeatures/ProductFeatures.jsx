@@ -1,51 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductFeatures.scss";
 import Card from "../Card/Card.jsx";
+import axios from "axios";
 
 const ProductFeatures = ({ type }) => {
-  const data = [
-    {
-      id: 1,
-      img: [
-        "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462618/item/goods_07_462618.jpg?width=320",
-        "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/457612/item/vngoods_09_457612.jpg?width=320",
-      ],
-      decription: "AirSense Quan dai",
-      oldPrice: 999.0,
-      newPrice: 777.0,
-    },
-    {
-      id: 1,
-      img: [
-        "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462618/item/goods_07_462618.jpg?width=320",
-        "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/457612/item/vngoods_09_457612.jpg?width=320",
-      ],
-      decription: "AirSense Quan dai",
-      oldPrice: 999.0,
-      newPrice: 777.0,
-    },
-    {
-      id: 1,
-      img: [
-        "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462618/item/goods_07_462618.jpg?width=320",
-        "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/457612/item/vngoods_09_457612.jpg?width=320",
-      ],
-      decription: "AirSense Quan dai",
-      oldPrice: 999.0,
-      newPrice: 777.0,
-    },
-    {
-      id: 1,
-      img: [
-        "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462618/item/goods_07_462618.jpg?width=320",
-        "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/457612/item/vngoods_09_457612.jpg?width=320",
-      ],
-      decription: "AirSense Quan dai",
-      oldPrice: 999.0,
-      newPrice: 777.0,
-    },
-  ];
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api-detail")
+      .then((response) => {
+        setData(response.data.data.details);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [type]);
+  const displayedData = data.slice(0, 4); // Chỉ lấy 4 sản phẩm đầu tiên
   useEffect(() => {});
   return (
     <div className="productFeature">
@@ -59,7 +30,7 @@ const ProductFeatures = ({ type }) => {
         </p>
       </div>
       <div className="bottom">
-        {data.map((item) => (
+        {displayedData.map((item) => (
           <Card item={item} key={item.id} />
         ))}
       </div>

@@ -11,13 +11,13 @@ const Card = ({ item }) => {
     <div className="card">
       <Link className="link" to={`/product/${item.id}`}>
         <div className="image">
-          <img src={item.img[0]} className="mainImg" alt="" />
-          <img src={item.img[1]} className="secondImg" alt="" />
+          <img src={item.images[0]} className="mainImg" alt="" />
+          <img src={item.images[1]} className="secondImg" alt="" />
         </div>
-        <h2>{item.decription}</h2>
+        <h2>{item.productDetail_name}</h2>
         <div className="prices">
-          <h3 className="oldPrice">${item.oldPrice}</h3>
-          <h3>${item.newPrice}</h3>
+          <h3 className="oldPrice">500.000</h3>
+          <h3>${item.price}</h3>
         </div>
       </Link>
       <div className="icon">

@@ -40,3 +40,4 @@ export const regisUser = async(user, dispatch,navigate) =>{
         dispatch(regisFailed())
       }
 }
+

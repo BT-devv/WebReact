@@ -57,7 +57,9 @@ const Account = () => {
             <button onClick={handleUpdateUserInfo}>Update Info</button>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="link">
+            Login
+          </Link>
         )}
       </div>
     </div>

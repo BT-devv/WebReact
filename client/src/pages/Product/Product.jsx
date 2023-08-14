@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.scss";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -6,47 +6,67 @@ import BalanceIcon from "@mui/icons-material/Balance";
 import { Button, Grid, TextField, MenuItem } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
+
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 const Product = () => {
   const [selectImg, setSelectImg] = useState(0);
   const [selecQuantity, setQuantity] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [product, setProduct] = useState(null);
 
   const dispatch = useDispatch();
+  const { id } = useParams(); // Lấy id sản phẩm từ URL
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api-detail/${id}`)
+      .then((response) => {
+        setProduct(response.data.data.detail);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [id]);
 
-  const img = [
-    "	https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/455492/item/vngoods_69_455492.jpg?",
-    "	https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/455492/sub/vngoods_455492_sub7.jpg?",
-  ];
-  const sizes = ["XS", "S", "M", "L", "XL"];
-  const colors = [
-    { name: "Brown", code: "#440000" },
-    { name: "Navy", code: "#006400" },
-    { name: "Gray", code: "#828282" },
-    { name: "Black", code: "#333333" },
-    { name: "White", code: "#FFFFFF" },
-  ];
+  if (!product) {
+    return <p>Loading product data...</p>;
+  }
 
   return (
     <div className="productDetails">
       <div className="left">
         <div className="images">
-          <img src={img[0]} alt="" onClick={(e) => setSelectImg(0)} />
-          <img src={img[1]} alt="" onClick={(e) => setSelectImg(1)} />
+          <img
+            src={product.images[0]}
+            alt=""
+            onClick={(e) => setSelectImg(0)}
+          />
+          <img
+            src={product.images[1]}
+            alt=""
+            onClick={(e) => setSelectImg(1)}
+          />
+          <img
+            src={product.images[2]}
+            alt=""
+            onClick={(e) => setSelectImg(2)}
+          />
+          <img
+            src={product.images[3]}
+            alt=""
+            onClick={(e) => setSelectImg(3)}
+          />
         </div>
         <div className="mainImg">
-          <img src={img[selectImg]} alt="" />
+          <img src={product.images[selectImg]} alt="" />
         </div>
       </div>
       <div className="right">
-        <h2>Title</h2>
-        <span className="price">$999</span>
-        <p>
-          Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
-          amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt ut
-          labore etdolore.
-        </p>
+        <h2>{product.productDetail_name}</h2>
+        <span className="price">{product.price}</span>
+        <p>{product.description}</p>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={6}>
             <TextField
@@ -56,7 +76,7 @@ const Product = () => {
               onChange={(e) => setSelectedSize(e.target.value)}
               fullWidth
             >
-              {sizes.map((size) => (
+              {product.sizes.map((size) => (
                 <MenuItem key={size} value={size}>
                   {size}
                 </MenuItem>
@@ -65,7 +85,7 @@ const Product = () => {
           </Grid>
           <Grid item xs={6}>
             <div className="color-buttons">
-              {colors.map((color) => (
+              {product.colors.map((color) => (
                 <Button
                   key={color.name}
                   className={`color-button ${
@@ -91,7 +111,7 @@ const Product = () => {
           <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
         </div>
         <button className="add" onClick={() => dispatch(addToCart({}))}>
-          <AddShoppingCartIcon /> ADD TO CARD
+          <AddShoppingCartIcon /> ADD TO CART
         </button>
         <div className="links">
           <div className="item">
@@ -103,9 +123,9 @@ const Product = () => {
           </div>
         </div>
         <div className="info">
-          <span>Vendor: Polo</span>
-          <span>Product Type: T-Shirt</span>
-          <span>Tag: T-Shirt, Women, Top</span>
+          {/* <span>Vendor: {product.vendor}</span>
+          <span>Product Type: {product.productType}</span>
+          <span>Tag: {product.tags.join(", ")}</span> */}
         </div>
         <hr />
         <div className="info">
