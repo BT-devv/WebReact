@@ -43,10 +43,10 @@ const Datatable = () => {
         return (
           <div className="cellAction">
             <Link
-              to="/productDetailAdmin/:id"
+              to="/productDetailAdmin/edit/${id}"
               style={{ textDecoration: "none" }}
             >
-              <div className="viewLink">Edit</div>
+              <div className="editLink">Edit</div>
             </Link>
 
             <div
