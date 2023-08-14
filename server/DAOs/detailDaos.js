@@ -16,7 +16,7 @@ exports.getAllDetail = async () => {
             include: [
                 {
                     model: db.Product,
-                    attributes: ['price','name'],
+                    attributes: ['name'],
                 },
                 {
                     model: db.Size,
@@ -75,7 +75,7 @@ exports.getDetail = async (productDetailId) => {
             include: [
                 {
                     model: db.Product,
-                    attributes: ['price','name'],
+                    attributes: ['name'],
                 },
                 {
                     model: db.Size,
@@ -127,6 +127,8 @@ exports.getDetailByName = async (productName) => {
         attributes: [
                 'id',
                 'name',
+                'price',
+                'description',
                 'quantity',
                 'createdAt',
                 'updatedAt',
@@ -135,7 +137,7 @@ exports.getDetailByName = async (productName) => {
             include: [
                 {
                     model: db.Product,
-                    attributes: ['price','name'],
+                    attributes: ['name'],
                 },
                 {
                     model: db.Size,
@@ -162,15 +164,16 @@ exports.getDetailByName = async (productName) => {
 
         const organizedDetail = {
             id: detail.id,
-            productDetail_name: detail.name,
-            product_name: detail.Product.name,
-            product_price: detail.Product.price,
-            sizes,
-            images,
-            colors,
-            quantity: detail.quantity,
-            createdAt: detail.createdAt,
-            updatedAt: detail.updatedAt,
+                productDetail_name: detail.name,
+                price: detail.price,
+                product_name: detail.Product.name,
+                description: detail.description,
+                sizes,
+                images,
+                colors,
+                quantity: detail.quantity,
+                createdAt: detail.createdAt,
+                updatedAt: detail.updatedAt,
         };
 
         return organizedDetail;
@@ -184,6 +187,7 @@ exports.createDetail = async (data) => {
         await db.ProductDetail.create({
             name: data.name,
             price: data.price,
+            description: data.description,
             quantity: data.quantity,
             product_id: data.product_id, 
         });
@@ -199,6 +203,7 @@ exports.updateDetailData = async (productDetailId, data) => {
             {
                 name: data.name,
                 price: data.price,
+                description: data.description,
                 quantity: data.quantity,
             },
             {
