@@ -10,6 +10,8 @@ const New = ({title}) => {
   const [file, setFile] = useState(null);
   const [newProductDetail, setNewProductDetail] = useState({
     name: "",
+    price: [],
+    description: [],
     sizes: [],
     images: [],
     colors: [],
@@ -36,10 +38,10 @@ const New = ({title}) => {
   const handleColorsChange = (e) => {
     const colorsInput = e.target.value;
     const colorsArray = colorsInput.split(",").map((color) => {
-      const [colorName, codeColor] = color
+      const [colorName] = color
         .split("(")
         .map((item) => item.replace(/[()]/g, "").trim());
-      return { color: colorName, code_color: codeColor };
+      return { color: colorName};
     });
     setNewProductDetail({
       ...newProductDetail,
@@ -114,7 +116,27 @@ const New = ({title}) => {
                   onChange={handleChange}
                 />
               </div>
-              {/* Thêm trường sizes input */}
+              <div className="formInput">
+                <label>Price</label>
+                <input
+                  type="text"
+                  placeholder="Price"
+                  name="price"
+                  value={newProductDetail.price}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="formInput">
+                <label>Description</label>
+                <input
+                  type="text"
+                  placeholder="Mô tả"
+                  name="description"
+                  value={newProductDetail.description}
+                  onChange={handleChange}
+                />
+              </div>
+
               <div className="formInput">
                 <label>Sizes</label>
                 <input
@@ -153,7 +175,7 @@ const New = ({title}) => {
               </div>
 
               {/* Thêm trường product_id input */}
-              {/* <div className="formInput">
+              <div className="formInput">
                 <label>Product ID</label>
                 <input
                   type="number"
@@ -162,7 +184,7 @@ const New = ({title}) => {
                   value={newProductDetail.product_id}
                   onChange={handleChange}
                 />
-              </div> */}
+              </div>
 
               <button type="submit">Send</button>
             </form>

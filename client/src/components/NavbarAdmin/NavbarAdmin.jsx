@@ -40,7 +40,7 @@ const NavbarAdmin = () => {
             </div>
             <div className="item">
               <img
-               src=""
+               src="https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-cute.jpg?resize=560%2C560&ssl=1"
                alt="" 
                className="avatar"/>
             </div>
