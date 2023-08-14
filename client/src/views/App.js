@@ -19,6 +19,9 @@ import NewProductDetail from '../pages/Admin/New/NewProductDetail';
 import NewProductCategory from '../pages/Admin/New/NewProductCategory';
 import NewProduct from '../pages/Admin/New/NewProduct';
 import NewUser from '../pages/Admin/New/NewUser';
+import UpdateProfile from '../components/UpdateProfile/UpdateProfile'
+import SearchResultPage from '../pages/SearchResultPage/SearchResultPage'
+
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
@@ -86,6 +89,14 @@ const router = createBrowserRouter([
       {
         path:"/Account",
         element: <Account />
+      },
+      {
+        path:"/update-profile",
+        element: <UpdateProfile />
+      },
+      {
+        path:"/search-results",
+        element: <SearchResultPage />
       }
     ]
   },

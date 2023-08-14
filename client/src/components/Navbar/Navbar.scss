@@ -29,7 +29,36 @@
           display: flex;
           gap: 25px;
           color: #979797;
-  
+          .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            position: absolute;
+            top: 05%;
+            right: 0;
+            width: 240px;
+            z-index: 10;
+            
+            input {
+              flex-grow: 1;
+              border: none;
+              padding: 8px;
+              font-size: 14px;
+              outline: none;
+            }
+        
+            button {
+              background-color: #007bff;
+              color: #fff;
+              border: none;
+              padding: 8px 12px;
+              cursor: pointer;
+              font-size: 14px;
+              outline: none;
+            }
+          }
           .dropdown-menu {
             position: absolute;
             top: 6.5%;

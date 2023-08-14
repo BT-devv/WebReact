@@ -12,6 +12,7 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux"; // Import useSelector to access Redux state
 
 const Navbar = () => {
+  const [searchOpen, setSearchOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -87,7 +88,15 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="icons">
-            <SearchIcon />
+            <SearchIcon onClick={() => setSearchOpen(!searchOpen)} />
+            {searchOpen && (
+              <div className="search-bar">
+                <input type="text" placeholder="Tìm kiếm..." />
+                <Link to="/search-results">
+                  <button>Tìm kiếm</button>
+                </Link>
+              </div>
+            )}
             {userIsLoggedIn ? (
               <Link className="link" to="/Account">
                 <PersonOutlineIcon />

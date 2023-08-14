@@ -1,15 +1,14 @@
 import React from "react";
 import "./Account.scss";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { loginSuccess, loginFailed } from "../../redux/authSlice"; // Import action creators
 import store from "../../redux/store";
-
 const Account = () => {
   const user = useSelector((state) => state.auth.login.currenUser);
   const token = localStorage.getItem("token");
-
+  const navigate = useNavigate();
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
@@ -32,31 +31,35 @@ const Account = () => {
   }
 
   const handleUpdateUserInfo = () => {
-    // TODO: Xử lý logic cập nhật thông tin người dùng
-    // Ví dụ: mở một modal hoặc trang cập nhật thông tin
+    navigate("/update-profile");
   };
 
   return (
     <div className="account">
-      {user ? (
-        <>
-          <p>
-            <span>Fullname:</span> {user.fullname}
-          </p>
-          <p>
-            <span>Email:</span> {user.email}
-          </p>
-          <p>
-            <span>Phone:</span> {user.phone}
-          </p>
-          <p>
-            <span>Address:</span> {user.adress}
-          </p>
-          <button onClick={handleUpdateUserInfo}>Update Info</button>
-        </>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
+      <div className="profile-header">
+        <h1>Your Profile</h1>
+      </div>
+      <div className="profile-details">
+        {user ? (
+          <>
+            <p>
+              <span>Fullname:</span> {user.fullname}
+            </p>
+            <p>
+              <span>Email:</span> {user.email}
+            </p>
+            <p>
+              <span>Phone:</span> {user.phone}
+            </p>
+            <p>
+              <span>Address:</span> {user.adress}
+            </p>
+            <button onClick={handleUpdateUserInfo}>Update Info</button>
+          </>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
+      </div>
     </div>
   );
 };
