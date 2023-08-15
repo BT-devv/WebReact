@@ -51,11 +51,12 @@ const SidebarAdmin = () => {
               <span>Products</span>
             </li>
           </Link>
-
-          <li>
-            <CreditCardOutlinedIcon className="icon" />
-            <span>Orders</span>
-          </li>
+          <Link to="/order" style={{ textDecoration: "none" }}>
+            <li>
+              <CreditCardOutlinedIcon className="icon" />
+              <span>Orders</span>
+            </li>
+          </Link>
           <li>
             <LocalShippingOutlinedIcon className="icon" />
             <span>Delivery</span>

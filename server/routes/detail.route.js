@@ -11,7 +11,8 @@ const uploadImage = upload.single("image");
 
 route
 .param('id',detailController.checkId)
-
+route
+.param("gender", detailController.checkGender);
 route
 .route("/")
 .get(detailController.getAllDetail)
@@ -33,6 +34,8 @@ route
     // authController.restrictTo(StaticData.AUTH.Role.admin),
     detailController.deleteDetail)
 
-
+route
+.route('/:gender')
+.get(detailController.getDetailGender)
 
 module.exports = route

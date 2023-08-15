@@ -11,20 +11,20 @@ route
 .route("/")
 .get(orderController.getAllOrder)
 .post(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     orderController.createNewOrder)
 
 route
 .route("/:id")
 .get(orderController.getOrder)
 .patch(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     orderController.updateOrder)
 .delete(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     orderController.deleteOrder)
 
 

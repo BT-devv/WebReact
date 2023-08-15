@@ -28,6 +28,30 @@ exports.checkId = async (req, res, next, val) => {
     next();
 }
 
+exports.checkGender = async (req, res, next, val) => {
+    try {
+        const gender = val;
+        const details = await DetailDAO.getDetailByGender(gender);
+        if (!details) {
+            return res.status(404).json({
+                code: 404,
+                msg: `Không tìm thấy chi tiết sản phẩm với gender ${gender}`,
+            });
+        }
+        req.details = details;
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            code: 500,
+            msg: error.toString(),
+        });
+    }
+    next();
+}
+
+
+
+
 exports.createNewDetail = async (req, res) => {
     const detail = req.body;
     try {
@@ -112,7 +136,25 @@ exports.getDetail = async (req, res) => {
     }
 }
 
-  
+exports.getDetailGender = async (req, res) => {
+
+    const details = req.details;
+    try {
+      if (!details) {
+        return res.status(404).json({
+          code: 404,
+          msg: `Không tìm thấy chi tiết sản phẩm với giới tính ${gender}`,
+        });
+      }
+      res.json(details);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        code: 500,
+        msg: error.toString(),
+      });
+    }
+  };
 
 exports.updateDetail = async (req, res) => {
     try {
