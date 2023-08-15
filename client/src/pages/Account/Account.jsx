@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Account.scss";
-import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { loginSuccess, loginFailed } from "../../redux/authSlice"; // Import action creators
 import store from "../../redux/store";
 const Account = () => {
-  const user = useSelector((state) => state.auth.login.currenUser);
+  const [user,setUser] = useState(null)
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   if (token) {
@@ -21,6 +20,7 @@ const Account = () => {
       .then((response) => {
         // Cập nhật thông tin người dùng và vai trò vào Redux store
         store.dispatch(loginSuccess(response.data));
+        setUser(response.data.data.user)
       })
       .catch((error) => {
         console.error("Failed to authenticate user:", error);
@@ -33,7 +33,18 @@ const Account = () => {
   const handleUpdateUserInfo = () => {
     navigate("/update-profile");
   };
+  const handleLogout = ()=>{
+    localStorage.removeItem('token');
 
+    // Xóa token từ headers của các yêu cầu API
+    delete axios.defaults.headers.common['Authorization'];
+
+    // Đặt trạng thái loginFailed trong Redux
+    store.dispatch(loginFailed());
+
+    // Chuyển hướng đến trang đăng nhập hoặc trang chính
+    navigate('/login'); // Thay thế '/login' bằng đường dẫn trang đăng nhập của bạn
+  }
   return (
     <div className="account">
       <div className="profile-header">
@@ -54,12 +65,13 @@ const Account = () => {
             <p>
               <span>Address:</span> {user.adress}
             </p>
-            <button>Log out</button>
+            <button onClick={handleLogout}>Log out</button>
             <button onClick={handleUpdateUserInfo}>Update Info</button>
           </>
         ) : (
           <Link to="/login" className="link">
-            Login
+            <button>Login</button>
+            
           </Link>
         )}
       </div>

@@ -19,16 +19,16 @@ const Login = () => {
       password: password,
     };
     try {
-      const response = await loginUser(user, dispatch, navigate);
-      if (response.data.token) {
-        // Kiểm tra xem phản hồi có token không
-        const token = response.data.token;
-        console.log("success");
-        localStorage.setItem("token", token);
-        navigate("/"); // Chỉ chuyển hướng nếu thành công
-      } else {
-        setError("Invalid username or password");
-      }
+      await loginUser(user, dispatch, navigate);
+      // if (response.data.token) {
+      //   // Kiểm tra xem phản hồi có token không
+      //   const token = response.data.token;
+      //   console.log("success");
+      //   localStorage.setItem("token", token);
+      //   navigate("/"); // Chỉ chuyển hướng nếu thành công
+      // } else {
+      //   setError("Invalid username or password");
+      // }
     } catch (error) {
       setError("Invalid username or password");
     }

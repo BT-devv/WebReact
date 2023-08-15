@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { regisUser } from "../../redux/apiRequest";
 import { useDispatch } from "react-redux";
+
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

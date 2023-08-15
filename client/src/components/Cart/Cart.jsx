@@ -1,6 +1,8 @@
 import React from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import "./Cart.scss";
+import { Link } from 'react-router-dom';
+
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem } from "../../redux/cartReducer";
 const Cart = () => {
@@ -39,7 +41,10 @@ const Cart = () => {
           .000VND
         </span>
       </div>
-      <button>PROCEED CHECKOUT</button>
+      <Link to="/Checkout" className="link">
+        <button>PROCEED CHECKOUT</button>
+      </Link>
+      
       <span className="reset">Reset Cart</span>
     </div>
   );
