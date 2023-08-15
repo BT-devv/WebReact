@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import List from "../../components/List/List";
 import "./Products.scss";
 import { useParams } from "react-router-dom";
+
 const Products = () => {
   const id = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
+
   return (
     <div className="products">
       <div className="toolbar">

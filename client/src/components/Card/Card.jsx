@@ -2,9 +2,6 @@ import React from "react";
 import "./Card.scss";
 import { Link } from "react-router-dom";
 
-import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-
 import "./Card.scss";
 const Card = ({ item }) => {
   return (
@@ -16,14 +13,10 @@ const Card = ({ item }) => {
         </div>
         <h2>{item.productDetail_name}</h2>
         <div className="prices">
-          <h3 className="oldPrice">500.000</h3>
-          <h3>${item.price}</h3>
+          <h3 className="oldPrice">500.000VND</h3>
+          <h3>{item.price}.000VND</h3>
         </div>
       </Link>
-      <div className="icon">
-        <LocalGroceryStoreOutlinedIcon />
-        <FavoriteBorderOutlinedIcon />
-      </div>
     </div>
   );
 };

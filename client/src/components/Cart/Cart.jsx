@@ -22,21 +22,23 @@ const Cart = () => {
             <h1>{item.title}</h1>
             <p>{item.desc?.substring(0, 100)}</p>
             <div className="price">
-            {item.quantity} x {item.newPrice} </div>
+              {item.quantity} x {item.newPrice}.000{" "}
+            </div>
           </div>
-          <DeleteOutlinedIcon 
-          className="delete" 
-          onClick={() => handleRemoveFromCart(item.id)}/>
+          <DeleteOutlinedIcon
+            className="delete"
+            onClick={() => handleRemoveFromCart(item.id)}
+          />
         </div>
       ))}
       <div className="total">
         <span>SUBTOTAL</span>
         <span>
-          $
           {cartProducts.reduce(
             (total, item) => total + item.quantity * item.newPrice,
             0
           )}
+          .000VND
         </span>
       </div>
       <Link to="/Checkout" className="link">

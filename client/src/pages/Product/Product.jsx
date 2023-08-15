@@ -54,7 +54,6 @@ const Product = () => {
     return <p>Loading product data...</p>;
   }
 
-
   return (
     <div className="productDetails">
       <div className="left">
@@ -86,7 +85,7 @@ const Product = () => {
       </div>
       <div className="right">
         <h2>{product.productDetail_name}</h2>
-        <span className="price">{product.price}</span>
+        <span className="price">{product.price}.000 VND</span>
         <p>{product.description}</p>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={6}>

@@ -16,6 +16,16 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Use the useSelector hook to access the cart items array from Redux store
+  const cartItems = useSelector((state) => state.cart.products);
+
+  // Calculate the total items count by summing the quantities of all items in the cart
+  const cartItemsCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -120,7 +130,7 @@ const Navbar = () => {
             <FavoriteBorderIcon />
             <div className="cartIcon" onClick={() => setOpen(!open)}>
               <ShoppingCartOutlinedIcon />
-              <span>0</span>
+              <span>{cartItemsCount}</span>
             </div>
             {open && <Cart />}
           </div>

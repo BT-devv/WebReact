@@ -49,17 +49,23 @@ const New = ({ title }) => {
 
   const handleColorsChange = (e) => {
     const colorsInput = e.target.value;
-    const colorsArray = colorsInput.split(",").map((colorInfo) => {
-      const [color, code] = colorInfo
-        .trim()
-        .split("(")
-        .map((item) => item.replace(/[()]/g, "").trim());
-      return { color, code };
+    const lines = colorsInput.split("\n");
+    const colorsArray = lines.map((colorLine) => {
+      const match = colorLine.match(/^(.*?)\s*\((.*?)\)$/); // Tìm tên và mã màu trong dòng văn bản
+      if (match) {
+        const color = match[1].trim();
+        const code_color = match[2].trim();
+        return { color, code_color };
+      }
+      return null;
     });
+
+    // Loại bỏ các phần tử null (không phù hợp)
+    const validColorsArray = colorsArray.filter((color) => color !== null);
 
     setNewProductDetail({
       ...newProductDetail,
-      colors: colorsArray,
+      colors: validColorsArray,
     });
   };
 
@@ -168,13 +174,12 @@ const New = ({ title }) => {
 
               <div className="formInput">
                 <label>Colors</label>
-                <input
-                  type="text"
-                  placeholder="Colors"
+                <textarea
+                  placeholder="Enter colors (e.g. Red (#FF0000))"
                   name="colors"
                   value={newProductDetail.colors
-                    .map((color) => `${color.color}(${color.code_color})`)
-                    .join(", ")}
+                    .map((color) => `${color.color} (${color.code_color})`)
+                    .join("\n")}
                   onChange={handleColorsChange}
                 />
               </div>
