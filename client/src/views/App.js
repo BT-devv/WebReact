@@ -28,6 +28,8 @@ import ListProduct from '../pages/Admin/List/ListProduct';
 import EditProductDetail from '../pages/Admin/Edit/EditProductDetail';
 
 import { useSelector } from 'react-redux';
+import Checkout from '../components/Checkout/Checkout';
+import Payment from '../components/Payment/Payment';
 
 const Layout =() =>{
 
@@ -98,6 +100,14 @@ const router = createBrowserRouter([
       {
         path:"/search-results",
         element: <SearchResultPage />
+      },
+      {
+        path:"/Checkout",
+        element: <Checkout />
+      },
+      {
+        path:"/Payment",
+        element: <Payment />
       },
     ]
   },
