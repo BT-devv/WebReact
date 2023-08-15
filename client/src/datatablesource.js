@@ -9,9 +9,9 @@ export const productCategoryColums = [
     { field: 'id', headerName: 'ID', width: 20},
     { field: 'name', headerName: 'Product Category Name', width: 300}
 ]
-export const productDetailColums = [
+export const productDetailColumns = [
     { field: 'id', headerName: 'ID', width: 10 },{
-        field: 'productDetail_name', headerName: 'Product Detail Name', width: 250, renderCell:(params) =>{
+        field: 'productDetail_name', headerName: 'Product Detail Name', width: 550, renderCell:(params) =>{
             return (
                 <div className="cellWithImg">
                     <img className="cellImg" src={params.row.imageCover} alt="avatar"/>

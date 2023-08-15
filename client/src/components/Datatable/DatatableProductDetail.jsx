@@ -1,8 +1,8 @@
 import "./Datatable.scss";
 
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // Import React
 import { DataGrid } from "@mui/x-data-grid";
-import { productDetailColums } from "../../datatablesource";
+import { productDetailColumns } from "../../datatablesource"; // Import your columns definition
 import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -37,23 +37,21 @@ const Datatable = () => {
   const actionColumn = [
     {
       field: "action",
-      headerName: "Action,",
+      headerName: "Action",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link
-              to="/productDetailAdmin/edit/${id}"
+              to={`/productDetailAdmin/edit/${params.row.id}`} // Use params.row.id to get the specific id
               style={{ textDecoration: "none" }}
             >
               <div className="editLink">Edit</div>
             </Link>
-
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              {" "}
               Delete
             </div>
           </div>
@@ -78,13 +76,8 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={productDetailColums.concat(actionColumn)}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
+        columns={productDetailColumns.concat(actionColumn)} // Use the imported columns definition
+        pageSize={5}
         checkboxSelection
       />
     </div>

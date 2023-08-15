@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./New.scss";
 import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
-
-const New = ({title}) => {
+const New = ({ title }) => {
   const [file, setFile] = useState(null);
+  const [productList, setProductList] = useState([]);
   const [newProductDetail, setNewProductDetail] = useState({
     name: "",
-    price: [],
-    description: [],
+    price: "",
+    description: "",
     sizes: [],
     images: [],
     colors: [],
     quantity: 0,
     product_id: 1,
   });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api-product")
+      .then((response) => {
+        setProductList(response.data.data.products);
+      })
+      .catch((error) => {
+        console.error("Error fetching product list:", error);
+      });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +37,7 @@ const New = ({title}) => {
       [name]: value,
     });
   };
+
   const handleSizesChange = (e) => {
     const sizesInput = e.target.value;
     const sizesArray = sizesInput.split(",").map((size) => size.trim());
@@ -37,36 +49,43 @@ const New = ({title}) => {
 
   const handleColorsChange = (e) => {
     const colorsInput = e.target.value;
-    const colorsArray = colorsInput.split(",").map((color) => {
-      const [colorName] = color
+    const colorsArray = colorsInput.split(",").map((colorInfo) => {
+      const [color, code] = colorInfo
+        .trim()
         .split("(")
         .map((item) => item.replace(/[()]/g, "").trim());
-      return { color: colorName};
+      return { color, code };
     });
+
     setNewProductDetail({
       ...newProductDetail,
       colors: colorsArray,
     });
   };
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("detail", JSON.stringify(newProductDetail));
 
     try {
       const response = await axios.post(
         "http://localhost:3001/api-detail",
-        formData
+        newProductDetail
       );
       console.log("Chi tiết sản phẩm đã được tạo thành công:", response.data);
-      // Thực hiện các thao tác cần thiết sau khi tạo sản phẩm thành công,
-      // ví dụ: chuyển hướng người dùng đến trang hiển thị danh sách sản phẩm.
+      setNewProductDetail({
+        name: "",
+        price: "",
+        description: "",
+        sizes: [],
+        images: [],
+        colors: [],
+        quantity: 0,
+        product_id: null,
+      });
     } catch (error) {
       console.error("Lỗi khi tạo chi tiết sản phẩm:", error);
     }
@@ -103,7 +122,6 @@ const New = ({title}) => {
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
-                
               </div>
 
               <div className="formInput">
@@ -148,7 +166,6 @@ const New = ({title}) => {
                 />
               </div>
 
-              {/* Thêm trường colors input */}
               <div className="formInput">
                 <label>Colors</label>
                 <input
@@ -156,13 +173,12 @@ const New = ({title}) => {
                   placeholder="Colors"
                   name="colors"
                   value={newProductDetail.colors
-                    .map((color) => `${color.color} `)
+                    .map((color) => `${color.color}(${color.code_color})`)
                     .join(", ")}
                   onChange={handleColorsChange}
                 />
               </div>
 
-              {/* Thêm trường quantity input */}
               <div className="formInput">
                 <label>Quantity</label>
                 <input
@@ -174,18 +190,21 @@ const New = ({title}) => {
                 />
               </div>
 
-              {/* Thêm trường product_id input */}
               <div className="formInput">
-                <label>Product ID</label>
-                <input
-                  type="number"
-                  placeholder="Product ID"
+                <label>Product Name</label>
+                <select
                   name="product_id"
-                  value={newProductDetail.product_id}
+                  value={newProductDetail.product_id || ""}
                   onChange={handleChange}
-                />
+                >
+                  <option value="">Select a product</option>
+                  {productList.map((product) => (
+                    <option key={product.id} value={product.id}>
+                      {product.name} - {product.gender}
+                    </option>
+                  ))}
+                </select>
               </div>
-
               <button type="submit">Send</button>
             </form>
           </div>
