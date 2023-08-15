@@ -1,17 +1,29 @@
-// Checkout.js
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem } from '../../redux/cartReducer';
 import "./Checkout.scss"
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Checkout = () => {
   const cartProducts = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleDeleteItem = (productId) => {
     dispatch(removeItem(productId)); 
   };
+
+  const token = localStorage.getItem("token");
+
+  const handlePaymentClick = () => {
+    if (token) {
+      navigate("/Payment"); // Nếu đã đăng nhập, chuyển hướng đến trang Payment
+    } else {
+      navigate("/login"); // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+    }
+  };
+
   return (
     <div className="Checkout">
       <div className="CheckoutHeader">
@@ -42,10 +54,7 @@ const Checkout = () => {
           )}
         </p>
       </div>
-      <Link to = "/Payment">
-        <button className="CheckoutButton">Payment</button>
-      </Link>
-      
+      <button className="CheckoutButton" onClick={handlePaymentClick}>Payment</button>
     </div>
   );
 };
