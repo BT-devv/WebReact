@@ -54,6 +54,7 @@ const Account = () => {
             <p>
               <span>Address:</span> {user.adress}
             </p>
+            <button>Log out</button>
             <button onClick={handleUpdateUserInfo}>Update Info</button>
           </>
         ) : (
