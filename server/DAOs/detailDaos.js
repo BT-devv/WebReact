@@ -16,7 +16,7 @@ exports.getAllDetail = async () => {
             include: [
                 {
                     model: db.Product,
-                    attributes: ['name'],
+                    attributes: ['name','gender'],
                 },
                 {
                     model: db.Size,
@@ -43,6 +43,7 @@ exports.getAllDetail = async () => {
                 productDetail_name: detail.name,
                 price: detail.price,
                 product_name: detail.Product.name,
+                product_gender: detail.Product.gender,
                 description: detail.description,
                 sizes,
                 images,
@@ -75,7 +76,7 @@ exports.getDetail = async (productDetailId) => {
             include: [
                 {
                     model: db.Product,
-                    attributes: ['name'],
+                    attributes: ['name','gender'],
                 },
                 {
                     model: db.Size,
@@ -105,6 +106,7 @@ exports.getDetail = async (productDetailId) => {
             productDetail_name: detail.name,
             price: detail.price,
             product_name: detail.Product.name,
+            product_gender: detail.Product.gender,
             description: detail.description,
             sizes,
             images,
@@ -167,6 +169,7 @@ exports.getDetailByName = async (productName) => {
                 productDetail_name: detail.name,
                 price: detail.price,
                 product_name: detail.Product.name,
+                product_gender: detail.Product.gender,
                 description: detail.description,
                 sizes,
                 images,

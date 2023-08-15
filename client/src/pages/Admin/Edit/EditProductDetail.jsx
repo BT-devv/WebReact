@@ -9,14 +9,14 @@ import axios from "axios";
 const EditProductDetail = () => {
   const { id } = useParams();
   const [file, setFile] = useState(null);
-  const [detail, setDetail] = useState({});
+  // const [detail, setDetail] = useState({});
   const [name, setName] = useState("");
 
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api-detail/${id}`)
       .then((response) => {
-        setDetail(response.data.data.detail);
+        // setDetail(response.data.data.detail);
         setName(response.data.data.detail.name);
       })
       .catch((error) => {
@@ -44,9 +44,7 @@ const EditProductDetail = () => {
       <SidebarAdmin />
       <div className="newContainer">
         <NavbarAdmin />
-        <div className="top">
-         
-        </div>
+        <div className="top"></div>
         <div className="bottom">
           <div className="left">
             <img
@@ -70,7 +68,6 @@ const EditProductDetail = () => {
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
-                
               </div>
 
               <div className="formInput">
@@ -79,58 +76,32 @@ const EditProductDetail = () => {
                   type="text"
                   placeholder="Tên chi tiết sản phẩm"
                   name="name"
-                  
                 />
               </div>
               <div className="formInput">
                 <label>Price</label>
-                <input
-                  type="text"
-                  placeholder="Price"
-                  name="price"
-                  
-                />
+                <input type="text" placeholder="Price" name="price" />
               </div>
               <div className="formInput">
                 <label>Description</label>
-                <input
-                  type="text"
-                  placeholder="Mô tả"
-                  name="description"
-                
-                />
+                <input type="text" placeholder="Mô tả" name="description" />
               </div>
 
               <div className="formInput">
                 <label>Sizes</label>
-                <input
-                  type="text"
-                  placeholder="Sizes"
-                  name="sizes"
-                 
-                />
+                <input type="text" placeholder="Sizes" name="sizes" />
               </div>
 
               {/* Thêm trường colors input */}
               <div className="formInput">
                 <label>Colors</label>
-                <input
-                  type="text"
-                  placeholder="Colors"
-                  name="colors"
-                  
-                />
+                <input type="text" placeholder="Colors" name="colors" />
               </div>
 
               {/* Thêm trường quantity input */}
               <div className="formInput">
                 <label>Quantity</label>
-                <input
-                  type="number"
-                  placeholder="Quantity"
-                  name="quantity"
-                  
-                />
+                <input type="number" placeholder="Quantity" name="quantity" />
               </div>
 
               {/* Thêm trường product_id input */}
@@ -140,7 +111,6 @@ const EditProductDetail = () => {
                   type="number"
                   placeholder="Product ID"
                   name="product_id"
-                  
                 />
               </div>
 
