@@ -27,8 +27,10 @@ exports.getOrder = async (orderId) => {
 exports.createOrder = async (data) => {
     try {
         await db.Order.create({
+            order_date: data.order_date,
+            total_price: data.total_price,
             status: data.status,
-            userID: data.userID,
+            user_id: data.user_id,
         });
 
         return 'create new Order succeed';
@@ -40,7 +42,8 @@ exports.createOrder = async (data) => {
 exports.updateOrderData = async (orderId, data) => {
     try {
         await db.Order.update(
-            { status: data.status, userID: data.userID },
+            {            order_date: data.order_date,
+                total_price: data.total_price, status: data.status, user_id: data.user_id },
             { where: { id: orderId } }
         );
 

@@ -14,6 +14,8 @@ import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import HomeAdmin from '../pages/Admin/Home/HomeAdmin';  
 import ListAdmin from '../pages/Admin/List/ListAdmin';
+import ListOrder from '../pages/Admin/List/ListOrder';
+
 import Single from '../pages/Admin/Single/Single';
 import NewProductDetail from '../pages/Admin/New/NewProductDetail';
 import NewProductCategory from '../pages/Admin/New/NewProductCategory';
@@ -167,6 +169,10 @@ const router = createBrowserRouter([
       {
         path: "/productDetailAdmin/edit/:id",
         element: checkAdminAccess(<EditProductDetail/>),
+      },
+      {
+        path: "/order",
+        element: checkAdminAccess(<ListOrder/>),
       },
     ]
   },

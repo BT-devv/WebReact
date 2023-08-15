@@ -1,3 +1,10 @@
+export const orderColums = [
+    { field: 'id', headerName: 'ID', width: 10},
+    { field: 'total_price', headerName: 'Total Price', width: 100
+    },
+    {field: "order_date", headerName: "Order Date", width: 250},
+    {field: "user_id", headerName: "User ID", width: 100},
+]
 export const productColums = [
     { field: 'id', headerName: 'ID', width: 10},
     { field: 'name', headerName: 'Product Name', width: 250

@@ -1,5 +1,20 @@
 const db = require('../models/index');
 
+exports.createDetail = async (data) => {
+    try {
+        await db.ProductDetail.create({
+            name: data.name,
+            price: data.price,
+            description: data.description,
+            quantity: data.quantity,
+            product_id: data.product_id, 
+        });
+        return 'Tạo mới chi tiết sản phẩm thành công';
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getAllDetail = async () => {
     try {
         const details = await db.ProductDetail.findAll({
@@ -324,7 +339,31 @@ exports.createDetail = async (data) => {
             quantity: data.quantity,
             product_id: data.product_id, 
         });
-        return 'Tạo mới chi tiết sản phẩm thành công';
+
+        if (!detail) {
+            return null; // Trả về null nếu không tìm thấy chi tiết sản phẩm
+        }
+
+        const sizes = detail.Sizes.map(size => size.name);
+        const images = detail.Images.map(image => image.name);
+        const colors = detail.Colors.map(color => ({color:color.name,color_code:color.code_color}));
+
+        const organizedDetail = {
+            id: detail.id,
+                productDetail_name: detail.name,
+                price: detail.price,
+                product_name: detail.Product.name,
+                product_gender: detail.Product.gender,
+                description: detail.description,
+                sizes,
+                images,
+                colors,
+                quantity: detail.quantity,
+                createdAt: detail.createdAt,
+                updatedAt: detail.updatedAt,
+        };
+
+        return organizedDetail;
     } catch (error) {
         throw error;
     }
