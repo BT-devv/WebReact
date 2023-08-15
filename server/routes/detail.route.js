@@ -11,6 +11,7 @@ const uploadImage = upload.single("image");
 
 route
 .param('id',detailController.checkId)
+.param('gender',detailController.checkGender)
 
 route
 .route("/")
@@ -34,5 +35,12 @@ route
     detailController.deleteDetail)
 
 
+route
+.route("/men")
+.get(detailController.getAllDetailMen)
+
+route
+.route("/women")
+.get(detailController.getAllDetailMen)
 
 module.exports = route

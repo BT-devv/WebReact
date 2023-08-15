@@ -5,7 +5,30 @@ const ColorDAO = require("../DAOs/colorDaos");
 
 
 
-
+exports.checkGender = async (req, res, next, gen) => {
+    try {
+      const gender = gen;
+      const genders = await DetailDAO.getAllDetailGender(gender);
+  
+      if (!genders || genders.length === 0) {
+        return res.status(404).json({
+          code: 404,
+          msg: `Không tìm thấy chi tiết sản phẩm với giới tính ${gender}`,
+        });
+      }
+  
+      req.genders = genders;
+      next();
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        code: 500,
+        msg: error.toString(),
+      });
+    }
+  };
+  
+  
 
 exports.checkId = async (req, res, next, val) => {
     try {
@@ -95,6 +118,44 @@ exports.getAllDetail = async (req, res) => {
     }
 };
 
+exports.getAllDetailMen = async (req, res) => {
+    try {
+        const details = await DetailDAO.getAllDetailMen();
+        res.status(200).json({
+            code: 200,
+            msg: 'OK',
+            data: {
+                details
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            code: 500,
+            msg: error.toString(),
+        });
+    }
+};
+
+exports.getAllDetailWomen = async (req, res) => {
+    try {
+        const details = await DetailDAO.getAllDetailMen();
+        res.status(200).json({
+            code: 200,
+            msg: 'OK',
+            data: {
+                details
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            code: 500,
+            msg: error.toString(),
+        });
+    }
+};
+
 exports.getDetail = async (req, res) => {
     try {
         const detail = req.detail;
@@ -112,7 +173,22 @@ exports.getDetail = async (req, res) => {
     }
 }
 
+exports.getProductsByGender = async (req, res) => {
+    try {
+      
+        const genders = req.genders;
   
+        res.status(200).json({
+            code: 200,
+            msg: 'OK',
+            data: { genders }
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
 
 exports.updateDetail = async (req, res) => {
     try {
