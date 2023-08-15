@@ -1,50 +1,41 @@
 import React from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import "./Cart.scss";
-//import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../../redux/cartReducer";
 const Cart = () => {
-  const data = [
-    {
-      id: 1,
-      img: "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462618/item/goods_07_462618.jpg?width=320",
-      img2: "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/457612/item/vngoods_09_457612.jpg?width=320",
-      title: "Quan Dai",
-      desc: "Lorem ipsum dolor sit amet conse ctetur adipisicing elit.",
-      decription: "AirSense Quan dai",
-      oldPrice: 999.0,
-      newPrice: 667.0,
-    },
-    {
-      id: 1,
-      img: "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462618/item/goods_07_462618.jpg?width=320",
-      img2: "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/457612/item/vngoods_09_457612.jpg?width=320",
-      title: "Quan Dai",
-      desc: "Lorem ipsum dolor sit amet conse ctetur adipisicing elit.",
-      decription: "AirSense Quan dai",
-      oldPrice: 999.0,
-      newPrice: 667.0,
-    },
-  ];
-
-  //const products = useSelector((state) => state.cart.products);
+  const cartProducts = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
+  const handleRemoveFromCart = (productId) => {
+    dispatch(removeItem(productId)); // Sử dụng action removeFromCart
+  };
 
   return (
     <div className="Cart">
       <h1>Prodcuts in your Cart</h1>
-      {data?.map((item) => (
+      {cartProducts.map((item) => (
         <div className="item" key={item.id}>
           <img src={item.img} alt="" />
           <div className="details">
             <h1>{item.title}</h1>
             <p>{item.desc?.substring(0, 100)}</p>
-            <div className="price">1 x {item.newPrice} </div>
+            <div className="price">
+            {item.quantity} x {item.newPrice} </div>
           </div>
-          <DeleteOutlinedIcon className="delete" />
+          <DeleteOutlinedIcon 
+          className="delete" 
+          onClick={() => handleRemoveFromCart(item.id)}/>
         </div>
       ))}
       <div className="total">
         <span>SUBTOTAL</span>
-        <span>$123</span>
+        <span>
+          $
+          {cartProducts.reduce(
+            (total, item) => total + item.quantity * item.newPrice,
+            0
+          )}
+        </span>
       </div>
       <button>PROCEED CHECKOUT</button>
       <span className="reset">Reset Cart</span>

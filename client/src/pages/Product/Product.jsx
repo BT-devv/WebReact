@@ -30,9 +30,30 @@ const Product = () => {
       });
   }, [id]);
 
+  const handleAddToCart = () => {
+    if (selectedSize && selectedColor && selecQuantity > 0) {
+      const cartItem = {
+        id: product.id,
+        title: product.productDetail_name,
+        img: product.images[0], // You can modify this to get the correct image
+        newPrice: product.price,
+        quantity: selecQuantity,
+      };
+
+      dispatch(addToCart(cartItem));
+
+      setSelectedSize("");
+      setSelectedColor("");
+      setQuantity(1); // Reset quantity to default
+    } else {
+      alert("Please select size, color, and quantity before adding to cart.");
+    }
+  };
+
   if (!product) {
     return <p>Loading product data...</p>;
   }
+
 
   return (
     <div className="productDetails">
@@ -91,8 +112,8 @@ const Product = () => {
                   className={`color-button ${
                     selectedColor === color.name ? "active" : ""
                   }`}
-                  style={{ backgroundColor: color.code }}
-                  onClick={() => setSelectedColor(color.name)}
+                  style={{ backgroundColor: color.color_code }}
+                  onClick={() => setSelectedColor(color.color)}
                 ></Button>
               ))}
             </div>
@@ -103,14 +124,14 @@ const Product = () => {
         </Grid>
         <div className="quantity">
           <button
-            onClick={() => setQuantity((prev) => (prev === 0 ? 0 : prev - 1))}
+            onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
           >
             -
           </button>
           {selecQuantity}
           <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
         </div>
-        <button className="add" onClick={() => dispatch(addToCart({}))}>
+        <button className="add" onClick={handleAddToCart}>
           <AddShoppingCartIcon /> ADD TO CART
         </button>
         <div className="links">

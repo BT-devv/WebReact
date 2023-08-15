@@ -98,7 +98,7 @@ const router = createBrowserRouter([
       {
         path:"/search-results",
         element: <SearchResultPage />
-      }
+      },
     ]
   },
   {

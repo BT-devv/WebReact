@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./UpdateProfile.scss"; // Import tệp SCSS cho component này
+import axios from "axios";
 
 const UpdateProfile = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +9,8 @@ const UpdateProfile = () => {
     phone: "",
     address: "",
     gender: "", // Giới tính
-    birthdate: "", // Ngày sinh
+    birthdate: "",
+    id: "",  // Ngày sinh
   });
 
   const handleChange = (e) => {
@@ -19,10 +21,32 @@ const UpdateProfile = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Xử lý logic cập nhật thông tin người dùng
+  
+    try {
+      // Gửi yêu cầu cập nhật thông tin người dùng đến API
+      const response = await axios.put(
+        `http://localhost:3001/api-user/${formData.id}`, // Thay đổi đường dẫn API tùy theo tên API của bạn
+        formData
+      );
+  
+      // Kiểm tra xem cập nhật có thành công hay không
+      if (response.status === 200) {
+        // TODO: Hiển thị thông báo cập nhật thành công
+        alert("Profile updated successfully!");
+      } else {
+        // TODO: Xử lý khi cập nhật thất bại, ví dụ hiển thị thông báo lỗi
+        alert("Failed to update profile. Please try again later.");
+      }
+    } catch (error) {
+      // Xử lý khi gặp lỗi trong quá trình gọi API
+      console.error("Error updating profile:", error);
+      // TODO: Xử lý lỗi, ví dụ hiển thị thông báo lỗi
+      alert("An error occurred while updating profile. Please try again later.");
+    }
   };
+  
 
   return (
     <div className="update-profile">
@@ -94,7 +118,7 @@ const UpdateProfile = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Save Changes</button>
+        <button type="submit" onClick={handleSubmit}>Save Changes</button>
       </form>
     </div>
   );
