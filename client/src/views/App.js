@@ -4,6 +4,8 @@ import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
 
 import Home from '../pages/Home/Home';
 import Products from '../pages/Products/Products';
+import ProductWomen from '../pages/ProductWomen/ProductWomen';
+import ProductsMen from '../pages/ProductMen/ProductsMen';
 import Product from '../pages/Product/Product';
 import About from '../pages/About/About';
 import Contact from '../pages/Contact/Contact';
@@ -80,12 +82,16 @@ const router = createBrowserRouter([
         element: <Products />
       },
       {
-        path:"/Product/:id",
+        path:"/Products/:id",
         element: <Product />
       },
       {
-        path:"/Product/:gender",
-        element: <Product />
+        path:"/Products/women",
+        element: <ProductWomen />
+      },
+      {
+        path:"/Products/men",
+        element: <ProductsMen />
       },
       {
         path:"/About",

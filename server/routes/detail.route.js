@@ -11,7 +11,7 @@ const uploadImage = upload.single("image");
 
 route
 .param('id',detailController.checkId)
-.param('gender',detailController.checkGender)
+//.param('gender',detailController.checkGender)
 
 route
 .route("/")

@@ -5,28 +5,28 @@ const ColorDAO = require("../DAOs/colorDaos");
 
 
 
-exports.checkGender = async (req, res, next, gen) => {
-    try {
-      const gender = gen;
-      const genders = await DetailDAO.getAllDetailGender(gender);
+// exports.checkGender = async (req, res, next, gen) => {
+//     try {
+//       const gender = gen;
+//       const genders = await DetailDAO.getAllDetailGender(gender);
   
-      if (!genders || genders.length === 0) {
-        return res.status(404).json({
-          code: 404,
-          msg: `Không tìm thấy chi tiết sản phẩm với giới tính ${gender}`,
-        });
-      }
+//       if (!genders || genders.length === 0) {
+//         return res.status(404).json({
+//           code: 404,
+//           msg: `Không tìm thấy chi tiết sản phẩm với giới tính ${gender}`,
+//         });
+//       }
   
-      req.genders = genders;
-      next();
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({
-        code: 500,
-        msg: error.toString(),
-      });
-    }
-  };
+//       req.genders = genders;
+//       next();
+//     } catch (error) {
+//       console.error(error);
+//       return res.status(500).json({
+//         code: 500,
+//         msg: error.toString(),
+//       });
+//     }
+//   };
   
   
 

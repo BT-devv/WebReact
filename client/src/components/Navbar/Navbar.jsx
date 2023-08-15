@@ -53,13 +53,13 @@ const Navbar = () => {
             <KeyboardArrowDownIcon />
           </div>
           <div className="item">
-            <Link className="link" to="/products">
+            <Link className="link" to="/products/men">
               {" "}
               Men
             </Link>
           </div>
           <div className="item">
-            <Link className="link" to="/products">
+            <Link className="link" to="/products/women">
               {" "}
               Women
             </Link>

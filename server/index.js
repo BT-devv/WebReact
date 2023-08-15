@@ -11,6 +11,7 @@ const detailRouter = require("./routes/detail.route")
 const orderRouter = require('./routes/order.route')
 const orderDetailRouter = require("./routes/orderDetail.route")
 
+const detailController = require('./controllers/detailController')
 const dotenv = require('dotenv')
 dotenv.config({
     path: './.env'
@@ -31,6 +32,8 @@ app.use('/api-user',userRouter)
 app.use('/api-product',productRouter)
 app.use('/api-category', categoryRouter)
 app.use('/api-detail', detailRouter)
+app.use('/api-detailmen', detailRouter.get(detailController.getAllDetailMen))
+app.use('/api-detailwomen', detailRouter.get(detailController.getAllDetailWomen))
 app.use('/api-order', orderRouter)
 app.use('/api-orderDetail', orderDetailRouter)
 
