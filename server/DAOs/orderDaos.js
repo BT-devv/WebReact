@@ -1,5 +1,5 @@
 const db = require('../models/index');
-
+const today = new Date()
 exports.getAllOrder = async () => {
     try {
         const orders = await db.Order.findAll({
@@ -27,7 +27,7 @@ exports.getOrder = async (orderId) => {
 exports.createOrder = async (data) => {
     try {
         await db.Order.create({
-            order_date: data.order_date,
+            order_date: today.getDate(),
             total_price: data.total_price,
             status: data.status,
             user_id: data.user_id,

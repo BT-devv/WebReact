@@ -5,6 +5,8 @@ import "./Checkout.scss"
 import { useNavigate } from 'react-router-dom';
 
 
+
+
 const Checkout = () => {
   const cartProducts = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const Checkout = () => {
             <div className="ItemDetails">
               <h2>{item.title}</h2>
               <p>{item.desc}</p>
-              <p>Price: ${item.newPrice}</p>
+              <p>Price: {item.newPrice}.000VMD</p>
               <p>Quantity: {item.quantity}</p>
               <button className="DeleteButton"
                onClick={() => handleDeleteItem(item.id)} >Delete</button>
@@ -47,11 +49,11 @@ const Checkout = () => {
       <div className="Total">
         <h2>Total</h2>
         <p>
-          $
+          
           {cartProducts.reduce(
             (total, item) => total + item.quantity * item.newPrice,
             0
-          )}
+          )}.000VND
         </p>
       </div>
       <button className="CheckoutButton" onClick={handlePaymentClick}>Payment</button>

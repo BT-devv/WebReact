@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Payment.scss";
+import { useDispatch } from 'react-redux';
+
+import { resetCart } from '../../redux/cartReducer';
+
 
 const Payment = () => {
   const [customerInfo, setCustomerInfo] = useState({
@@ -22,10 +26,13 @@ const Payment = () => {
   const handlePaymentMethodSelect = (method) => {
     setSelectedPaymentMethod(method);
   };
+  const dispatch = useDispatch();
 
   const handleConfirmPayment = () => {
     // You can add your logic to confirm the payment here
     alert("Payment confirmed!");
+    dispatch(resetCart());
+
   };
 
   useEffect(() => {

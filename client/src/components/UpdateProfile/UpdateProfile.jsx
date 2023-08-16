@@ -1,17 +1,48 @@
-import React, { useState } from "react";
-import "./UpdateProfile.scss"; // Import tệp SCSS cho component này
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginSuccess, loginFailed } from "../../redux/authSlice"; // Import action creators
+import "./UpdateProfile.scss"; // Import tệp SCSS cho component này
 
 const UpdateProfile = () => {
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
     phone: "",
-    address: "",
-    gender: "", // Giới tính
-    birthdate: "",
-    id: "",  // Ngày sinh
+    adress: "",
+    gender: "",
+    birth: "",
   });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const userId = JSON.parse(atob(token.split(".")[1])).id;
+
+      axios
+        .get(`http://localhost:3001/api-user/${userId}`)
+        .then((response) => {
+          dispatch(loginSuccess(response.data));
+          const user = response.data.data.user;
+          setFormData({
+            fullname: user.fullname,
+            email: user.email,
+            phone: user.phone,
+            adress: user.adress,
+            gender: user.gender,
+            birth: user.birth,
+          });
+        })
+        .catch((error) => {
+          console.error("Failed to authenticate user:", error);
+          localStorage.removeItem("token");
+          dispatch(loginFailed());
+        });
+    }
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,36 +54,30 @@ const UpdateProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    const token = localStorage.getItem("token");
+    const userId = JSON.parse(atob(token.split(".")[1])).id;
     try {
-      // Gửi yêu cầu cập nhật thông tin người dùng đến API
       const response = await axios.put(
-        `http://localhost:3001/api-user/${formData.id}`, // Thay đổi đường dẫn API tùy theo tên API của bạn
+        `http://localhost:3001/api-user/${userId}`,
         formData
       );
-  
-      // Kiểm tra xem cập nhật có thành công hay không
+
       if (response.status === 200) {
-        // TODO: Hiển thị thông báo cập nhật thành công
         alert("Profile updated successfully!");
       } else {
-        // TODO: Xử lý khi cập nhật thất bại, ví dụ hiển thị thông báo lỗi
         alert("Failed to update profile. Please try again later.");
       }
     } catch (error) {
-      // Xử lý khi gặp lỗi trong quá trình gọi API
       console.error("Error updating profile:", error);
-      // TODO: Xử lý lỗi, ví dụ hiển thị thông báo lỗi
       alert("An error occurred while updating profile. Please try again later.");
     }
   };
-  
 
   return (
     <div className="update-profile">
       <h1>Update Profile</h1>
       <form onSubmit={handleSubmit}>
-        {/* Các trường thông tin */}
         <div className="form-group">
           <label htmlFor="fullname">Full Name</label>
           <input
@@ -84,15 +109,14 @@ const UpdateProfile = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="adress">Address</label>
           <textarea
-            id="address"
-            name="address"
-            value={formData.address}
+            id="adress"
+            name="adress"
+            value={formData.adress}
             onChange={handleChange}
           />
         </div>
-        {/* Trường giới tính */}
         <div className="form-group">
           <label htmlFor="gender">Gender</label>
           <select
@@ -107,18 +131,17 @@ const UpdateProfile = () => {
             <option value="other">Other</option>
           </select>
         </div>
-        {/* Trường ngày sinh */}
         <div className="form-group">
-          <label htmlFor="birthdate">Birthdate</label>
+          <label htmlFor="birth">Birthdate</label>
           <input
             type="date"
-            id="birthdate"
-            name="birthdate"
-            value={formData.birthdate}
+            id="birth"
+            name="birth"
+            value={formData.birth}
             onChange={handleChange}
           />
         </div>
-        <button type="submit" onClick={handleSubmit}>Save Changes</button>
+        <button type="submit">Save Changes</button>
       </form>
     </div>
   );

@@ -65,7 +65,8 @@ exports.updateUserData = async (userId, data) => {
                 fullname: data.fullname,
                 gender: data.gender,
                 phone: data.phone,
-                address: data.address,
+                adress: data.adress,
+                birth: data.birth,
             },
             {
                 where: {
