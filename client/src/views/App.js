@@ -31,7 +31,7 @@ import { DarkModeContext } from '../context/darkModeContext';
 import ListProduct from '../pages/Admin/List/ListProduct';
 import EditProductDetail from '../pages/Admin/Edit/EditProductDetail';
 
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import Checkout from '../components/Checkout/Checkout';
 import Payment from '../components/Payment/Payment';
 
@@ -58,10 +58,11 @@ const LayoutAdmin =()=>{
 
 function App() {
   const {darkMode} = useContext(DarkModeContext)
-  const userRole = useSelector(state => state.auth.login.userRole);
-
+  const token = localStorage.getItem("token");
+ // const userRole = useSelector(state => state.auth.login.userRole);
+  const userRole = JSON.parse(atob(token.split(".")[1])).role;
   const checkAdminAccess = (element) => {
-    if (userRole === 'admin') {
+    if (userRole === 2) {
       return element; // Cho phép truy cập vào route nếu là admin
     } else {
       return "you dont have cái quyền để vô đây!! "; // Không cho phép truy cập vào route nếu không phải admin
@@ -82,7 +83,7 @@ const router = createBrowserRouter([
         element: <Products />
       },
       {
-        path:"/Products/:id",
+        path:"/Product/:id",
         element: <Product />
       },
       {

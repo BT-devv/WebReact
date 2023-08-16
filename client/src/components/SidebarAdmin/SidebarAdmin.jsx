@@ -13,8 +13,12 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
+
+import axios from "axios";
+import { loginFailed } from "../../redux/authSlice"; // Import action creators
+import store from "../../redux/store";
 
 const SidebarAdmin = () => {
   // const history = useNavigate();
@@ -22,6 +26,20 @@ const SidebarAdmin = () => {
   //     localStorage.clear();
   //     history.push('/login')
   // }
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    // Xóa token từ headers của các yêu cầu API
+    delete axios.defaults.headers.common["Authorization"];
+
+    // Đặt trạng thái loginFailed trong Redux
+    store.dispatch(loginFailed());
+
+    // Chuyển hướng đến trang đăng nhập hoặc trang chính
+    navigate("/login"); // Thay thế '/login' bằng đường dẫn trang đăng nhập của bạn
+  };
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebarAdmin">
@@ -88,7 +106,7 @@ const SidebarAdmin = () => {
             <BadgeOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={handleLogout}>
             <LogoutOutlinedIcon className="icon" />
             <span>Logout</span>
           </li>
