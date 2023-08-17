@@ -26,15 +26,9 @@ exports.getImageById = async (id) => {
 exports.deleteImage = async (id) => {
   try {
     const deletedImage = await db.Image.destroy({
-      where: { id: id }, // Điều kiện WHERE để xác định bản ghi cần xóa
-      returning: true,   // Trả về thông tin của hình ảnh đã bị xóa
+      where: { productDetail_id: id }, // Điều kiện WHERE để xác định bản ghi cần xóa
+      returning: true,   // Trả về thông tin của kích thước đã bị xóa
     });
-
-    // Kiểm tra xem có bản ghi nào bị xóa không
-    if (deletedImage === 0) {
-      throw new Error('Không tìm thấy hình ảnh');
-    }
-
     // Trả về thông tin của hình ảnh đã bị xóa (không cần thiết, chỉ là ví dụ)
     return deletedImage;
   } catch (error) {

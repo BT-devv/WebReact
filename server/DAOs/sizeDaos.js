@@ -52,15 +52,9 @@ exports.updateSize = async (id, data) => {
 exports.deleteSize = async (id) => {
   try {
     const deletedSize = await db.Size.destroy({
-      where: { id: id }, // Điều kiện WHERE để xác định bản ghi cần xóa
+      where: { productDetail_id: id }, // Điều kiện WHERE để xác định bản ghi cần xóa
       returning: true,   // Trả về thông tin của kích thước đã bị xóa
     });
-
-    // Kiểm tra xem có bản ghi nào bị xóa không
-    if (deletedSize === 0) {
-      throw new Error('Không tìm thấy kích thước');
-    }
-
     // Trả về thông tin của kích thước đã bị xóa (không cần thiết, chỉ là ví dụ)
     return deletedSize;
   } catch (error) {
