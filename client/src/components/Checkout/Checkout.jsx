@@ -16,7 +16,7 @@ const Checkout = () => {
     dispatch(removeItem(productId)); 
   };
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const handlePaymentClick = () => {
     if (token) {

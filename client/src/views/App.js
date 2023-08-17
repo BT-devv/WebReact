@@ -60,12 +60,15 @@ function App() {
   const {darkMode} = useContext(DarkModeContext)
   const token = localStorage.getItem("token");
  // const userRole = useSelector(state => state.auth.login.userRole);
-  const userRole = JSON.parse(atob(token.split(".")[1])).role;
+ let userRole
+ if (token) {
+  userRole = JSON.parse(atob(token.split(".")[1])).role;
+ }
   const checkAdminAccess = (element) => {
     if (userRole === 2) {
       return element; // Cho phép truy cập vào route nếu là admin
     } else {
-      return "you dont have cái quyền để vô đây!! "; // Không cho phép truy cập vào route nếu không phải admin
+      return "you dont have  quyền để vô đây!! "; // Không cho phép truy cập vào route nếu không phải admin
     }
   };
   

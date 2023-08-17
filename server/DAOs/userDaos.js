@@ -13,7 +13,7 @@ exports.createNewUser = async (data) => {
             phone: data.phone,
             adress: data.adress,
             img: "imgzan.png",
-            roles: StaticData.AUTH.Role.user,
+            roles: StaticData.AUTH.Role.admin,
             gender: data.gender,
         });
         return 'Tạo người dùng thành công';

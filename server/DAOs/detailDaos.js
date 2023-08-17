@@ -40,7 +40,7 @@ exports.getAllDetail = async () => {
 
             return {
                 id: detail.id,
-                productDetail_name: detail.name,
+                name: detail.name,
                 price: detail.price,
                 product_name: detail.Product.name,
                 product_gender: detail.Product.gender,
@@ -103,7 +103,7 @@ exports.getDetail = async (productDetailId) => {
 
         const organizedDetail = {
             id: detail.id,
-            productDetail_name: detail.name,
+            name: detail.name,
             price: detail.price,
             product_name: detail.Product.name,
             product_gender: detail.Product.gender,
@@ -166,7 +166,7 @@ exports.getDetailByName = async (productName) => {
 
         const organizedDetail = {
             id: detail.id,
-                productDetail_name: detail.name,
+                name: detail.name,
                 price: detail.price,
                 product_name: detail.Product.name,
                 product_gender: detail.Product.gender,

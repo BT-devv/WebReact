@@ -18,11 +18,11 @@ export const productCategoryColums = [
 ]
 export const productDetailColumns = [
     { field: 'id', headerName: 'ID', width: 10 },{
-        field: 'productDetail_name', headerName: 'Product Detail Name', width: 550, renderCell:(params) =>{
+        field: 'name', headerName: 'Product Detail Name', width: 550, renderCell:(params) =>{
             return (
                 <div className="cellWithImg">
                     <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
-                    {params.row.productDetail_name}
+                    {params.row.name}
                 </div>
             )
         }
