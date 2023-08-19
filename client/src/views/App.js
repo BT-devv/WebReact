@@ -34,6 +34,7 @@ import EditProductDetail from '../pages/Admin/Edit/EditProductDetail';
 // import { useSelector } from 'react-redux';
 import Checkout from '../components/Checkout/Checkout';
 import Payment from '../components/Payment/Payment';
+import PaymentSuccess from '../components/Payment/PaymentSuccess';
 
 const Layout =() =>{
 
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
       {
         path:"/Payment",
         element: <Payment />
+      },
+      {
+        path:"/PaymentSucces",
+        element: <PaymentSuccess />
       },
     ]
   },

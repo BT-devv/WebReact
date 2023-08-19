@@ -4,6 +4,15 @@ export const orderColums = [
     },
     {field: "order_date", headerName: "Order Date", width: 250},
     {field: "user_id", headerName: "User ID", width: 100},
+    {field: "status", headerName: "Status", width: 160, renderCell: (params) =>{
+        return(
+            <div className={`cellWithStatus ${params.row.status}`}>
+                {params.row.status}
+            </div>
+        )
+    }
+},
+
 ]
 export const productColums = [
     { field: 'id', headerName: 'ID', width: 10},
@@ -51,14 +60,7 @@ export const productDetailColumns = [
           );
         },
       },
-    {field: "status", headerName: "Status", width: 160, renderCell: (params) =>{
-        return(
-            <div className={`cellWithStatus ${params.row.status}`}>
-                {params.row.status}
-            </div>
-        )
-    }
-},
+    
 ];
 
 export const userColumns = [

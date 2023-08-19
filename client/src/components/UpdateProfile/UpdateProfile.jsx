@@ -58,7 +58,7 @@ const UpdateProfile = () => {
     const token = localStorage.getItem("token");
     const userId = JSON.parse(atob(token.split(".")[1])).id;
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `http://localhost:3001/api-user/${userId}`,
         formData
       );

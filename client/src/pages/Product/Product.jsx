@@ -34,7 +34,7 @@ const Product = () => {
     if (selectedSize && selectedColor && selecQuantity > 0) {
       const cartItem = {
         id: product.id,
-        title: product.productDetail_name,
+        title: product.name,
         img: product.images[0], // You can modify this to get the correct image
         newPrice: product.price,
         quantity: selecQuantity,
@@ -84,7 +84,7 @@ const Product = () => {
         </div>
       </div>
       <div className="right">
-        <h2>{product.productDetail_name}</h2>
+        <h2>{product.name}</h2>
         <span className="price">{product.price}.000 VND</span>
         <p>{product.description}</p>
         <Grid container spacing={2} alignItems="center">
