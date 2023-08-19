@@ -1,17 +1,19 @@
 import React from 'react';
 
-const PaymentSuccess = ({ orderData }) => {
+const PaymentSucces = ({ orderData }) => {
   return (
-    <div className="PaymentSuccess">
-      <h1>Payment Successful!</h1>
-      <p>Thank you for your order. Here are the details of your order:</p>
+    <div className="OrderSuccess">
+      <h1>Đặt Hàng Thành Công</h1>
+      <p>Thông tin đơn hàng:</p>
       <ul>
-        <li>Order Date: {orderData.order_date}</li>
-        <li>Total Price: {orderData.total_price} VND</li>
-        {/* Thêm thông tin đơn hàng khác vào đây */}
+        {orderData.map((item, index) => (
+          <li key={index}>
+            Sản phẩm: {item.productName}, Số lượng: {item.quantity}, Giá: {item.price}
+          </li>
+        ))}
       </ul>
     </div>
   );
 };
 
-export default PaymentSuccess;
+export default PaymentSucces;

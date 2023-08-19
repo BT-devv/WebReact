@@ -31,10 +31,10 @@ exports.getOrderDetail = async (orderDetailID) => {
 exports.createOrderDetail = async (data) => {
     try {
         await db.OrderDetail.create({
-            orderId: data.orderId,
-            productID: data.productID,
-            price: data.price,
-            quantity: data.quantity
+            order_id: data.order_id,
+            product_id: data.product_id,
+            price: data.price,  
+            quantity: data.quantity 
         }, {
             where: {
                 orderId: db.Order.id,
@@ -50,8 +50,8 @@ exports.createOrderDetail = async (data) => {
 exports.updateOrderDetailData = async (orderDetailID, data) => {
     try {
         await db.OrderDetail.update({
-            orderId: data.orderId,
-            productID: data.productID,
+            order_id: data.order_id,
+            product_id: data.product_id,
             price: data.price,
             quantity: data.quantity
         }, {

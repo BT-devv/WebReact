@@ -3,8 +3,9 @@ import axios from 'axios';
 import "./Payment.scss";
 import { useDispatch } from 'react-redux';
 
-import { resetCart } from '../../redux/cartReducer';
 
+import { resetCart } from '../../redux/cartReducer';
+import { setOrderData } from '../../redux/actions';
 
 const Payment = () => {
   const [customerInfo, setCustomerInfo] = useState({
@@ -28,11 +29,60 @@ const Payment = () => {
   };
   const dispatch = useDispatch();
 
-  const handleConfirmPayment = () => {
-    // You can add your logic to confirm the payment here
-    alert("Payment confirmed!");
-    dispatch(resetCart());
+  const handleConfirmPayment = async () => {
+    const orderData = [
+      {
+        productName: 'Sản phẩm 1',
+        quantity: 2,
+        price: 20.99,
+      },
+      // Thêm thông tin sản phẩm khác nếu cần
+    ];
+    try {
+      // Tạo đơn hàng
+      const orderResponse = await axios.post("http://localhost:3001/api-order", {
+        total_price: calculateTotalPrice(orderData), // Tính tổng giá
+        status: 'Đã thanh toán',
+        user_id: getUserIdFromToken(), // Lấy user_id từ token
+      });
 
+      // Lưu thông tin đơn hàng vào Redux store
+      dispatch(setOrderData(orderData));
+
+      // Tạo chi tiết đơn hàng cho từng sản phẩm
+      await Promise.all(
+        orderData.map(item =>
+          axios.post("http://localhost:3001/api-orderDetail", {
+            order_id: 1,
+            product_id: 1, // Thay thế bằng ID thực tế của sản phẩm
+            price: item.price,
+            quantity: item.quantity,
+          })
+        )
+      );
+
+      // Đặt lại giỏ hàng
+      dispatch(resetCart());
+
+      // Hiển thị thông báo thành công
+      alert("Thanh toán thành công!");
+
+    } catch (error) {
+      console.error("Xác nhận thanh toán thất bại:", error);
+    }
+
+  };
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return JSON.parse(atob(token.split(".")[1])).id;
+    }
+    return null;
+  };
+
+  // Tính tổng giá
+  const calculateTotalPrice = (orderData) => {
+    return orderData.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   useEffect(() => {
@@ -116,8 +166,9 @@ const Payment = () => {
           </label>
         </div>
       </div>
-
       <button className="ConfirmButton" onClick={handleConfirmPayment}>Confirm Payment</button>
+
+
     </div>
   );
 };
