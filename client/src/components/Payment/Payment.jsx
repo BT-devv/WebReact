@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Payment.scss";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 import { resetCart } from '../../redux/cartReducer';
@@ -13,6 +13,7 @@ const Payment = () => {
     adress: '',
     phone: '',
   });
+  const cartProducts = useSelector((state) => state.cart.products);
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
@@ -30,34 +31,28 @@ const Payment = () => {
   const dispatch = useDispatch();
 
   const handleConfirmPayment = async () => {
-    const orderData = [
-      {
-        productName: 'Sản phẩm 1',
-        quantity: 2,
-        price: 20.99,
-      },
-      // Thêm thông tin sản phẩm khác nếu cần
-    ];
     try {
+      
       // Tạo đơn hàng
       const orderResponse = await axios.post("http://localhost:3001/api-order", {
-        total_price: calculateTotalPrice(orderData), // Tính tổng giá
+        total_price: calculateTotalPrice(cartProducts), // Tính tổng giá
         status: 'Đã thanh toán',
         user_id: getUserIdFromToken(), // Lấy user_id từ token
       });
 
       // Lưu thông tin đơn hàng vào Redux store
-      dispatch(setOrderData(orderData));
+      dispatch(setOrderData(cartProducts));
 
       // Tạo chi tiết đơn hàng cho từng sản phẩm
       await Promise.all(
-        orderData.map(item =>
+        cartProducts.map(item =>
           axios.post("http://localhost:3001/api-orderDetail", {
-            order_id: 1,
+            order_id:1,
             product_id: 1, // Thay thế bằng ID thực tế của sản phẩm
-            price: item.price,
+            price: item.newPrice,
             quantity: item.quantity,
           })
+          
         )
       );
 
@@ -81,8 +76,8 @@ const Payment = () => {
   };
 
   // Tính tổng giá
-  const calculateTotalPrice = (orderData) => {
-    return orderData.reduce((total, item) => total + item.price * item.quantity, 0);
+  const calculateTotalPrice = (cartProducts) => {
+    return cartProducts.reduce((total, item) => total + item.newPrice * item.quantity, 0);
   };
 
   useEffect(() => {
