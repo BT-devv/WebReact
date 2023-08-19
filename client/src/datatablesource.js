@@ -21,7 +21,7 @@ export const productDetailColumns = [
         field: 'name', headerName: 'Product Detail Name', width: 550, renderCell:(params) =>{
             return (
                 <div className="cellWithImg">
-                    <img className="cellImg" src={params.row.imageCover} alt="avatar"/>
+                    {/* <img className="cellImg" src={params.row.imageCover} alt="avatar"/> */}
                     {params.row.name}
                 </div>
             )
@@ -44,7 +44,7 @@ export const productDetailColumns = [
                   className="colorBox"
                   style={{ backgroundColor: color.code_color }}
                 >
-                  {color.color}({color.code_color})
+                  {color.color}
                 </div>
               ))}
             </div>

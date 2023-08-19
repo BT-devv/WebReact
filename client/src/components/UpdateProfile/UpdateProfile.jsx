@@ -58,7 +58,7 @@ const UpdateProfile = () => {
     const token = localStorage.getItem("token");
     const userId = JSON.parse(atob(token.split(".")[1])).id;
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `http://localhost:3001/api-user/${userId}`,
         formData
       );
@@ -70,7 +70,9 @@ const UpdateProfile = () => {
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("An error occurred while updating profile. Please try again later.");
+      alert(
+        "An error occurred while updating profile. Please try again later."
+      );
     }
   };
 
