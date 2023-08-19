@@ -25,7 +25,7 @@ const Datatable = () => {
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:3001/api-detail/${id}`)
-      .then((response) => {
+      .then(() => {
         // Remove the deleted product from the state
         setData(data.filter((item) => item.id !== id));
       })

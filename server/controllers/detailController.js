@@ -237,6 +237,9 @@ exports.updateDetail = async (req, res) => {
 exports.deleteDetail = async (req, res) => {
     try {
         const id = req.params.id;
+        await SizeDAO.deleteSize(id);
+        await ColorDAO.deleteColor(id);
+        await ImgDAO.deleteImage(id);
         await DetailDAO.deleteDetail(id);
         res.status(200).json({
             code: 200,

@@ -41,10 +41,13 @@ const Navbar = () => {
       window.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [openDropdown]);
+
   // const userIsLoggedIn = useSelector(
   //   (state) => state.auth.login.currenUser !== null
   // ); // Lấy thông tin trạng thái đăng nhập từ Redux state
-  const userIsLoggedIn = localStorage.getItem('token')
+
+  const userIsLoggedIn = localStorage.getItem("token");
+
   return (
     <div className="navbar">
       <div className="wrapper">

@@ -53,7 +53,7 @@ export const productDetailColumns = [
                   className="colorBox"
                   style={{ backgroundColor: color.code_color }}
                 >
-                  {color.color}
+                  {color.color}({color.code_color})
                 </div>
               ))}
             </div>

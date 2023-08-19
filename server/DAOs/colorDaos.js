@@ -25,14 +25,9 @@ exports.getColorById = async (id) => {
 exports.deleteColor = async (id) => {
     try {
       const deletedColor = await db.Color.destroy({
-        where: { id: id }, // Điều kiện WHERE để xác định bản ghi cần xóa
-        returning: true,   // Trả về thông tin của màu sắc đã bị xóa
+        where: { productDetail_id: id }, // Điều kiện WHERE để xác định bản ghi cần xóa
+        returning: true,   // Trả về thông tin của kích thước đã bị xóa
       });
-  
-      // Kiểm tra xem có bản ghi nào bị xóa không
-      if (deletedColor === 0) {
-        throw new Error('Không tìm thấy màu sắc');
-      }
   
       // Trả về thông tin của màu sắc đã bị xóa (không cần thiết, chỉ là ví dụ)
       return deletedColor;
