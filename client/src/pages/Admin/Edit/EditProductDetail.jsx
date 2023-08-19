@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+// import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
 const EditProductDetail = () => {
   const { id } = useParams();
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
 
   const [productDetail, setProductDetail] = useState({
     name: "",
     price: "",
     description: "",
-    sizes: [],
-    images: [],
-    colors: [],
+    // sizes: [],
+    // images: [],
+    // colors: [],
     quantity: 0,
   });
 
@@ -30,30 +30,30 @@ const EditProductDetail = () => {
       });
   }, [id]);
 
-  const handleColorsChange = (e) => {
-    const colorsInput = e.target.value;
-    const lines = colorsInput.split("\n");
-    const colorsArray = lines.map((colorLine) => {
-      const match = colorLine.match(/^(.*?)\s*\((.*?)\)$/); // Tìm tên và mã màu trong dòng văn bản
-      if (match) {
-        const color = match[1].trim();
-        const code_color = match[2].trim();
-        return { color, code_color };
-      }
-      return null;
-    });
+  // const handleColorsChange = (e) => {
+  //   const colorsInput = e.target.value;
+  //   const lines = colorsInput.split("\n");
+  //   const colorsArray = lines.map((colorLine) => {
+  //     const match = colorLine.match(/^(.*?)\s*\((.*?)\)$/); // Tìm tên và mã màu trong dòng văn bản
+  //     if (match) {
+  //       const color = match[1].trim();
+  //       const code_color = match[2].trim();
+  //       return { color, code_color };
+  //     }
+  //     return null;
+  //   });
 
-    // Loại bỏ các phần tử null (không phù hợp)
-    const validColorsArray = colorsArray.filter((color) => color !== null);
+  //   // Loại bỏ các phần tử null (không phù hợp)
+  //   const validColorsArray = colorsArray.filter((color) => color !== null);
 
-    setProductDetail({
-      ...productDetail,
-      colors: validColorsArray,
-    });
-  };
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  //   setProductDetail({
+  //     ...productDetail,
+  //     colors: validColorsArray,
+  //   });
+  // };
+  // const handleFileChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,9 +66,12 @@ const EditProductDetail = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3001/api-detail/${id}`, productDetail)
+      .patch(`http://localhost:3001/api-detail/${id}`, productDetail)
       .then((response) => {
         // Handle successful update, redirect, or show a success message
+        setProductDetail(response.data.data.detail);
+        console.log("update thành công !!!");
+        console.log(response.data.data.detail);
       })
       .catch((error) => {
         console.error("Error updating detail:", error);
@@ -82,7 +85,7 @@ const EditProductDetail = () => {
         <NavbarAdmin />
         <div className="top"></div>
         <div className="bottom">
-          <div className="left">
+          {/* <div className="left">
             <img
               src={
                 file
@@ -91,10 +94,10 @@ const EditProductDetail = () => {
               }
               alt=""
             />
-          </div>
+          </div> */}
           <div className="right">
             <form onSubmit={handleUpdate}>
-              <div className="formInput">
+              {/* <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
@@ -104,7 +107,7 @@ const EditProductDetail = () => {
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
-              </div>
+              </div> */}
 
               <div className="formInput">
                 <label>Name</label>
@@ -137,7 +140,7 @@ const EditProductDetail = () => {
                 />
               </div>
 
-              <div className="formInput">
+              {/* <div className="formInput">
                 <label>Sizes</label>
                 <input
                   type="text"
@@ -159,7 +162,7 @@ const EditProductDetail = () => {
                     .join(", ")}
                   onChange={handleColorsChange}
                 />
-              </div>
+              </div> */}
 
               <div className="formInput">
                 <label>Quantity</label>

@@ -81,7 +81,10 @@ const New = ({ title }) => {
         "http://localhost:3001/api-detail",
         newProductDetail
       );
-      console.log("Chi tiết sản phẩm đã được tạo thành công:", response.data);
+      console.log(
+        "Chi tiết sản phẩm đã được tạo thành công:",
+        response.data.data
+      );
       setNewProductDetail({
         name: "",
         price: "",

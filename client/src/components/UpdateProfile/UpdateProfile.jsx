@@ -70,7 +70,9 @@ const UpdateProfile = () => {
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("An error occurred while updating profile. Please try again later.");
+      alert(
+        "An error occurred while updating profile. Please try again later."
+      );
     }
   };
 
